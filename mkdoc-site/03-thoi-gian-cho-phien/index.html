@@ -1180,7 +1180,7 @@ nhập lại</strong>.</p>
 <p>OWIN có sẵn cơ chế này. Nhưng <code>SlidingExpiration</code> <strong>chỉ gia hạn cookie khi đã
 quá NỬA vòng đời</strong>.</p>
 <p>Nghĩa là với <code>ExpireTimeSpan = 15 phút</code>:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Người dùng hoạt động ở phút thứ 7   →  chưa quá nửa  →  KHÔNG gia hạn
+<div class="highlight"><span class="filename">Ví dụ minh họa SlidingExpiration — không phải mã nguồn</span><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Người dùng hoạt động ở phút thứ 7   →  chưa quá nửa  →  KHÔNG gia hạn
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>                                        →  cookie vẫn hết hạn ở phút 15
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>                                        →  thời gian không hoạt động thực tế: 8 phút
 <a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>
@@ -1193,7 +1193,7 @@ nhập vào không tương ứng với hành vi thật.</p>
 <h3 id="cach-lam-o-ay">Cách làm ở đây<a class="headerlink" href="#cach-lam-o-ay" title="Permanent link">&para;</a></h3>
 <p>Tự ghi mốc hoạt động, nên sai số bị chặn ở <strong>độ hạt</strong> cố định thay vì phụ thuộc
 vào tổng thời gian chờ:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">private</span><span class="w"> </span><span class="k">static</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="nf">DoHatGiay</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">phut</span><span class="p">)</span>
+<div class="highlight"><span class="filename">gPortal_Portal/gPortal/Authorization/SessionTimeoutGuard.cs:202-206</span><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">private</span><span class="w"> </span><span class="k">static</span><span class="w"> </span><span class="kt">double</span><span class="w"> </span><span class="nf">DoHatGiay</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">phut</span><span class="p">)</span>
 <a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="p">{</span>
 <a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="kt">double</span><span class="w"> </span><span class="n">motPhanTu</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">phut</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">60.0</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">4.0</span><span class="p">;</span>
 <a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">Math</span><span class="p">.</span><span class="n">Min</span><span class="p">(</span><span class="mf">60.0</span><span class="p">,</span><span class="w"> </span><span class="n">motPhanTu</span><span class="p">);</span>
@@ -1226,12 +1226,12 @@ tư — để cấu hình 1 phút không biến thành "đóng phiên đâu đó
 </tr>
 </tbody>
 </table>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">private</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="n">KhoaMocHoatDong</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;gp:lastActivityUtc&quot;</span><span class="p">;</span>
+<div class="highlight"><span class="filename">gPortal_Portal/gPortal/Authorization/SessionTimeoutGuard.cs:43 và :248-249</span><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">private</span><span class="w"> </span><span class="k">const</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="n">KhoaMocHoatDong</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s">&quot;gp:lastActivityUtc&quot;</span><span class="p">;</span>
 <a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="n">context</span><span class="p">.</span><span class="n">Properties</span><span class="p">.</span><span class="n">Dictionary</span><span class="p">[</span><span class="n">KhoaMocHoatDong</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">moc</span><span class="p">.</span><span class="n">Ticks</span><span class="p">.</span><span class="n">ToString</span><span class="p">(...);</span>
 </code></pre></div>
 <hr />
 <h2 id="3-hai-nua-hai-cho">3. Hai nửa, hai chỗ<a class="headerlink" href="#3-hai-nua-hai-cho" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>┌───────────────────────────────────────────────────────────────┐
+<div class="highlight"><span class="filename">Sơ đồ hai nửa — không phải mã nguồn</span><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a>┌───────────────────────────────────────────────────────────────┐
 <a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a>│  Startup.Auth.cs  →  OnValidateIdentity                       │
 <a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>│  ─────────────────────────────────────────────                │
 <a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a>│  SessionTimeoutGuard.HetHanVaDongPhien(context)               │
@@ -1251,7 +1251,7 @@ tư — để cấu hình 1 phút không biến thành "đóng phiên đâu đó
 <p>Phải tách vì: tầng OWIN <strong>không biết gì</strong> về quy ước AJAX của portal, còn tầng
 <code>Global.asax</code> thì <strong>không xen được</strong> vào lúc vé xác thực đang được kiểm.</p>
 <h3 id="khi-het-gio-thi-don-nhung-gi">Khi hết giờ thì dọn những gì<a class="headerlink" href="#khi-het-gio-thi-don-nhung-gi" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">context</span><span class="p">.</span><span class="n">RejectIdentity</span><span class="p">();</span><span class="w">                                      </span><span class="c1">// 1. bỏ danh tính OWIN</span>
+<div class="highlight"><span class="filename">gPortal_Portal/gPortal/Authorization/SessionTimeoutGuard.cs:89-97</span><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">context</span><span class="p">.</span><span class="n">RejectIdentity</span><span class="p">();</span><span class="w">                                      </span><span class="c1">// 1. bỏ danh tính OWIN</span>
 <a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="n">context</span><span class="p">.</span><span class="n">OwinContext</span><span class="p">.</span><span class="n">Authentication</span><span class="p">.</span><span class="n">SignOut</span><span class="p">(...);</span><span class="w">               </span><span class="c1">// 2. gỡ cookie OWIN</span>
 <a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="n">DonCookiePhuTro</span><span class="p">();</span><span class="w">                                             </span><span class="c1">// 3. gỡ vé FormsAuthentication</span>
 </code></pre></div>
@@ -1261,7 +1261,7 @@ tên đăng nhập và vai trò, nhưng <code>CookieHelper.ClearCookieAuthen</co
 đó</strong>. "Đóng phiên" khi ấy mới chỉ đúng một nửa — dấu vết xác thực vẫn nằm trong
 trình duyệt thêm một ngày nữa.</p>
 <p>Đã bổ sung:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">System</span><span class="p">.</span><span class="n">Web</span><span class="p">.</span><span class="n">Security</span><span class="p">.</span><span class="n">FormsAuthentication</span><span class="p">.</span><span class="n">SignOut</span><span class="p">();</span>
+<div class="highlight"><span class="filename">gPortal_Portal/gPortal.Framework/CookieHelper.cs:191-192</span><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="n">System</span><span class="p">.</span><span class="n">Web</span><span class="p">.</span><span class="n">Security</span><span class="p">.</span><span class="n">FormsAuthentication</span><span class="p">.</span><span class="n">SignOut</span><span class="p">();</span>
 <a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="n">ClearCookie</span><span class="p">(</span><span class="n">System</span><span class="p">.</span><span class="n">Web</span><span class="p">.</span><span class="n">Security</span><span class="p">.</span><span class="n">FormsAuthentication</span><span class="p">.</span><span class="n">FormsCookieName</span><span class="p">);</span>
 </code></pre></div>
 <p>Vì <code>ClearCookieAuthen</code> được dùng chung bởi cả đường "hết giờ" lẫn đường "tự
@@ -1283,7 +1283,7 @@ Chuột và bàn phím thì phân biệt được.</p>
 <p><strong>Cả hai chỉ được phép KẾT THÚC phiên. Không đồng hồ nào được phép KÉO DÀI.
 Cái nào hết trước thì thắng.</strong></p>
 </blockquote>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>   hạn hết giờ = min(mocRequest, mocThaoTac) + thoiGianCho
+<div class="highlight"><span class="filename">Công thức hạn hết giờ — không phải mã nguồn</span><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>   hạn hết giờ = min(mocRequest, mocThaoTac) + thoiGianCho
 </code></pre></div>
 <p>Điều này khiến đồng hồ client chỉ làm luật <strong>chặt hơn</strong>, không bao giờ lỏng
 hơn. Và nó tôn trọng đúng chữ nghĩa của yêu cầu:</p>
@@ -1313,7 +1313,7 @@ lâu, client vẫn tưởng còn sống → họ bấm một cái và bị đá 
 báo nào</strong>. Lấy mốc sớm hơn thì hai đồng hồ luôn khớp nhau.</p>
 <h3 id="hai-chi-tiet-ky-thuat-ang-nho">Hai chi tiết kỹ thuật đáng nhớ<a class="headerlink" href="#hai-chi-tiet-ky-thuat-ang-nho" title="Permanent link">&para;</a></h3>
 <p><strong>a. Phải nghe ở pha CAPTURE, không phải pha bubble:</strong></p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="nb">document</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="nx">loai</span><span class="p">[</span><span class="nx">i</span><span class="p">],</span><span class="w"> </span><span class="nx">ghiNhanThaoTac</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">capture</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w"> </span><span class="nx">passive</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="w"> </span><span class="p">});</span>
+<div class="highlight"><span class="filename">gPortal_Portal/gPortal/Scripts/gp-session-timeout.js:85</span><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="nb">document</span><span class="p">.</span><span class="nx">addEventListener</span><span class="p">(</span><span class="nx">loai</span><span class="p">[</span><span class="nx">i</span><span class="p">],</span><span class="w"> </span><span class="nx">ghiNhanThaoTac</span><span class="p">,</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="nx">capture</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span><span class="w"> </span><span class="nx">passive</span><span class="o">:</span><span class="w"> </span><span class="kc">true</span><span class="w"> </span><span class="p">});</span>
 </code></pre></div>
 <p>Hai lý do, cả hai đều bắt buộc:
 1. ExtJS gọi <code>stopPropagation()</code> ở khá nhiều chỗ (kéo thả, chọn ô trong grid,
@@ -1322,7 +1322,7 @@ báo nào</strong>. Lấy mốc sớm hơn thì hai đồng hồ luôn khớp nh
 2. Sự kiện <code>scroll</code> <strong>không bubble</strong>. Ở pha bubble thì cuộn trang không bao giờ
    được ghi nhận.</p>
 <p><strong>b. Bỏ qua thao tác thụ động khi hộp cảnh báo đang hiện:</strong></p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="kd">function</span><span class="w"> </span><span class="nx">ghiNhanThaoTac</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
+<div class="highlight"><span class="filename">gPortal_Portal/gPortal/Scripts/gp-session-timeout.js:60-63</span><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="kd">function</span><span class="w"> </span><span class="nx">ghiNhanThaoTac</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
 <a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nx">dangHienHop</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="nx">daHetGio</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="p">;</span>
 <a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="w">    </span><span class="nx">mocThaoTac</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">Date</span><span class="p">.</span><span class="nx">now</span><span class="p">();</span>
 <a id="__codelineno-8-4" name="__codelineno-8-4" href="#__codelineno-8-4"></a><span class="p">}</span>
@@ -1354,7 +1354,7 @@ thêm sau này chắc chắn sẽ bị quên.</p>
 </tbody>
 </table>
 <p>Đường thứ hai phủ <strong>mọi</strong> handler là <code>Page</code>, không cần biết nó dùng master gì:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="k">protected</span><span class="w"> </span><span class="k">void</span><span class="w"> </span><span class="nf">Application_PreRequestHandlerExecute</span><span class="p">(</span><span class="kt">object</span><span class="w"> </span><span class="n">sender</span><span class="p">,</span><span class="w"> </span><span class="n">EventArgs</span><span class="w"> </span><span class="n">e</span><span class="p">)</span>
+<div class="highlight"><span class="filename">gPortal_Portal/gPortal/Global.asax.cs:86-116 (rút gọn)</span><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="k">protected</span><span class="w"> </span><span class="k">void</span><span class="w"> </span><span class="nf">Application_PreRequestHandlerExecute</span><span class="p">(</span><span class="kt">object</span><span class="w"> </span><span class="n">sender</span><span class="p">,</span><span class="w"> </span><span class="n">EventArgs</span><span class="w"> </span><span class="n">e</span><span class="p">)</span>
 <a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="p">{</span>
 <a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="w">    </span><span class="kt">var</span><span class="w"> </span><span class="n">page</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">HttpContext</span><span class="p">.</span><span class="n">Current</span><span class="p">.</span><span class="n">Handler</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="n">System</span><span class="p">.</span><span class="n">Web</span><span class="p">.</span><span class="n">UI</span><span class="p">.</span><span class="n">Page</span><span class="p">;</span>
 <a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">page</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="k">null</span><span class="p">)</span><span class="w"> </span><span class="k">return</span><span class="p">;</span>
@@ -1446,7 +1446,7 @@ cũng không cần, vì không ai đang dùng hệ thống.</p>
 <p>Đó chính là tình huống mà đồng hồ client sinh ra để xử lý — vì ExtJS đang gọi
 AJAX ở nền nên <strong>đồng hồ máy chủ sẽ không bao giờ hết giờ</strong>. Nếu cũng không
 thấy hộp cảnh báo, kiểm tra theo thứ tự:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="c1">// Mở DevTools → Console, gõ:</span>
+<div class="highlight"><span class="filename">Gõ trong DevTools Console — biến đặt ở gp-session-timeout.js:40-41</span><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="c1">// Mở DevTools → Console, gõ:</span>
 <a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="nx">gpSessionTimeoutDaChay</span>
 </code></pre></div>
 <table>
@@ -1472,7 +1472,7 @@ thấy hộp cảnh báo, kiểm tra theo thứ tự:</p>
 </table>
 <p>Nếu script đã chạy, mở tab <strong>Network</strong>, tìm lời gọi <code>Account/SessionPolicy</code> và
 xem phần trả về:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="p">{</span><span class="w"> </span><span class="nt">&quot;soPhut&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;soPhutCanhBao&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;thongBao&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;...&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;urlHetGio&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;...&quot;</span><span class="w"> </span><span class="p">}</span>
+<div class="highlight"><span class="filename">Phản hồi của GET /Account/SessionPolicy</span><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="p">{</span><span class="w"> </span><span class="nt">&quot;soPhut&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;soPhutCanhBao&quot;</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;thongBao&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;...&quot;</span><span class="p">,</span><span class="w"> </span><span class="nt">&quot;urlHetGio&quot;</span><span class="p">:</span><span class="w"> </span><span class="s2">&quot;...&quot;</span><span class="w"> </span><span class="p">}</span>
 </code></pre></div>
 <table>
 <thead>
@@ -1496,7 +1496,7 @@ xem phần trả về:</p>
 </tr>
 </tbody>
 </table>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">SessionTimeoutMinutes</span><span class="p">,</span><span class="w"> </span><span class="n">SessionWarnBeforeMinutes</span>
+<div class="highlight"><span class="filename">Chạy trong SQL Server Management Studio</span><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">SessionTimeoutMinutes</span><span class="p">,</span><span class="w"> </span><span class="n">SessionWarnBeforeMinutes</span>
 <a id="__codelineno-12-2" name="__codelineno-12-2" href="#__codelineno-12-2"></a><span class="k">FROM</span><span class="w"> </span><span class="n">dbo</span><span class="p">.</span><span class="n">gp_PortalSettings</span><span class="p">;</span>
 </code></pre></div>
 <p><strong>Lưu ý:</strong> <code>SessionWarnBeforeMinutes</code> phải <strong>nhỏ hơn hẳn</strong>

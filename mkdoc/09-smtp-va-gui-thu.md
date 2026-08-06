@@ -28,7 +28,7 @@ hoàn toàn hợp lý khi tin rằng cấu hình đã được lưu. Từ đó m
 
 `gp_PortalSettingsExStore.Update(List<>)`, bản cũ:
 
-```csharp
+```csharp title="BẢN CŨ của gp_PortalSettingsExStore.Update — đã sửa, không còn trong mã nguồn"
 var e = this.DbEntitySet
             .Where(x => x.KeySetting.Equals(keysettings, StringComparison.CurrentCultureIgnoreCase))
             .FirstOrDefault();
@@ -49,7 +49,7 @@ chạy được**.
 
 ### Đã sửa
 
-```csharp
+```csharp title="gPortal_Portal/gPortal.Framework/Store/gp_PortalSettingsExStore.cs:111-115"
 var khoaThuong = khoa.ToLower();
 var e = this.DbEntitySet
             .Where(x => x.KeySetting.ToLower() == khoaThuong)
@@ -70,7 +70,7 @@ không phụ thuộc vào collation của cơ sở dữ liệu.
 
 Bản cũ chỉ có một nhánh:
 
-```csharp
+```csharp title="BẢN CŨ của gp_PortalSettingsExStore.Update — đã sửa"
 if (e != null)
 {
     e.ValueSetting = ...;
@@ -88,7 +88,7 @@ chỗ hoàn toàn khác và muộn hơn nhiều.
 
 ### Đã sửa — chuyển thành upsert
 
-```csharp
+```csharp title="gPortal_Portal/gPortal.Framework/Store/gp_PortalSettingsExStore.cs:122-133"
 else
 {
     this.DbEntitySet.Add(new gp_PortalSettingsEx
@@ -112,7 +112,7 @@ else
 
 `PortalWebsite.js`, bản cũ:
 
-```javascript
+```javascript title="BẢN CŨ của PortalWebsite.js — nay là dòng 914, đã có callback"
 ajaxPUT('/Admin/PortalSettingsEx', lst)     // ← không có tham số thứ ba
 ```
 
@@ -162,7 +162,7 @@ nguyên nhân nằm ở **phiên bản giao thức**.
 
 ### Đã sửa
 
-```csharp
+```csharp title="gPortal_Portal/gPortal.Framework/DichVuThu.cs:56-61"
 // DichVuThu.BatGiaoThucHienDai()
 ServicePointManager.SecurityProtocol |=
     SecurityProtocolType.Tls12 | SecurityProtocolType.Tls11;
@@ -193,7 +193,7 @@ ra lỗi"* — đúng thứ vô dụng nhất trong tình huống đó.
 
 Nên chia đôi:
 
-```
+``` title="Sơ đồ tách DichVuThu / EmailService — không phải mã nguồn"
 DichVuThu.GuiAsync(...)  →  KetQuaGuiThu { ThanhCong, ThongBao, ChiTiet }
                             KHÔNG ném ngoại lệ
 
@@ -262,7 +262,7 @@ Vì vậy giao diện nói rõ: **bấm Cập nhật trước, rồi mới Gửi
 `UpdatePortalSettingsEx` có ghi nhật ký (nhóm v), nhưng **chỉ ghi tên các
 khóa**, không ghi giá trị:
 
-```csharp
+```csharp title="gPortal_Portal/gPortal/Controllers/AdminController.cs:1144-1145"
 chiTiet: "Các khóa được ghi: " + string.Join(", ", gp_PortalSettingEx.Select(x => x.KeySetting))
 ```
 
@@ -291,7 +291,7 @@ Chạy theo thứ tự, dừng ở bước đầu tiên hỏng:
 
 **Bước 1 — Cấu hình có thật sự được lưu không?**
 
-```sql
+```sql title="Chạy trong SQL Server Management Studio"
 SELECT KeySetting, ValueSetting FROM dbo.gp_PortalSettingsEx
 WHERE KeySetting LIKE 'SMTP%';
 ```

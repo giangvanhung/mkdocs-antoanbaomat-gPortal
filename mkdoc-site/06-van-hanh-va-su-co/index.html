@@ -1136,7 +1136,7 @@
 <h1 id="06-van-hanh-va-xu-ly-su-co">06 — Vận hành và xử lý sự cố<a class="headerlink" href="#06-van-hanh-va-xu-ly-su-co" title="Permanent link">&para;</a></h1>
 <hr />
 <h2 id="1-trien-khai-thu-tu-bat-buoc">1. Triển khai: thứ tự bắt buộc<a class="headerlink" href="#1-trien-khai-thu-tu-bat-buoc" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>1.  Chạy Database/DbUpdate.sql          ← TRƯỚC
+<div class="highlight"><span class="filename">Thứ tự triển khai — không phải mã nguồn</span><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>1.  Chạy Database/DbUpdate.sql          ← TRƯỚC
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>2.  Triển khai mã nguồn (gPortal.dll)
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>3.  Build + triển khai gPortalAdmin
 <a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>4.  Cấu hình chính sách trong màn hình quản trị
@@ -1154,7 +1154,7 @@ biết tới các cột mới.</p>
 <p><code>Database/DbUpdate.sql</code> là <strong>một tệp duy nhất chạy được nhiều lần</strong>. Mỗi thay
 đổi là một khối <code>[MIGRATION 00X]</code> có mã số tăng dần.</p>
 <p>Khuôn mẫu:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">IF</span><span class="w"> </span><span class="n">COL_LENGTH</span><span class="p">(</span><span class="n">N</span><span class="s1">&#39;dbo.&lt;bảng&gt;&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">N</span><span class="s1">&#39;&lt;cột&gt;&#39;</span><span class="p">)</span><span class="w"> </span><span class="k">IS</span><span class="w"> </span><span class="k">NULL</span>
+<div class="highlight"><span class="filename">Khuôn mẫu của một khối trong gPortal_Portal/Database/DbUpdate.sql</span><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">IF</span><span class="w"> </span><span class="n">COL_LENGTH</span><span class="p">(</span><span class="n">N</span><span class="s1">&#39;dbo.&lt;bảng&gt;&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">N</span><span class="s1">&#39;&lt;cột&gt;&#39;</span><span class="p">)</span><span class="w"> </span><span class="k">IS</span><span class="w"> </span><span class="k">NULL</span>
 <a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="k">BEGIN</span>
 <a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">dbo</span><span class="p">.</span><span class="o">&lt;</span><span class="n">bảng</span><span class="o">&gt;</span><span class="w"> </span><span class="k">ADD</span><span class="w"> </span><span class="o">&lt;</span><span class="n">cột</span><span class="o">&gt;</span><span class="w"> </span><span class="o">&lt;</span><span class="n">kiểu</span><span class="o">&gt;</span><span class="w"> </span><span class="k">NULL</span><span class="p">;</span>
 <a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">    </span><span class="n">PRINT</span><span class="w"> </span><span class="n">N</span><span class="s1">&#39;[00X] Da them cot ...&#39;</span><span class="p">;</span>
@@ -1264,13 +1264,13 @@ và hậu quả là gì?" Chỉ backfill khi câu trả lời là có hại.</p>
 <p><strong>Triệu chứng:</strong> mọi trang <code>/admin/...</code> trả về 403 kèm thông báo địa chỉ mạng.</p>
 <h3 id="cach-sua-nhanh">Cách sửa nhanh<a class="headerlink" href="#cach-sua-nhanh" title="Permanent link">&para;</a></h3>
 <p>Trên máy chủ, mở <code>gPortal/Web.config</code>, thêm vào <code>&lt;appSettings&gt;</code>:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nt">&lt;add</span><span class="w"> </span><span class="na">key=</span><span class="s">&quot;gp:AdminIpRestrictionDisabled&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;true&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<div class="highlight"><span class="filename">gPortal_Portal/gPortal/Web.config — thêm vào &lt;appSettings&gt;</span><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="nt">&lt;add</span><span class="w"> </span><span class="na">key=</span><span class="s">&quot;gp:AdminIpRestrictionDisabled&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;true&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
 </code></pre></div>
 <p>Lưu file → IIS tự khởi động lại ứng dụng → chốt chặn tắt hoàn toàn.</p>
 <p>Vào lại, sửa chính sách cho đúng, rồi <strong>xóa (hoặc chú thích) dòng đó đi</strong>.</p>
 <h3 id="neu-khong-truy-cap-uoc-may-chu">Nếu không truy cập được máy chủ<a class="headerlink" href="#neu-khong-truy-cap-uoc-may-chu" title="Permanent link">&para;</a></h3>
 <p>Chạy SQL trực tiếp:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1">-- Xem chính sách hiện tại</span>
+<div class="highlight"><span class="filename">Chạy trong SQL Server Management Studio</span><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1">-- Xem chính sách hiện tại</span>
 <a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">Id</span><span class="p">,</span><span class="w"> </span><span class="n">IpValue</span><span class="p">,</span><span class="w"> </span><span class="n">Description</span><span class="p">,</span><span class="w"> </span><span class="n">Enabled</span><span class="p">,</span><span class="w"> </span><span class="n">CreatedBy</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">dbo</span><span class="p">.</span><span class="n">gp_AdminIpRules</span><span class="p">;</span>
 <a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a>
 <a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="c1">-- Tắt toàn bộ (rỗng/tắt hết = tính năng TẮT)</span>
@@ -1286,7 +1286,7 @@ và hậu quả là gì?" Chỉ backfill khi câu trả lời là có hại.</p>
 <p><strong>Triệu chứng:</strong> ai đăng nhập cũng bị đẩy tới trang đổi mật khẩu.</p>
 <p>Nguyên nhân hay gặp: <code>PasswordValidityDays</code> bị đặt quá nhỏ, hoặc
 <code>PasswordChangedUtc</code> của dữ liệu cũ không được backfill đúng.</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1">-- Xem cấu hình</span>
+<div class="highlight"><span class="filename">Chạy trong SQL Server Management Studio</span><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1">-- Xem cấu hình</span>
 <a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">PasswordChangeIntervalDays</span><span class="p">,</span><span class="w"> </span><span class="n">PasswordValidityDays</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">dbo</span><span class="p">.</span><span class="n">gp_PortalSettings</span><span class="p">;</span>
 <a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a>
 <a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="c1">-- Tắt tính năng: cả HAI cùng NULL (cùng có hoặc cùng trống)</span>
@@ -1300,7 +1300,7 @@ và hậu quả là gì?" Chỉ backfill khi câu trả lời là có hại.</p>
 nhớ tạm nào giữ nó.</p>
 <hr />
 <h2 id="5-su-co-nguoi-dung-bi-ang-xuat-lien-tuc">5. Sự cố: người dùng bị đăng xuất liên tục<a class="headerlink" href="#5-su-co-nguoi-dung-bi-ang-xuat-lien-tuc" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">SessionTimeoutMinutes</span><span class="p">,</span><span class="w"> </span><span class="n">SessionWarnBeforeMinutes</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">dbo</span><span class="p">.</span><span class="n">gp_PortalSettings</span><span class="p">;</span>
+<div class="highlight"><span class="filename">Chạy trong SQL Server Management Studio</span><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">SessionTimeoutMinutes</span><span class="p">,</span><span class="w"> </span><span class="n">SessionWarnBeforeMinutes</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">dbo</span><span class="p">.</span><span class="n">gp_PortalSettings</span><span class="p">;</span>
 <a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a>
 <a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="c1">-- Tắt</span>
 <a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="k">UPDATE</span><span class="w"> </span><span class="n">dbo</span><span class="p">.</span><span class="n">gp_PortalSettings</span><span class="w"> </span><span class="k">SET</span><span class="w"> </span><span class="n">SessionTimeoutMinutes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">NULL</span><span class="p">,</span><span class="w"> </span><span class="n">SessionWarnBeforeMinutes</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">NULL</span><span class="p">;</span>
@@ -1311,7 +1311,7 @@ cookie hết hạn trước và con số cấu hình trở thành lời hứa su
 ép ở <code>AdminController</code>.</p>
 <hr />
 <h2 id="6-su-co-tai-khoan-bi-khoa-oan">6. Sự cố: tài khoản bị khóa oan<a class="headerlink" href="#6-su-co-tai-khoan-bi-khoa-oan" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1">-- Xem</span>
+<div class="highlight"><span class="filename">Chạy trong SQL Server Management Studio</span><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1">-- Xem</span>
 <a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">UserName</span><span class="p">,</span><span class="w"> </span><span class="n">AccessFailedCount</span><span class="p">,</span><span class="w"> </span><span class="n">LastFailedAttemptUtc</span><span class="p">,</span><span class="w"> </span><span class="n">LockoutEndDateUtc</span>
 <a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="k">FROM</span><span class="w"> </span><span class="n">dbo</span><span class="p">.</span><span class="n">gp_Users</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">UserName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;&lt;tên&gt;&#39;</span><span class="p">;</span>
 <a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>
@@ -1352,7 +1352,7 @@ cookie hết hạn trước và con số cấu hình trở thành lời hứa su
 đang chạy bằng dữ liệu cũ trong bộ nhớ). Đây là loại lỗi cần xử lý ngay, dù
 người dùng không thấy gì bất thường.</p>
 <p>Tra nhanh:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>AdminIpGuard
+<div class="highlight"><span class="filename">Chuỗi cần tìm trong file log của log4net</span><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a>AdminIpGuard
 <a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a>SessionTimeoutGuard
 <a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>MustChangePasswordGuard
 </code></pre></div>

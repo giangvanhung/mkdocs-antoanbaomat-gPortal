@@ -48,6 +48,25 @@ xác thực hai lớp qua email. Xem [09](09-smtp-va-gui-thu.md).
 
 ---
 
+## Cách đọc các khối mã trong tài liệu này
+
+**Mọi khối mã đều có một thanh tiêu đề ghi nó đến từ đâu**, ví dụ:
+
+`gPortal_Portal/gPortal/Authorization/MustChangePasswordGuard.cs:349-382`
+
+- Đường dẫn tính từ **gốc kho mã** `D:\dev\gPortal`.
+- Số sau dấu hai chấm là **dòng trong tệp gốc**. Nếu lệch (mã nguồn đã đổi từ
+  lúc viết tài liệu), tìm theo **tên hàm** ghi trong đoạn văn đi kèm.
+- Ghi `(rút gọn)` nghĩa là đoạn trong tài liệu đã bỏ bớt phần không liên quan —
+  mở tệp gốc sẽ thấy dài hơn.
+- Ghi `BẢN CŨ` nghĩa là đoạn đó **không còn trong mã nguồn**; nó được giữ lại để
+  giải thích lỗi đã sửa.
+- Ghi `không phải mã nguồn` là sơ đồ, ví dụ minh họa, hoặc mã giả.
+- Ghi `Chạy trong SQL Server Management Studio` / `PowerShell` / `DevTools
+  Console` là lệnh để bạn tự chạy, không phải mã của dự án.
+
+---
+
 ## Ba nguyên tắc lặp lại trong toàn bộ thiết kế
 
 Nếu chỉ nhớ được ba điều từ tập tài liệu này, hãy nhớ ba điều sau. Chúng giải

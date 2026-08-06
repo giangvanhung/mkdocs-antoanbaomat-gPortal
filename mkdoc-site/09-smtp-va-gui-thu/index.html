@@ -1290,7 +1290,7 @@ hoàn toàn hợp lý khi tin rằng cấu hình đã được lưu. Từ đó m
 <hr />
 <h2 id="2-loi-1-cau-truy-van-khong-dich-uoc-sang-sql">2. Lỗi 1 — Câu truy vấn không dịch được sang SQL<a class="headerlink" href="#2-loi-1-cau-truy-van-khong-dich-uoc-sang-sql" title="Permanent link">&para;</a></h2>
 <p><code>gp_PortalSettingsExStore.Update(List&lt;&gt;)</code>, bản cũ:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kt">var</span><span class="w"> </span><span class="n">e</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="n">DbEntitySet</span>
+<div class="highlight"><span class="filename">BẢN CŨ của gp_PortalSettingsExStore.Update — đã sửa, không còn trong mã nguồn</span><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="kt">var</span><span class="w"> </span><span class="n">e</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="n">DbEntitySet</span>
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">            </span><span class="p">.</span><span class="n">Where</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">x</span><span class="p">.</span><span class="n">KeySetting</span><span class="p">.</span><span class="n">Equals</span><span class="p">(</span><span class="n">keysettings</span><span class="p">,</span><span class="w"> </span><span class="n">StringComparison</span><span class="p">.</span><span class="n">CurrentCultureIgnoreCase</span><span class="p">))</span>
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">            </span><span class="p">.</span><span class="n">FirstOrDefault</span><span class="p">();</span>
 </code></pre></div>
@@ -1306,7 +1306,7 @@ Entity Framework <strong>không dịch được</strong> <code>String.Equals</co
 hàm lưu cấu hình mở rộng — trong đó có toàn bộ cấu hình SMTP — <strong>chưa bao giờ
 chạy được</strong>.</p>
 <h3 id="a-sua">Đã sửa<a class="headerlink" href="#a-sua" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kt">var</span><span class="w"> </span><span class="n">khoaThuong</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">khoa</span><span class="p">.</span><span class="n">ToLower</span><span class="p">();</span>
+<div class="highlight"><span class="filename">gPortal_Portal/gPortal.Framework/Store/gp_PortalSettingsExStore.cs:111-115</span><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="kt">var</span><span class="w"> </span><span class="n">khoaThuong</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">khoa</span><span class="p">.</span><span class="n">ToLower</span><span class="p">();</span>
 <a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="kt">var</span><span class="w"> </span><span class="n">e</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">this</span><span class="p">.</span><span class="n">DbEntitySet</span>
 <a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">            </span><span class="p">.</span><span class="n">Where</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">x</span><span class="p">.</span><span class="n">KeySetting</span><span class="p">.</span><span class="n">ToLower</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">khoaThuong</span><span class="p">)</span>
 <a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">            </span><span class="p">.</span><span class="n">FirstOrDefault</span><span class="p">();</span>
@@ -1322,7 +1322,7 @@ bắt được</strong> khác biệt này — nó chỉ nổ lúc chạy.</p>
 <hr />
 <h2 id="3-loi-2-khoa-chua-ton-tai-thi-bo-qua-trong-im-lang">3. Lỗi 2 — Khóa chưa tồn tại thì bỏ qua trong im lặng<a class="headerlink" href="#3-loi-2-khoa-chua-ton-tai-thi-bo-qua-trong-im-lang" title="Permanent link">&para;</a></h2>
 <p>Bản cũ chỉ có một nhánh:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">e</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="k">null</span><span class="p">)</span>
+<div class="highlight"><span class="filename">BẢN CŨ của gp_PortalSettingsExStore.Update — đã sửa</span><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">e</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="k">null</span><span class="p">)</span>
 <a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="p">{</span>
 <a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="w">    </span><span class="n">e</span><span class="p">.</span><span class="n">ValueSetting</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">...;</span>
 <a id="__codelineno-2-4" name="__codelineno-2-4" href="#__codelineno-2-4"></a><span class="w">    </span><span class="n">Context</span><span class="p">.</span><span class="n">Entry</span><span class="p">(</span><span class="n">e</span><span class="p">).</span><span class="n">State</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">EntityState</span><span class="p">.</span><span class="n">Modified</span><span class="p">;</span>
@@ -1335,7 +1335,7 @@ có gì được lưu</strong>.</p>
 <p>Sau đó <code>EmailService</code> đọc ra <code>null</code> rồi báo <em>"Không có cấu hình SMTP"</em>, ở một
 chỗ hoàn toàn khác và muộn hơn nhiều.</p>
 <h3 id="a-sua-chuyen-thanh-upsert">Đã sửa — chuyển thành upsert<a class="headerlink" href="#a-sua-chuyen-thanh-upsert" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">else</span>
+<div class="highlight"><span class="filename">gPortal_Portal/gPortal.Framework/Store/gp_PortalSettingsExStore.cs:122-133</span><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">else</span>
 <a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="p">{</span>
 <a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">    </span><span class="k">this</span><span class="p">.</span><span class="n">DbEntitySet</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="k">new</span><span class="w"> </span><span class="n">gp_PortalSettingsEx</span>
 <a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">    </span><span class="p">{</span>
@@ -1355,7 +1355,7 @@ hoặc bằng cách xử lý luôn. Bỏ trống là để người đọc sau t
 <hr />
 <h2 id="4-loi-3-giao-dien-nuot-loi">4. Lỗi 3 — Giao diện nuốt lỗi<a class="headerlink" href="#4-loi-3-giao-dien-nuot-loi" title="Permanent link">&para;</a></h2>
 <p><code>PortalWebsite.js</code>, bản cũ:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nx">ajaxPUT</span><span class="p">(</span><span class="s1">&#39;/Admin/PortalSettingsEx&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">lst</span><span class="p">)</span><span class="w">     </span><span class="c1">// ← không có tham số thứ ba</span>
+<div class="highlight"><span class="filename">BẢN CŨ của PortalWebsite.js — nay là dòng 914, đã có callback</span><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="nx">ajaxPUT</span><span class="p">(</span><span class="s1">&#39;/Admin/PortalSettingsEx&#39;</span><span class="p">,</span><span class="w"> </span><span class="nx">lst</span><span class="p">)</span><span class="w">     </span><span class="c1">// ← không có tham số thứ ba</span>
 </code></pre></div>
 <p><code>ajaxPUT(url, data, callback)</code> — thiếu <code>callback</code> thì <strong>cả nhánh thành công lẫn
 nhánh lỗi đều không làm gì</strong>.</p>
@@ -1391,7 +1391,7 @@ Bắt tay thất bại ngay ở tầng vận chuyển, trước cả khi tới b
 <p>Đọc những câu đó, phản xạ tự nhiên là đi kiểm <strong>tường lửa và cổng</strong> — trong khi
 nguyên nhân nằm ở <strong>phiên bản giao thức</strong>.</p>
 <h3 id="a-sua_2">Đã sửa<a class="headerlink" href="#a-sua_2" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1">// DichVuThu.BatGiaoThucHienDai()</span>
+<div class="highlight"><span class="filename">gPortal_Portal/gPortal.Framework/DichVuThu.cs:56-61</span><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="c1">// DichVuThu.BatGiaoThucHienDai()</span>
 <a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="n">ServicePointManager</span><span class="p">.</span><span class="n">SecurityProtocol</span><span class="w"> </span><span class="o">|=</span>
 <a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">    </span><span class="n">SecurityProtocolType</span><span class="p">.</span><span class="n">Tls12</span><span class="w"> </span><span class="o">|</span><span class="w"> </span><span class="n">SecurityProtocolType</span><span class="p">.</span><span class="n">Tls11</span><span class="p">;</span>
 </code></pre></div>
@@ -1414,7 +1414,7 @@ báo lỗi: <strong>ném ngoại lệ</strong>.</p>
 cấu hình. Một ngoại lệ bay lên trang lỗi chung thì người dùng chỉ thấy <em>"đã xảy
 ra lỗi"</em> — đúng thứ vô dụng nhất trong tình huống đó.</p>
 <p>Nên chia đôi:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>DichVuThu.GuiAsync(...)  →  KetQuaGuiThu { ThanhCong, ThongBao, ChiTiet }
+<div class="highlight"><span class="filename">Sơ đồ tách DichVuThu / EmailService — không phải mã nguồn</span><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>DichVuThu.GuiAsync(...)  →  KetQuaGuiThu { ThanhCong, ThongBao, ChiTiet }
 <a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>                            KHÔNG ném ngoại lệ
 <a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>
 <a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>EmailService.SendAsync() →  lớp vỏ mỏng, gọi DichVuThu rồi NÉM nếu hỏng
@@ -1480,7 +1480,7 @@ cấu hình cũ.</p>
 <h2 id="9-mat-khau-smtp-khong-bao-gio-vao-nhat-ky">9. Mật khẩu SMTP không bao giờ vào nhật ký<a class="headerlink" href="#9-mat-khau-smtp-khong-bao-gio-vao-nhat-ky" title="Permanent link">&para;</a></h2>
 <p><code>UpdatePortalSettingsEx</code> có ghi nhật ký (nhóm v), nhưng <strong>chỉ ghi tên các
 khóa</strong>, không ghi giá trị:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="n">chiTiet</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Các khóa được ghi: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="kt">string</span><span class="p">.</span><span class="n">Join</span><span class="p">(</span><span class="s">&quot;, &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">gp_PortalSettingEx</span><span class="p">.</span><span class="n">Select</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">x</span><span class="p">.</span><span class="n">KeySetting</span><span class="p">))</span>
+<div class="highlight"><span class="filename">gPortal_Portal/gPortal/Controllers/AdminController.cs:1144-1145</span><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="n">chiTiet</span><span class="p">:</span><span class="w"> </span><span class="s">&quot;Các khóa được ghi: &quot;</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="kt">string</span><span class="p">.</span><span class="n">Join</span><span class="p">(</span><span class="s">&quot;, &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">gp_PortalSettingEx</span><span class="p">.</span><span class="n">Select</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">x</span><span class="p">.</span><span class="n">KeySetting</span><span class="p">))</span>
 </code></pre></div>
 <p>Danh sách này chứa cả <code>SMTPPassword</code>. Nhật ký là thứ <strong>nhiều người đọc được
 nhất</strong> trong hệ thống — đổ mật khẩu vào đó là biến bản ghi kiểm toán thành nơi
@@ -1500,7 +1500,7 @@ dùng để nguyên ô che, tức là không đổi mật khẩu", nên nó là 
 <h2 id="10-quy-trinh-do-cau-hinh-smtp">10. Quy trình dò cấu hình SMTP<a class="headerlink" href="#10-quy-trinh-do-cau-hinh-smtp" title="Permanent link">&para;</a></h2>
 <p>Chạy theo thứ tự, dừng ở bước đầu tiên hỏng:</p>
 <p><strong>Bước 1 — Cấu hình có thật sự được lưu không?</strong></p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">KeySetting</span><span class="p">,</span><span class="w"> </span><span class="n">ValueSetting</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">dbo</span><span class="p">.</span><span class="n">gp_PortalSettingsEx</span>
+<div class="highlight"><span class="filename">Chạy trong SQL Server Management Studio</span><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">KeySetting</span><span class="p">,</span><span class="w"> </span><span class="n">ValueSetting</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">dbo</span><span class="p">.</span><span class="n">gp_PortalSettingsEx</span>
 <a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="k">WHERE</span><span class="w"> </span><span class="n">KeySetting</span><span class="w"> </span><span class="k">LIKE</span><span class="w"> </span><span class="s1">&#39;SMTP%&#39;</span><span class="p">;</span>
 </code></pre></div>
 <p>Nếu <strong>không có dòng nào</strong>: bấm Cập nhật lại. Với bản sửa mới, các dòng sẽ được

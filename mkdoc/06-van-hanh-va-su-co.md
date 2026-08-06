@@ -4,7 +4,7 @@
 
 ## 1. Triển khai: thứ tự bắt buộc
 
-```
+``` title="Thứ tự triển khai — không phải mã nguồn"
 1.  Chạy Database/DbUpdate.sql          ← TRƯỚC
 2.  Triển khai mã nguồn (gPortal.dll)
 3.  Build + triển khai gPortalAdmin
@@ -31,7 +31,7 @@ biết tới các cột mới.
 
 Khuôn mẫu:
 
-```sql
+```sql title="Khuôn mẫu của một khối trong gPortal_Portal/Database/DbUpdate.sql"
 IF COL_LENGTH(N'dbo.<bảng>', N'<cột>') IS NULL
 BEGIN
     ALTER TABLE dbo.<bảng> ADD <cột> <kiểu> NULL;
@@ -93,7 +93,7 @@ chỉ mẫu không đúng.
 
 Trên máy chủ, mở `gPortal/Web.config`, thêm vào `<appSettings>`:
 
-```xml
+```xml title="gPortal_Portal/gPortal/Web.config — thêm vào <appSettings>"
 <add key="gp:AdminIpRestrictionDisabled" value="true" />
 ```
 
@@ -105,7 +105,7 @@ Vào lại, sửa chính sách cho đúng, rồi **xóa (hoặc chú thích) dò
 
 Chạy SQL trực tiếp:
 
-```sql
+```sql title="Chạy trong SQL Server Management Studio"
 -- Xem chính sách hiện tại
 SELECT Id, IpValue, Description, Enabled, CreatedBy FROM dbo.gp_AdminIpRules;
 
@@ -128,7 +128,7 @@ Có hiệu lực **chậm nhất sau 60 giây** (thời gian giữ bộ nhớ t�
 Nguyên nhân hay gặp: `PasswordValidityDays` bị đặt quá nhỏ, hoặc
 `PasswordChangedUtc` của dữ liệu cũ không được backfill đúng.
 
-```sql
+```sql title="Chạy trong SQL Server Management Studio"
 -- Xem cấu hình
 SELECT PasswordChangeIntervalDays, PasswordValidityDays FROM dbo.gp_PortalSettings;
 
@@ -147,7 +147,7 @@ nhớ tạm nào giữ nó.
 
 ## 5. Sự cố: người dùng bị đăng xuất liên tục
 
-```sql
+```sql title="Chạy trong SQL Server Management Studio"
 SELECT SessionTimeoutMinutes, SessionWarnBeforeMinutes FROM dbo.gp_PortalSettings;
 
 -- Tắt
@@ -163,7 +163,7 @@ cookie hết hạn trước và con số cấu hình trở thành lời hứa su
 
 ## 6. Sự cố: tài khoản bị khóa oan
 
-```sql
+```sql title="Chạy trong SQL Server Management Studio"
 -- Xem
 SELECT UserName, AccessFailedCount, LastFailedAttemptUtc, LockoutEndDateUtc
 FROM dbo.gp_Users WHERE UserName = '<tên>';
@@ -197,7 +197,7 @@ người dùng không thấy gì bất thường.
 
 Tra nhanh:
 
-```
+``` title="Chuỗi cần tìm trong file log của log4net"
 AdminIpGuard
 SessionTimeoutGuard
 MustChangePasswordGuard

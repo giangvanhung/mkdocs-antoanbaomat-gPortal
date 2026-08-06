@@ -28,7 +28,7 @@ hạn** cho tới khi đăng nhập đúng hoặc bị khóa.
 
 Nghĩa là:
 
-```
+``` title="Ví dụ minh họa — không phải mã nguồn"
 Ngày 01/01:  sai 4 lần   →  AccessFailedCount = 4
 ...ba tháng trôi qua, không ai đụng vào tài khoản...
 Ngày 01/04:  sai 1 lần   →  AccessFailedCount = 5  →  KHÓA
@@ -45,7 +45,7 @@ khoản".
 Thêm một cột `gp_Users.LastFailedAttemptUtc`, và ghi đè hàm mà Identity gọi mỗi
 lần có một lần đăng nhập sai:
 
-```csharp
+```csharp title="gPortal_Portal/gPortal.Framework/Identity/IdentityConfig.cs:101-129 (rút gọn)"
 public override async Task<IdentityResult> AccessFailedAsync(string userId)
 {
     var user = await FindByIdAsync(userId);
@@ -95,7 +95,7 @@ lần duy nhất của nó, cả hai thay đổi được ghi xuống cùng lúc
 
 Trong `AccountController.MobileLogin`:
 
-```csharp
+```csharp title="BẢN CŨ của AccountController.MobileLogin — đã sửa, không còn trong mã nguồn"
 // BẢN CŨ
 else if (await UserManager.GetLockoutEnabledAsync(user.Id) && validCredentials == null)
 {
@@ -147,7 +147,7 @@ Khác với cặp tham số mật khẩu ở [01](01-mat-khau-dinh-ky.md), ba th
 
 `AdminController.KiemTraCauHinhKhoaTaiKhoan` chỉ chặn các giá trị **vô nghĩa**:
 
-```csharp
+```csharp title="gPortal_Portal/gPortal/Controllers/AdminController.cs:841-842"
 if (st.MaxInvalidPasswordAttempts.HasValue && st.MaxInvalidPasswordAttempts.Value <= 0)
     return "Số lần nhập sai mật khẩu tối đa phải lớn hơn 0. Để trống nếu không muốn giới hạn.";
 ```
@@ -163,11 +163,11 @@ phải tình huống giả định; nó là hành vi mặc định của ExtJS.
 
 Hai lớp bảo vệ cho cùng một lỗi:
 
-```javascript
+```javascript title="gPortal_gClient/gPortalAdmin/app/model/mPortalSetting.js:11"
 // mPortalSetting.js — ngăn gửi 0 đi
 { name: 'MaxInvalidPasswordAttempts', type: 'int', allowNull: true },
 ```
-```csharp
+```csharp title="gPortal_Portal/gPortal/Controllers/AdminController.cs:841-842"
 // AdminController.cs — từ chối 0 nếu nó vẫn tới được
 if (st.MaxInvalidPasswordAttempts.HasValue && st.MaxInvalidPasswordAttempts.Value <= 0) ...
 ```

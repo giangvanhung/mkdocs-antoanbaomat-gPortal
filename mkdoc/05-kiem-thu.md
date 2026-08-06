@@ -11,7 +11,7 @@
 
 ### a. Chạy migration
 
-```
+``` title="Tệp phải chạy: gPortal_Portal/Database/DbUpdate.sql"
 Database/DbUpdate.sql
 ```
 
@@ -22,14 +22,14 @@ riêng gì tính năng mới.
 
 Kiểm tra sau khi chạy:
 
-```sql
+```sql title="Chạy trong SQL Server Management Studio"
 SELECT MigrationId, AppliedOnUtc FROM dbo.gp_DbMigrations ORDER BY MigrationId;
 -- Phải có đủ: 000 → 007
 ```
 
 ### b. Build lại giao diện admin
 
-```powershell
+```powershell title="Chạy trong PowerShell tại D:\dev\gPortal"
 .\build-gclient.ps1 -App gPortalAdmin
 ```
 
@@ -44,7 +44,7 @@ trị, dù backend đã sẵn sàng.
 
 Dùng SQL để "tua ngược thời gian" cho một tài khoản thử:
 
-```sql
+```sql title="Chạy trong SQL Server Management Studio"
 -- Vùng ÂN HẠN: 70 ngày > 60, chưa tới 90
 UPDATE dbo.gp_Users
 SET PasswordChangedUtc = DATEADD(DAY, -70, GETUTCDATE())
@@ -58,7 +58,7 @@ WHERE UserName = 'gianghungtest';
 | Bấm "Để sau" | ✅ **Vào được hệ thống bình thường** |
 | Mở các chức năng khác | ✅ Dùng được hết |
 
-```sql
+```sql title="Chạy trong SQL Server Management Studio"
 -- Vùng KHÓA: 95 ngày > 90
 UPDATE dbo.gp_Users
 SET PasswordChangedUtc = DATEADD(DAY, -95, GETUTCDATE())
@@ -74,7 +74,7 @@ WHERE UserName = 'gianghungtest';
 
 **Thử lỗ hổng đã vá** (đường dẫn chứa chuỗi cho qua):
 
-```
+``` title="Gõ vào thanh địa chỉ trình duyệt"
 /api/report/account/login-history
 ```
 Phải **bị chặn**. Nếu vào được thì `DuongDanRequest` đang so sai.
@@ -89,7 +89,7 @@ với thông báo rõ ràng. Thử cả bằng giao diện **và** bằng gọi 
 
 **Cấu hình:** Số lần sai tối đa = `3`, Khoảng tính số lần sai = `2` phút
 
-```sql
+```sql title="Chạy trong SQL Server Management Studio"
 -- Xem trạng thái bộ đếm bất cứ lúc nào
 SELECT UserName, AccessFailedCount, LastFailedAttemptUtc, LockoutEndDateUtc
 FROM dbo.gp_Users WHERE UserName = 'gianghungtest';

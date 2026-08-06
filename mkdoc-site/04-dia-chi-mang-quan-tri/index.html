@@ -1457,7 +1457,7 @@ bật nhưng danh sách rỗng" = khóa toàn bộ.</p>
 <hr />
 <h2 id="4-pham-vi-ap-dung-hai-ve-bu-cho-nhau">4. Phạm vi áp dụng: hai vế bù cho nhau<a class="headerlink" href="#4-pham-vi-ap-dung-hai-ve-bu-cho-nhau" title="Permanent link">&para;</a></h2>
 <p>Một request bị soi nếu <strong>thỏa một trong hai</strong>:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>(1) Đường dẫn nằm trong bề mặt quản trị:  /admin , /gclient/gadmin
+<div class="highlight"><span class="filename">Hai vế phạm vi áp dụng — không phải mã nguồn</span><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>(1) Đường dẫn nằm trong bề mặt quản trị:  /admin , /gclient/gadmin
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    → kể cả khi CHƯA đăng nhập
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
 <a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>(2) Người đang đăng nhập là quản trị viên
@@ -1486,7 +1486,7 @@ không chạm được tới form đăng nhập quản trị, nên không có g�
 <p>Vế (2) là bảo hiểm cho sự lười biếng trong tương lai. Không có nó thì chỉ cần
 một endpoint quản trị nằm ngoài danh sách đường dẫn là cả chính sách vô hiệu.</p>
 <h3 id="ngoai-le-luon-cho-qua">Ngoại lệ luôn cho qua<a class="headerlink" href="#ngoai-le-luon-cho-qua" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">private</span><span class="w"> </span><span class="k">static</span><span class="w"> </span><span class="k">readonly</span><span class="w"> </span><span class="kt">string</span><span class="p">[]</span><span class="w"> </span><span class="n">DuongDanChoQua</span><span class="w"> </span><span class="o">=</span>
+<div class="highlight"><span class="filename">gPortal_Portal/gPortal/Authorization/AdminIpGuard.cs:87-92</span><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">private</span><span class="w"> </span><span class="k">static</span><span class="w"> </span><span class="k">readonly</span><span class="w"> </span><span class="kt">string</span><span class="p">[]</span><span class="w"> </span><span class="n">DuongDanChoQua</span><span class="w"> </span><span class="o">=</span>
 <a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="p">{</span>
 <a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="s">&quot;/account/login&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;/account/logoff&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;/manage/logoff&quot;</span>
 <a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="p">};</span>
@@ -1506,7 +1506,7 @@ dùng nó <strong>trên máy này</strong>, nhưng bản thân cái cookie vẫn
 mang sang một mạng khác là dùng được.</p>
 <p>Thu hồi ngay tại đây thì kẻ có mật khẩu đúng nhưng ngồi sai chỗ <strong>không nhận
 được gì mang đi cả</strong>:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">AuthenticationManager</span><span class="p">.</span><span class="n">SignOut</span><span class="p">();</span>
+<div class="highlight"><span class="filename">gPortal_Portal/gPortal/Controllers/AccountController.cs:1069-1072</span><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">AuthenticationManager</span><span class="p">.</span><span class="n">SignOut</span><span class="p">();</span>
 <a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="n">CookieHelper</span><span class="p">.</span><span class="n">ClearCookieAuthen</span><span class="p">();</span>
 <a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="k">return</span><span class="w"> </span><span class="nf">RedirectToAction</span><span class="p">(</span><span class="s">&quot;Login&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Account&quot;</span><span class="p">,</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">ipdenied</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="p">});</span>
 </code></pre></div>
@@ -1515,7 +1515,7 @@ mang sang một mạng khác là dùng được.</p>
 thường ×2 nhánh, SSO qua <code>LoginPage</code>, xác thực hai lớp qua <code>VerifyCode</code>). Vá
 từng đường một là cách chắc chắn để bỏ sót đúng một đường.</p>
 <h3 id="mot-cai-bay-trong-o">Một cái bẫy trong đó<a class="headerlink" href="#mot-cai-bay-trong-o" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1">// KHÔNG dùng gPortalUser.IsAdmin ở đây!</span>
+<div class="highlight"><span class="filename">gPortal_Portal/gPortal/Controllers/AccountController.cs:1034-1040</span><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1">// KHÔNG dùng gPortalUser.IsAdmin ở đây!</span>
 <a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="n">laQuanTri</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">UserManager</span><span class="p">.</span><span class="n">IsInRole</span><span class="p">(</span><span class="n">user</span><span class="p">.</span><span class="n">Id</span><span class="p">,</span><span class="w"> </span><span class="n">Role</span><span class="p">.</span><span class="n">Administrator</span><span class="p">)</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="p">...</span>
 </code></pre></div>
 <p><code>gPortalUser.IsAdmin</code> đọc <code>HttpContext.Current.User</code>. Nhưng tại thời điểm này,
@@ -1525,7 +1525,7 @@ quản trị" và chốt không bao giờ kích hoạt.</p>
 <hr />
 <h2 id="6-lay-ia-chi-client-cho-de-sai-nhat">6. Lấy địa chỉ client — chỗ dễ sai nhất<a class="headerlink" href="#6-lay-ia-chi-client-cho-de-sai-nhat" title="Permanent link">&para;</a></h2>
 <h3 id="mac-inh-chi-tin-ia-chi-tcp">Mặc định: CHỈ tin địa chỉ TCP<a class="headerlink" href="#mac-inh-chi-tin-ia-chi-tcp" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">IPAddress</span><span class="w"> </span><span class="n">diaChiTcp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">KhopDiaChiMang</span><span class="p">.</span><span class="n">Doc</span><span class="p">(</span><span class="n">request</span><span class="p">.</span><span class="n">UserHostAddress</span><span class="p">);</span>
+<div class="highlight"><span class="filename">gPortal_Portal/gPortal.Framework/Security/DiaChiClient.cs:40</span><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">IPAddress</span><span class="w"> </span><span class="n">diaChiTcp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">KhopDiaChiMang</span><span class="p">.</span><span class="n">Doc</span><span class="p">(</span><span class="n">request</span><span class="p">.</span><span class="n">UserHostAddress</span><span class="p">);</span>
 </code></pre></div>
 <p><strong>Không</strong> tin <code>X-Forwarded-For</code>. Tiêu đề đó do client tự đặt: tin nó vô điều
 kiện thì chỉ cần gửi kèm <code>X-Forwarded-For: 192.168.1.10</code> là qua chốt, và cả
@@ -1535,13 +1535,13 @@ tính năng chỉ còn là đồ trang trí.</p>
 → chính sách thành "cho tất cả" hoặc "cấm tất cả".</p>
 <p>Lời giải: khai báo proxy tin cậy trong <code>Web.config</code>. <strong>Chỉ khi</strong> địa chỉ TCP
 đúng là một proxy đã khai báo, ta mới đọc <code>X-Forwarded-For</code>:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nt">&lt;add</span><span class="w"> </span><span class="na">key=</span><span class="s">&quot;gp:AdminIpTrustedProxies&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;10.0.0.5, 10.0.0.6&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<div class="highlight"><span class="filename">gPortal_Portal/gPortal/Web.config:63 (đang bị chú thích)</span><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nt">&lt;add</span><span class="w"> </span><span class="na">key=</span><span class="s">&quot;gp:AdminIpTrustedProxies&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;10.0.0.5, 10.0.0.6&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
 </code></pre></div>
 <p>Và đọc mục <strong>phải cùng bên phải</strong> của chuỗi, vì proxy nối thêm vào cuối — các
 mục bên trái do client gửi lên nên bịa được.</p>
 <h3 id="vi-sao-khong-dung-websecuritygetipadress-co-san">Vì sao KHÔNG dùng <code>WebSecurity.getIpAdress()</code> có sẵn<a class="headerlink" href="#vi-sao-khong-dung-websecuritygetipadress-co-san" title="Permanent link">&para;</a></h3>
 <p>Hàm đó trong <code>Global.asax.cs</code>:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="k">public</span><span class="w"> </span><span class="k">static</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="nf">getIpAdress</span><span class="p">()</span>
+<div class="highlight"><span class="filename">gPortal_Portal/gPortal/Global.asax.cs:192-199</span><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="k">public</span><span class="w"> </span><span class="k">static</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="nf">getIpAdress</span><span class="p">()</span>
 <a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="p">{</span>
 <a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">    </span><span class="kt">string</span><span class="w"> </span><span class="n">ipclient</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">HttpContext</span><span class="p">.</span><span class="n">Current</span><span class="p">.</span><span class="n">Request</span><span class="p">.</span><span class="n">QueryString</span><span class="p">.</span><span class="n">Get</span><span class="p">(</span><span class="s">&quot;ip&quot;</span><span class="p">);</span>
 <a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="kt">string</span><span class="p">.</span><span class="n">IsNullOrEmpty</span><span class="p">(</span><span class="n">ipclient</span><span class="p">))</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">ipclient</span><span class="p">;</span><span class="w">      </span><span class="c1">// ← đọc ?ip= TRƯỚC</span>
@@ -1558,7 +1558,7 @@ không được dùng lại cho mục đích này.</p>
 <p>Đây là tính năng <strong>duy nhất</strong> trong hệ thống có thể khóa chính người vừa cấu
 hình nó. Nên phải có đường lùi.</p>
 <h3 id="lop-1-khi-luu-tu-choi-neu-ban-se-tu-khoa-minh">Lớp 1 — Khi LƯU: từ chối nếu bạn sẽ tự khóa mình<a class="headerlink" href="#lop-1-khi-luu-tu-choi-neu-ban-se-tu-khoa-minh" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="k">private</span><span class="w"> </span><span class="k">static</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="nf">KiemTraKhongTuKhoa</span><span class="p">(</span><span class="n">hienCo</span><span class="p">,</span><span class="w"> </span><span class="n">cu</span><span class="p">,</span><span class="w"> </span><span class="n">moi</span><span class="p">)</span>
+<div class="highlight"><span class="filename">gPortal_Portal/gPortal/Controllers/AdminController.cs:1054-1077 (rút gọn)</span><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="k">private</span><span class="w"> </span><span class="k">static</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="nf">KiemTraKhongTuKhoa</span><span class="p">(</span><span class="n">hienCo</span><span class="p">,</span><span class="w"> </span><span class="n">cu</span><span class="p">,</span><span class="w"> </span><span class="n">moi</span><span class="p">)</span>
 <a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="p">{</span>
 <a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">    </span><span class="c1">// Dựng ra bộ quy tắc SẼ có sau thao tác này</span>
 <a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="w">    </span><span class="kt">var</span><span class="w"> </span><span class="n">sauKhiLuu</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">hienCo</span><span class="p">.</span><span class="n">Where</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">cu</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="k">null</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">x</span><span class="p">.</span><span class="n">Id</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">cu</span><span class="p">.</span><span class="n">Id</span><span class="p">)</span>
@@ -1588,7 +1588,7 @@ mẫm.</p>
 <p>Giao diện cũng hiện sẵn địa chỉ của bạn ngay trên thanh công cụ của lưới
 (<code>/Admin/MyIp</code>), để không phải đoán.</p>
 <h3 id="lop-3-khi-a-lo-khoa-cong-tac-trong-webconfig">Lớp 3 — Khi ĐÃ LỠ KHÓA: công tắc trong <code>Web.config</code><a class="headerlink" href="#lop-3-khi-a-lo-khoa-cong-tac-trong-webconfig" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="nt">&lt;add</span><span class="w"> </span><span class="na">key=</span><span class="s">&quot;gp:AdminIpRestrictionDisabled&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;true&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+<div class="highlight"><span class="filename">gPortal_Portal/gPortal/Web.config:62 (đang bị chú thích)</span><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="nt">&lt;add</span><span class="w"> </span><span class="na">key=</span><span class="s">&quot;gp:AdminIpRestrictionDisabled&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;true&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
 </code></pre></div>
 <p>Sửa được file này nghĩa là đã kiểm soát máy chủ, nên đây <strong>không phải lỗ hổng
 mới</strong> — nó chỉ là đường lùi bắt buộc phải có. Dùng khi địa chỉ IP của nhà mạng
@@ -1615,7 +1615,7 @@ thay đổi ngoài dự kiến.</p>
 </tbody>
 </table>
 <p>Vế thứ hai nặng hơn hẳn. Cách xử lý:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">Exception</span><span class="w"> </span><span class="n">ex</span><span class="p">)</span>
+<div class="highlight"><span class="filename">gPortal_Portal/gPortal/Authorization/AdminIpGuard.cs:138-144</span><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">Exception</span><span class="w"> </span><span class="n">ex</span><span class="p">)</span>
 <a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="p">{</span>
 <a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="w">    </span><span class="n">gPortalLogger</span><span class="p">.</span><span class="n">_log</span><span class="p">.</span><span class="n">Error</span><span class="p">(...);</span>
 <a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="w">    </span><span class="c1">// Giữ nguyên bộ quy tắc CŨ nếu đã từng đọc được</span>
@@ -1635,7 +1635,7 @@ giây chỉ là độ trễ tối đa khi chạy nhiều máy chủ.</p>
 <hr />
 <h2 id="9-mot-cai-bay-trong-viec-oc-ia-chi-ip">9. Một cái bẫy trong việc đọc địa chỉ IP<a class="headerlink" href="#9-mot-cai-bay-trong-viec-oc-ia-chi-ip" title="Permanent link">&para;</a></h2>
 <p><code>IPAddress.TryParse</code> của .NET <strong>chấp nhận dạng thiếu đoạn và tự suy diễn</strong>:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>&quot;192.168.1&quot;  →  192.168.0.1     (!)
+<div class="highlight"><span class="filename">Ví dụ minh họa IPAddress.TryParse — không phải mã nguồn</span><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>&quot;192.168.1&quot;  →  192.168.0.1     (!)
 <a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>&quot;10&quot;         →  0.0.0.10        (!)
 </code></pre></div>
 <p>Nghĩa là một quy tắc gõ thiếu sẽ được <strong>nhận</strong>, nhưng nó bảo vệ một địa chỉ
@@ -1649,7 +1649,7 @@ số nguyên 0–255.</p>
 <code>::ffff:192.168.1.5</code>. So bằng byte thì <strong>khác hoàn toàn</strong>.</p>
 <p>Không quy chuẩn thì quản trị viên nhập đúng địa chỉ của mình mà vẫn bị chặn, và
 sẽ không hiểu vì sao:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="k">public</span><span class="w"> </span><span class="k">static</span><span class="w"> </span><span class="n">IPAddress</span><span class="w"> </span><span class="nf">ChuanHoa</span><span class="p">(</span><span class="n">IPAddress</span><span class="w"> </span><span class="n">diaChi</span><span class="p">)</span>
+<div class="highlight"><span class="filename">gPortal_Portal/gPortal.Framework/Security/KhopDiaChiMang.cs:37-46</span><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="k">public</span><span class="w"> </span><span class="k">static</span><span class="w"> </span><span class="n">IPAddress</span><span class="w"> </span><span class="nf">ChuanHoa</span><span class="p">(</span><span class="n">IPAddress</span><span class="w"> </span><span class="n">diaChi</span><span class="p">)</span>
 <a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="p">{</span>
 <a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">diaChi</span><span class="p">.</span><span class="n">AddressFamily</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">AddressFamily</span><span class="p">.</span><span class="n">InterNetworkV6</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">diaChi</span><span class="p">.</span><span class="n">IsIPv4MappedToIPv6</span><span class="p">)</span>
 <a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">diaChi</span><span class="p">.</span><span class="n">MapToIPv4</span><span class="p">();</span>
@@ -1678,11 +1678,15 @@ tự quy đổi cho nhau. Cứ nhìn con số mà giao diện hiện ra rồi th
 </tr>
 <tr>
 <td>Luật so khớp IP</td>
-<td><code>gPortal/Authorization/KhopDiaChiMang.cs</code></td>
+<td><code>gPortal.Framework/Security/KhopDiaChiMang.cs</code></td>
+</tr>
+<tr>
+<td>Lấy địa chỉ client (<code>X-Forwarded-For</code>)</td>
+<td><code>gPortal.Framework/Security/DiaChiClient.cs</code></td>
 </tr>
 <tr>
 <td>Chặn lúc đăng nhập</td>
-<td><code>AccountController.ChanQuanTriSaiDiaChi</code></td>
+<td><code>AccountController.ChanQuanTriSaiDiaChi</code> — <code>AccountController.cs:1053-1074</code></td>
 </tr>
 <tr>
 <td>API quản lý</td>
@@ -1690,7 +1694,7 @@ tự quy đổi cho nhau. Cứ nhìn con số mà giao diện hiện ra rồi th
 </tr>
 <tr>
 <td>Chống tự khóa</td>
-<td><code>AdminController.KiemTraKhongTuKhoa</code></td>
+<td><code>AdminController.KiemTraKhongTuKhoa</code> — <code>AdminController.cs:1054-1077</code></td>
 </tr>
 <tr>
 <td>Giao diện</td>

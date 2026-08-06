@@ -29,7 +29,7 @@ hai.
 
 **Sâu hơn:** Đây là nguyên tắc được áp dụng nhất quán, không có ngoại lệ:
 
-```csharp
+```csharp title="gPortal_Portal/gPortal/Controllers/AdminController.cs:679-685 (rút gọn)"
 // AdminController.AddPortalSettings
 string loiHanMatKhau = KiemTraCauHinhHanMatKhau(st);
 if (loiHanMatKhau != null) { res.code = "100"; res.message = loiHanMatKhau; return Json(res); }

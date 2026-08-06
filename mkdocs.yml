@@ -41,7 +41,14 @@ markdown_extensions:
   - toc:
       permalink: true
   - pymdownx.details
-  - pymdownx.superfences
+  # Sơ đồ luồng viết bằng Mermaid. Material tự đóng gói sẵn mermaid.js nên
+  # KHÔNG cần mạng lúc xem trang - chỉ cần khai báo custom_fences này để khối
+  # ```mermaid được render thành hình thay vì in ra như code.
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
   - pymdownx.highlight:
       anchor_linenums: true
 

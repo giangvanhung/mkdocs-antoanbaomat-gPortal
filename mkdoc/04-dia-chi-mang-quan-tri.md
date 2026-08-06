@@ -77,7 +77,7 @@ bật nhưng danh sách rỗng" = khóa toàn bộ.
 
 Một request bị soi nếu **thỏa một trong hai**:
 
-```
+``` title="Hai vế phạm vi áp dụng — không phải mã nguồn"
 (1) Đường dẫn nằm trong bề mặt quản trị:  /admin , /gclient/gadmin
     → kể cả khi CHƯA đăng nhập
 
@@ -98,7 +98,7 @@ một endpoint quản trị nằm ngoài danh sách đường dẫn là cả ch�
 
 ### Ngoại lệ luôn cho qua
 
-```csharp
+```csharp title="gPortal_Portal/gPortal/Authorization/AdminIpGuard.cs:87-92"
 private static readonly string[] DuongDanChoQua =
 {
     "/account/login", "/account/logoff", "/manage/logoff"
@@ -129,7 +129,7 @@ mang sang một mạng khác là dùng được.
 Thu hồi ngay tại đây thì kẻ có mật khẩu đúng nhưng ngồi sai chỗ **không nhận
 được gì mang đi cả**:
 
-```csharp
+```csharp title="gPortal_Portal/gPortal/Controllers/AccountController.cs:1069-1072"
 AuthenticationManager.SignOut();
 CookieHelper.ClearCookieAuthen();
 return RedirectToAction("Login", "Account", new { ipdenied = 1 });
@@ -143,7 +143,7 @@ từng đường một là cách chắc chắn để bỏ sót đúng một đư
 
 ### Một cái bẫy trong đó
 
-```csharp
+```csharp title="gPortal_Portal/gPortal/Controllers/AccountController.cs:1034-1040"
 // KHÔNG dùng gPortalUser.IsAdmin ở đây!
 laQuanTri = UserManager.IsInRole(user.Id, Role.Administrator) || ...
 ```
@@ -159,7 +159,7 @@ quản trị" và chốt không bao giờ kích hoạt.
 
 ### Mặc định: CHỈ tin địa chỉ TCP
 
-```csharp
+```csharp title="gPortal_Portal/gPortal.Framework/Security/DiaChiClient.cs:40"
 IPAddress diaChiTcp = KhopDiaChiMang.Doc(request.UserHostAddress);
 ```
 
@@ -175,7 +175,7 @@ tính năng chỉ còn là đồ trang trí.
 Lời giải: khai báo proxy tin cậy trong `Web.config`. **Chỉ khi** địa chỉ TCP
 đúng là một proxy đã khai báo, ta mới đọc `X-Forwarded-For`:
 
-```xml
+```xml title="gPortal_Portal/gPortal/Web.config:63 (đang bị chú thích)"
 <add key="gp:AdminIpTrustedProxies" value="10.0.0.5, 10.0.0.6" />
 ```
 
@@ -186,7 +186,7 @@ mục bên trái do client gửi lên nên bịa được.
 
 Hàm đó trong `Global.asax.cs`:
 
-```csharp
+```csharp title="gPortal_Portal/gPortal/Global.asax.cs:192-199"
 public static string getIpAdress()
 {
     string ipclient = HttpContext.Current.Request.QueryString.Get("ip");
@@ -211,7 +211,7 @@ hình nó. Nên phải có đường lùi.
 
 ### Lớp 1 — Khi LƯU: từ chối nếu bạn sẽ tự khóa mình
 
-```csharp
+```csharp title="gPortal_Portal/gPortal/Controllers/AdminController.cs:1054-1077 (rút gọn)"
 private static string KiemTraKhongTuKhoa(hienCo, cu, moi)
 {
     // Dựng ra bộ quy tắc SẼ có sau thao tác này
@@ -250,7 +250,7 @@ Giao diện cũng hiện sẵn địa chỉ của bạn ngay trên thanh công c
 
 ### Lớp 3 — Khi ĐÃ LỠ KHÓA: công tắc trong `Web.config`
 
-```xml
+```xml title="gPortal_Portal/gPortal/Web.config:62 (đang bị chú thích)"
 <add key="gp:AdminIpRestrictionDisabled" value="true" />
 ```
 
@@ -271,7 +271,7 @@ Hai chốt còn lại **cho qua** khi CSDL lỗi. Chốt này thì không, và �
 
 Vế thứ hai nặng hơn hẳn. Cách xử lý:
 
-```csharp
+```csharp title="gPortal_Portal/gPortal/Authorization/AdminIpGuard.cs:138-144"
 catch (Exception ex)
 {
     gPortalLogger._log.Error(...);
@@ -296,7 +296,7 @@ giây chỉ là độ trễ tối đa khi chạy nhiều máy chủ.
 
 `IPAddress.TryParse` của .NET **chấp nhận dạng thiếu đoạn và tự suy diễn**:
 
-```
+``` title="Ví dụ minh họa IPAddress.TryParse — không phải mã nguồn"
 "192.168.1"  →  192.168.0.1     (!)
 "10"         →  0.0.0.10        (!)
 ```
@@ -318,7 +318,7 @@ Trên IIS/Windows rất hay gặp: địa chỉ `192.168.1.5` tới nơi dưới
 Không quy chuẩn thì quản trị viên nhập đúng địa chỉ của mình mà vẫn bị chặn, và
 sẽ không hiểu vì sao:
 
-```csharp
+```csharp title="gPortal_Portal/gPortal.Framework/Security/KhopDiaChiMang.cs:37-46"
 public static IPAddress ChuanHoa(IPAddress diaChi)
 {
     if (diaChi.AddressFamily == AddressFamily.InterNetworkV6 && diaChi.IsIPv4MappedToIPv6)
@@ -339,10 +339,11 @@ public static IPAddress ChuanHoa(IPAddress diaChi)
 | Việc | Tệp |
 |---|---|
 | Chốt chặn | `gPortal/Authorization/AdminIpGuard.cs` |
-| Luật so khớp IP | `gPortal/Authorization/KhopDiaChiMang.cs` |
-| Chặn lúc đăng nhập | `AccountController.ChanQuanTriSaiDiaChi` |
+| Luật so khớp IP | `gPortal.Framework/Security/KhopDiaChiMang.cs` |
+| Lấy địa chỉ client (`X-Forwarded-For`) | `gPortal.Framework/Security/DiaChiClient.cs` |
+| Chặn lúc đăng nhập | `AccountController.ChanQuanTriSaiDiaChi` — `AccountController.cs:1053-1074` |
 | API quản lý | `AdminController` — vùng `#region "AdminIpRules"` |
-| Chống tự khóa | `AdminController.KiemTraKhongTuKhoa` |
+| Chống tự khóa | `AdminController.KiemTraKhongTuKhoa` — `AdminController.cs:1054-1077` |
 | Giao diện | `PortalWebsite.js` — tab **"Địa chỉ quản trị"** |
 | Cấu hình hạ tầng | `gPortal/Web.config` — `gp:AdminIpRestrictionDisabled`, `gp:AdminIpTrustedProxies` |
 | Migration | `Database/DbUpdate.sql` — 007 |

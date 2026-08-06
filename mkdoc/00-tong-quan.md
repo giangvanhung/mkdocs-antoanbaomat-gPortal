@@ -7,7 +7,7 @@ dùng lại; các file sau chỉ nói phần riêng của từng tính năng.
 
 ## 1. Vấn đề nền: portal này là hệ LAI
 
-```
+``` title="Sơ đồ kiến trúc — không phải mã nguồn"
                      ┌─────────────────────────────┐
    Trình duyệt  ───► │   IIS  /  ASP.NET pipeline  │
                      └──────────────┬──────────────┘
@@ -35,7 +35,7 @@ Gõ thẳng URL là vào.
 
 `Global.asax.cs` → `Application_PostAuthenticateRequest`:
 
-```csharp
+```csharp title="gPortal_Portal/gPortal/Global.asax.cs:52-68 (rút gọn)"
 protected void Application_PostAuthenticateRequest(object sender, EventArgs e)
 {
     if (SessionTimeoutGuard.Handle(HttpContext.Current)) return;
@@ -66,7 +66,7 @@ xác thực** chứ không phải trong `Session` — xem [03](03-thoi-gian-cho-
 
 ## 2. Thứ tự ba chốt chặn — và vì sao thứ tự đó không tùy tiện
 
-```
+``` title="Thứ tự ba chốt — gPortal_Portal/gPortal/Global.asax.cs:58-67"
    1. SessionTimeoutGuard      →  "Phiên này còn sống không?"
    2. AdminIpGuard             →  "Người này có ngồi ở nơi được phép không?"
    3. MustChangePasswordGuard  →  "Mật khẩu này còn dùng được không?"
@@ -91,7 +91,7 @@ không còn là ai cả" > "Bạn không được ở đây" > "Bạn cần làm
 
 Cả ba chốt đều có cùng hình dạng, và điều đó là cố ý:
 
-```csharp
+```csharp title="Khuôn mẫu chung của ba chốt — mã giả, không phải mã nguồn"
 public static bool Handle(HttpContext context)
 {
     // 1. Có thuộc phạm vi áp dụng không?  (không → return false)
@@ -121,7 +121,7 @@ Vì vậy AJAX luôn được trả về mã lỗi thật (401 / 403) kèm JSON 
 Một khuôn mẫu lặp lại ở nhiều chỗ, đáng nhớ vì nó là cách sửa một lỗi thiết kế
 có thật:
 
-```csharp
+```csharp title="Tóm tắt MustChangePasswordGuard.cs:349 và :164"
 Evaluate(user, settings)  →  VÌ SAO người này nên đổi mật khẩu    (sự thật)
 IsBlocking(reason)        →  Lý do đó có CẤM truy cập không       (chính sách)
 ```
@@ -146,8 +146,15 @@ Tách ra thì mỗi câu hỏi có đúng một nơi trả lời, và những n�
 | `MustChangePasswordGuard.cs` | Chính sách mật khẩu |
 | `SessionTimeoutGuard.cs` | Thời gian chờ của phiên |
 | `AdminIpGuard.cs` | Giới hạn địa chỉ mạng quản trị |
-| `KhopDiaChiMang.cs` | Luật đọc/so khớp địa chỉ IP (thuần tính toán) |
 | `DuongDanRequest.cs` | Quy chuẩn đường dẫn, dùng chung cho các chốt |
+
+Hai lớp phụ trợ về địa chỉ mạng **không** nằm cùng thư mục trên — chúng ở
+`gPortal.Framework/Security/`:
+
+| Tệp | Vai trò |
+|---|---|
+| `gPortal.Framework/Security/KhopDiaChiMang.cs` | Luật đọc/so khớp địa chỉ IP (thuần tính toán) |
+| `gPortal.Framework/Security/DiaChiClient.cs` | Lấy địa chỉ thật của client, xử lý `X-Forwarded-For` |
 
 ### Điểm nối
 

@@ -48,7 +48,7 @@ chính định dạng mình vừa in ra — và nó sẽ hỏng ngay lần đầ
 Nó là **lưới an toàn** cho chính bảng nhật ký. Khi `NhatKyHeThong` không ghi
 được xuống CSDL, nó đổ ra file kèm tiền tố `NHATKY_ROI`:
 
-```
+``` title="Định dạng dòng dự phòng — gPortal.Framework/NhatKyHeThong.cs:186"
 NHATKY_ROI | loai=QuanLyTaiKhoan | hanhDong=KHOA_TAI_KHOAN | thanhCong=False | ...
 ```
 
@@ -68,7 +68,7 @@ nguồn sự cố mới. Mọi lời gọi đều nằm trong `try/catch`.
 
 ### Luật 2 — Dùng kết nối riêng, không dùng `DbContext` của request
 
-```csharp
+```csharp title="gPortal_Portal/gPortal.Framework/NhatKyHeThong.cs:88-91"
 using (var db = new ApplicationDbContext())
 {
     db.AuditLogs.Add(dong);
@@ -172,7 +172,7 @@ kiện** — đúng thứ mà nhật ký sinh ra để trả lời.
 
 Cách sửa dứt điểm: trả về chuỗi ISO-8601 có hậu tố `Z`.
 
-```csharp
+```csharp title="gPortal_Portal/gPortal/Controllers/AdminController.cs:1310"
 ThoiGianUtc = DateTime.SpecifyKind(x.ThoiGianUtc, DateTimeKind.Utc).ToString("o")
 ```
 
@@ -193,7 +193,7 @@ họ nút xóa là tự phá bỏ mục đích của cả tính năng.
 
 Đây là việc của người quản trị CSDL, có kiểm soát, và **nên sao lưu trước**:
 
-```sql
+```sql title="Chạy trong SQL Server Management Studio"
 -- Xem khối lượng trước khi quyết định
 SELECT LoaiNhatKy, COUNT(*) AS SoDong,
        MIN(ThoiGianUtc) AS CuNhat, MAX(ThoiGianUtc) AS MoiNhat

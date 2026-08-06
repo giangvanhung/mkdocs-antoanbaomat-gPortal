@@ -1058,7 +1058,7 @@
 dùng lại; các file sau chỉ nói phần riêng của từng tính năng.</p>
 <hr />
 <h2 id="1-van-e-nen-portal-nay-la-he-lai">1. Vấn đề nền: portal này là hệ LAI<a class="headerlink" href="#1-van-e-nen-portal-nay-la-he-lai" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>                     ┌─────────────────────────────┐
+<div class="highlight"><span class="filename">Sơ đồ kiến trúc — không phải mã nguồn</span><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>                     ┌─────────────────────────────┐
 <a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>   Trình duyệt  ───► │   IIS  /  ASP.NET pipeline  │
 <a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>                     └──────────────┬──────────────┘
 <a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>                                    │
@@ -1080,7 +1080,7 @@ dùng lại; các file sau chỉ nói phần riêng của từng tính năng.</p
 Gõ thẳng URL là vào.</p>
 <h3 id="loi-giai-at-chot-o-tang-httpapplication">Lời giải: đặt chốt ở tầng HttpApplication<a class="headerlink" href="#loi-giai-at-chot-o-tang-httpapplication" title="Permanent link">&para;</a></h3>
 <p><code>Global.asax.cs</code> → <code>Application_PostAuthenticateRequest</code>:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">protected</span><span class="w"> </span><span class="k">void</span><span class="w"> </span><span class="nf">Application_PostAuthenticateRequest</span><span class="p">(</span><span class="kt">object</span><span class="w"> </span><span class="n">sender</span><span class="p">,</span><span class="w"> </span><span class="n">EventArgs</span><span class="w"> </span><span class="n">e</span><span class="p">)</span>
+<div class="highlight"><span class="filename">gPortal_Portal/gPortal/Global.asax.cs:52-68 (rút gọn)</span><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">protected</span><span class="w"> </span><span class="k">void</span><span class="w"> </span><span class="nf">Application_PostAuthenticateRequest</span><span class="p">(</span><span class="kt">object</span><span class="w"> </span><span class="n">sender</span><span class="p">,</span><span class="w"> </span><span class="n">EventArgs</span><span class="w"> </span><span class="n">e</span><span class="p">)</span>
 <a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="p">{</span>
 <a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">SessionTimeoutGuard</span><span class="p">.</span><span class="n">Handle</span><span class="p">(</span><span class="n">HttpContext</span><span class="p">.</span><span class="n">Current</span><span class="p">))</span><span class="w"> </span><span class="k">return</span><span class="p">;</span>
 <a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">AdminIpGuard</span><span class="p">.</span><span class="n">Handle</span><span class="p">(</span><span class="n">HttpContext</span><span class="p">.</span><span class="n">Current</span><span class="p">))</span><span class="w"> </span><span class="k">return</span><span class="p">;</span>
@@ -1127,7 +1127,7 @@ Gõ thẳng URL là vào.</p>
 xác thực</strong> chứ không phải trong <code>Session</code> — xem <a href="../03-thoi-gian-cho-phien/">03</a>.</p>
 <hr />
 <h2 id="2-thu-tu-ba-chot-chan-va-vi-sao-thu-tu-o-khong-tuy-tien">2. Thứ tự ba chốt chặn — và vì sao thứ tự đó không tùy tiện<a class="headerlink" href="#2-thu-tu-ba-chot-chan-va-vi-sao-thu-tu-o-khong-tuy-tien" title="Permanent link">&para;</a></h2>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>   1. SessionTimeoutGuard      →  &quot;Phiên này còn sống không?&quot;
+<div class="highlight"><span class="filename">Thứ tự ba chốt — gPortal_Portal/gPortal/Global.asax.cs:58-67</span><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a>   1. SessionTimeoutGuard      →  &quot;Phiên này còn sống không?&quot;
 <a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a>   2. AdminIpGuard             →  &quot;Người này có ngồi ở nơi được phép không?&quot;
 <a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a>   3. MustChangePasswordGuard  →  &quot;Mật khẩu này còn dùng được không?&quot;
 </code></pre></div>
@@ -1143,7 +1143,7 @@ không còn là ai cả" &gt; "Bạn không được ở đây" &gt; "Bạn cầ
 <hr />
 <h2 id="3-khuon-mau-chung-cua-mot-chot-chan">3. Khuôn mẫu chung của một chốt chặn<a class="headerlink" href="#3-khuon-mau-chung-cua-mot-chot-chan" title="Permanent link">&para;</a></h2>
 <p>Cả ba chốt đều có cùng hình dạng, và điều đó là cố ý:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">public</span><span class="w"> </span><span class="k">static</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="nf">Handle</span><span class="p">(</span><span class="n">HttpContext</span><span class="w"> </span><span class="n">context</span><span class="p">)</span>
+<div class="highlight"><span class="filename">Khuôn mẫu chung của ba chốt — mã giả, không phải mã nguồn</span><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="k">public</span><span class="w"> </span><span class="k">static</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="nf">Handle</span><span class="p">(</span><span class="n">HttpContext</span><span class="w"> </span><span class="n">context</span><span class="p">)</span>
 <a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="p">{</span>
 <a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">    </span><span class="c1">// 1. Có thuộc phạm vi áp dụng không?  (không → return false)</span>
 <a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="w">    </span><span class="c1">// 2. Có vi phạm không?                (không → return false)</span>
@@ -1165,7 +1165,7 @@ báo hoàn toàn không liên quan tới nguyên nhân thật.</p>
 <h2 id="4-tach-su-that-khoi-chinh-sach">4. Tách "sự thật" khỏi "chính sách"<a class="headerlink" href="#4-tach-su-that-khoi-chinh-sach" title="Permanent link">&para;</a></h2>
 <p>Một khuôn mẫu lặp lại ở nhiều chỗ, đáng nhớ vì nó là cách sửa một lỗi thiết kế
 có thật:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">Evaluate</span><span class="p">(</span><span class="n">user</span><span class="p">,</span><span class="w"> </span><span class="n">settings</span><span class="p">)</span><span class="w">  </span><span class="err">→</span><span class="w">  </span><span class="n">VÌ</span><span class="w"> </span><span class="n">SAO</span><span class="w"> </span><span class="n">người</span><span class="w"> </span><span class="n">này</span><span class="w"> </span><span class="n">nên</span><span class="w"> </span><span class="n">đổi</span><span class="w"> </span><span class="n">mật</span><span class="w"> </span><span class="n">khẩu</span><span class="w">    </span><span class="p">(</span><span class="n">sự</span><span class="w"> </span><span class="n">thật</span><span class="p">)</span>
+<div class="highlight"><span class="filename">Tóm tắt MustChangePasswordGuard.cs:349 và :164</span><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">Evaluate</span><span class="p">(</span><span class="n">user</span><span class="p">,</span><span class="w"> </span><span class="n">settings</span><span class="p">)</span><span class="w">  </span><span class="err">→</span><span class="w">  </span><span class="n">VÌ</span><span class="w"> </span><span class="n">SAO</span><span class="w"> </span><span class="n">người</span><span class="w"> </span><span class="n">này</span><span class="w"> </span><span class="n">nên</span><span class="w"> </span><span class="n">đổi</span><span class="w"> </span><span class="n">mật</span><span class="w"> </span><span class="n">khẩu</span><span class="w">    </span><span class="p">(</span><span class="n">sự</span><span class="w"> </span><span class="n">thật</span><span class="p">)</span>
 <a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="n">IsBlocking</span><span class="p">(</span><span class="n">reason</span><span class="p">)</span><span class="w">        </span><span class="err">→</span><span class="w">  </span><span class="n">Lý</span><span class="w"> </span><span class="k">do</span><span class="w"> </span><span class="n">đó</span><span class="w"> </span><span class="n">có</span><span class="w"> </span><span class="n">CẤM</span><span class="w"> </span><span class="n">truy</span><span class="w"> </span><span class="n">cập</span><span class="w"> </span><span class="n">không</span><span class="w">       </span><span class="p">(</span><span class="n">chính</span><span class="w"> </span><span class="n">sách</span><span class="p">)</span>
 </code></pre></div>
 <p>Bản đầu tiên gộp hai câu hỏi làm một: hễ có lý do là chặn. Hậu quả: tham số
@@ -1199,12 +1199,28 @@ chỉ một ô có ý nghĩa.</p>
 <td>Giới hạn địa chỉ mạng quản trị</td>
 </tr>
 <tr>
-<td><code>KhopDiaChiMang.cs</code></td>
+<td><code>DuongDanRequest.cs</code></td>
+<td>Quy chuẩn đường dẫn, dùng chung cho các chốt</td>
+</tr>
+</tbody>
+</table>
+<p>Hai lớp phụ trợ về địa chỉ mạng <strong>không</strong> nằm cùng thư mục trên — chúng ở
+<code>gPortal.Framework/Security/</code>:</p>
+<table>
+<thead>
+<tr>
+<th>Tệp</th>
+<th>Vai trò</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>gPortal.Framework/Security/KhopDiaChiMang.cs</code></td>
 <td>Luật đọc/so khớp địa chỉ IP (thuần tính toán)</td>
 </tr>
 <tr>
-<td><code>DuongDanRequest.cs</code></td>
-<td>Quy chuẩn đường dẫn, dùng chung cho các chốt</td>
+<td><code>gPortal.Framework/Security/DiaChiClient.cs</code></td>
+<td>Lấy địa chỉ thật của client, xử lý <code>X-Forwarded-For</code></td>
 </tr>
 </tbody>
 </table>

@@ -1253,18 +1253,18 @@ kiểm tra khách quan</strong>: chạy thật và nhìn kết quả.</p>
 <hr />
 <h2 id="0-chuan-bi-bat-buoc">0. Chuẩn bị bắt buộc<a class="headerlink" href="#0-chuan-bi-bat-buoc" title="Permanent link">&para;</a></h2>
 <h3 id="a-chay-migration">a. Chạy migration<a class="headerlink" href="#a-chay-migration" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Database/DbUpdate.sql
+<div class="highlight"><span class="filename">Tệp phải chạy: gPortal_Portal/Database/DbUpdate.sql</span><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>Database/DbUpdate.sql
 </code></pre></div>
 <p><strong>Bắt buộc, không phải tùy chọn.</strong> Mô hình EF hiện có 5 cột và 1 bảng mà CSDL
 chưa có. Thiếu bất kỳ cột nào thì câu <code>SELECT</code> sinh ra bởi EF sẽ lỗi, và
 <code>CacheHelper.GetCurrentPortalSettings()</code> hỏng → <strong>toàn bộ portal sập</strong>, không
 riêng gì tính năng mới.</p>
 <p>Kiểm tra sau khi chạy:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">MigrationId</span><span class="p">,</span><span class="w"> </span><span class="n">AppliedOnUtc</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">dbo</span><span class="p">.</span><span class="n">gp_DbMigrations</span><span class="w"> </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">MigrationId</span><span class="p">;</span>
+<div class="highlight"><span class="filename">Chạy trong SQL Server Management Studio</span><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">MigrationId</span><span class="p">,</span><span class="w"> </span><span class="n">AppliedOnUtc</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">dbo</span><span class="p">.</span><span class="n">gp_DbMigrations</span><span class="w"> </span><span class="k">ORDER</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">MigrationId</span><span class="p">;</span>
 <a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="c1">-- Phải có đủ: 000 → 007</span>
 </code></pre></div>
 <h3 id="b-build-lai-giao-dien-admin">b. Build lại giao diện admin<a class="headerlink" href="#b-build-lai-giao-dien-admin" title="Permanent link">&para;</a></h3>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="p">.\</span><span class="n">build-gclient</span><span class="p">.</span><span class="n">ps1</span> <span class="n">-App</span> <span class="n">gPortalAdmin</span>
+<div class="highlight"><span class="filename">Chạy trong PowerShell tại D:\dev\gPortal</span><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="p">.\</span><span class="n">build-gclient</span><span class="p">.</span><span class="n">ps1</span> <span class="n">-App</span> <span class="n">gPortalAdmin</span>
 </code></pre></div>
 <p>Không build lại thì các ô cấu hình mới <strong>không hiện ra</strong> trong màn hình quản
 trị, dù backend đã sẵn sàng.</p>
@@ -1272,7 +1272,7 @@ trị, dù backend đã sẵn sàng.</p>
 <h2 id="1-chinh-sach-mat-khau-inh-ky">1. Chính sách mật khẩu định kỳ<a class="headerlink" href="#1-chinh-sach-mat-khau-inh-ky" title="Permanent link">&para;</a></h2>
 <p><strong>Cấu hình:</strong> Bảo mật → Thời gian yêu cầu đổi = <code>60</code>, Thời gian hợp lệ = <code>90</code></p>
 <p>Dùng SQL để "tua ngược thời gian" cho một tài khoản thử:</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1">-- Vùng ÂN HẠN: 70 ngày &gt; 60, chưa tới 90</span>
+<div class="highlight"><span class="filename">Chạy trong SQL Server Management Studio</span><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1">-- Vùng ÂN HẠN: 70 ngày &gt; 60, chưa tới 90</span>
 <a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="k">UPDATE</span><span class="w"> </span><span class="n">dbo</span><span class="p">.</span><span class="n">gp_Users</span>
 <a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="k">SET</span><span class="w"> </span><span class="n">PasswordChangedUtc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DATEADD</span><span class="p">(</span><span class="k">DAY</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mi">70</span><span class="p">,</span><span class="w"> </span><span class="n">GETUTCDATE</span><span class="p">())</span>
 <a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="k">WHERE</span><span class="w"> </span><span class="n">UserName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;gianghungtest&#39;</span><span class="p">;</span>
@@ -1303,7 +1303,7 @@ trị, dù backend đã sẵn sàng.</p>
 </tr>
 </tbody>
 </table>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1">-- Vùng KHÓA: 95 ngày &gt; 90</span>
+<div class="highlight"><span class="filename">Chạy trong SQL Server Management Studio</span><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="c1">-- Vùng KHÓA: 95 ngày &gt; 90</span>
 <a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="k">UPDATE</span><span class="w"> </span><span class="n">dbo</span><span class="p">.</span><span class="n">gp_Users</span>
 <a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="k">SET</span><span class="w"> </span><span class="n">PasswordChangedUtc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DATEADD</span><span class="p">(</span><span class="k">DAY</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mi">95</span><span class="p">,</span><span class="w"> </span><span class="n">GETUTCDATE</span><span class="p">())</span>
 <a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="k">WHERE</span><span class="w"> </span><span class="n">UserName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;gianghungtest&#39;</span><span class="p">;</span>
@@ -1335,7 +1335,7 @@ trị, dù backend đã sẵn sàng.</p>
 </tbody>
 </table>
 <p><strong>Thử lỗ hổng đã vá</strong> (đường dẫn chứa chuỗi cho qua):</p>
-<p><div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>/api/report/account/login-history
+<p><div class="highlight"><span class="filename">Gõ vào thanh địa chỉ trình duyệt</span><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a>/api/report/account/login-history
 </code></pre></div>
 Phải <strong>bị chặn</strong>. Nếu vào được thì <code>DuongDanRequest</code> đang so sai.</p>
 <p><strong>Thử ràng buộc cấu hình</strong> — điền một ô, để trống ô kia → phải bị từ chối lưu
@@ -1344,7 +1344,7 @@ với thông báo rõ ràng. Thử cả bằng giao diện <strong>và</strong> 
 <hr />
 <h2 id="2-khoa-tai-khoan-theo-cua-so-thoi-gian">2. Khóa tài khoản theo cửa sổ thời gian<a class="headerlink" href="#2-khoa-tai-khoan-theo-cua-so-thoi-gian" title="Permanent link">&para;</a></h2>
 <p><strong>Cấu hình:</strong> Số lần sai tối đa = <code>3</code>, Khoảng tính số lần sai = <code>2</code> phút</p>
-<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1">-- Xem trạng thái bộ đếm bất cứ lúc nào</span>
+<div class="highlight"><span class="filename">Chạy trong SQL Server Management Studio</span><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="c1">-- Xem trạng thái bộ đếm bất cứ lúc nào</span>
 <a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">UserName</span><span class="p">,</span><span class="w"> </span><span class="n">AccessFailedCount</span><span class="p">,</span><span class="w"> </span><span class="n">LastFailedAttemptUtc</span><span class="p">,</span><span class="w"> </span><span class="n">LockoutEndDateUtc</span>
 <a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="k">FROM</span><span class="w"> </span><span class="n">dbo</span><span class="p">.</span><span class="n">gp_Users</span><span class="w"> </span><span class="k">WHERE</span><span class="w"> </span><span class="n">UserName</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;gianghungtest&#39;</span><span class="p">;</span>
 </code></pre></div>

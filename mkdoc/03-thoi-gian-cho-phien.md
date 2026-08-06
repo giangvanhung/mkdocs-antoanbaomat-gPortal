@@ -17,7 +17,7 @@ quá NỬA vòng đời**.
 
 Nghĩa là với `ExpireTimeSpan = 15 phút`:
 
-```
+``` title="Ví dụ minh họa SlidingExpiration — không phải mã nguồn"
 Người dùng hoạt động ở phút thứ 7   →  chưa quá nửa  →  KHÔNG gia hạn
                                         →  cookie vẫn hết hạn ở phút 15
                                         →  thời gian không hoạt động thực tế: 8 phút
@@ -35,7 +35,7 @@ nhập vào không tương ứng với hành vi thật.
 Tự ghi mốc hoạt động, nên sai số bị chặn ở **độ hạt** cố định thay vì phụ thuộc
 vào tổng thời gian chờ:
 
-```csharp
+```csharp title="gPortal_Portal/gPortal/Authorization/SessionTimeoutGuard.cs:202-206"
 private static double DoHatGiay(int phut)
 {
     double motPhanTu = phut * 60.0 / 4.0;
@@ -57,7 +57,7 @@ tư — để cấu hình 1 phút không biến thành "đóng phiên đâu đó
 | `Session` của ASP.NET | **`Session` chưa sẵn sàng** ở giai đoạn `PostAuthenticateRequest` — mà đó lại đúng là nơi chốt chặn phải nằm để phủ được cả trang `.aspx`. |
 | ✅ **Vé xác thực OWIN** | Đi theo request, không tốn CSDL, và **đã được OWIN ký + mã hóa** nên người dùng không sửa được giá trị bên trong. |
 
-```csharp
+```csharp title="gPortal_Portal/gPortal/Authorization/SessionTimeoutGuard.cs:43 và :248-249"
 private const string KhoaMocHoatDong = "gp:lastActivityUtc";
 context.Properties.Dictionary[KhoaMocHoatDong] = moc.Ticks.ToString(...);
 ```
@@ -66,7 +66,7 @@ context.Properties.Dictionary[KhoaMocHoatDong] = moc.Ticks.ToString(...);
 
 ## 3. Hai nửa, hai chỗ
 
-```
+``` title="Sơ đồ hai nửa — không phải mã nguồn"
 ┌───────────────────────────────────────────────────────────────┐
 │  Startup.Auth.cs  →  OnValidateIdentity                       │
 │  ─────────────────────────────────────────────                │
@@ -90,7 +90,7 @@ Phải tách vì: tầng OWIN **không biết gì** về quy ước AJAX của p
 
 ### Khi hết giờ thì dọn những gì
 
-```csharp
+```csharp title="gPortal_Portal/gPortal/Authorization/SessionTimeoutGuard.cs:89-97"
 context.RejectIdentity();                                      // 1. bỏ danh tính OWIN
 context.OwinContext.Authentication.SignOut(...);               // 2. gỡ cookie OWIN
 DonCookiePhuTro();                                             // 3. gỡ vé FormsAuthentication
@@ -104,7 +104,7 @@ trình duyệt thêm một ngày nữa.
 
 Đã bổ sung:
 
-```csharp
+```csharp title="gPortal_Portal/gPortal.Framework/CookieHelper.cs:191-192"
 System.Web.Security.FormsAuthentication.SignOut();
 ClearCookie(System.Web.Security.FormsAuthentication.FormsCookieName);
 ```
@@ -133,7 +133,7 @@ Chuột và bàn phím thì phân biệt được.
 > **Cả hai chỉ được phép KẾT THÚC phiên. Không đồng hồ nào được phép KÉO DÀI.
 > Cái nào hết trước thì thắng.**
 
-```
+``` title="Công thức hạn hết giờ — không phải mã nguồn"
    hạn hết giờ = min(mocRequest, mocThaoTac) + thoiGianCho
 ```
 
@@ -158,7 +158,7 @@ báo nào**. Lấy mốc sớm hơn thì hai đồng hồ luôn khớp nhau.
 
 **a. Phải nghe ở pha CAPTURE, không phải pha bubble:**
 
-```javascript
+```javascript title="gPortal_Portal/gPortal/Scripts/gp-session-timeout.js:85"
 document.addEventListener(loai[i], ghiNhanThaoTac, { capture: true, passive: true });
 ```
 
@@ -171,7 +171,7 @@ Hai lý do, cả hai đều bắt buộc:
 
 **b. Bỏ qua thao tác thụ động khi hộp cảnh báo đang hiện:**
 
-```javascript
+```javascript title="gPortal_Portal/gPortal/Scripts/gp-session-timeout.js:60-63"
 function ghiNhanThaoTac() {
     if (dangHienHop || daHetGio) return;
     mocThaoTac = Date.now();
@@ -197,7 +197,7 @@ thêm sau này chắc chắn sẽ bị quên.
 
 Đường thứ hai phủ **mọi** handler là `Page`, không cần biết nó dùng master gì:
 
-```csharp
+```csharp title="gPortal_Portal/gPortal/Global.asax.cs:86-116 (rút gọn)"
 protected void Application_PreRequestHandlerExecute(object sender, EventArgs e)
 {
     var page = HttpContext.Current.Handler as System.Web.UI.Page;
@@ -262,7 +262,7 @@ Hệ quả:
 AJAX ở nền nên **đồng hồ máy chủ sẽ không bao giờ hết giờ**. Nếu cũng không
 thấy hộp cảnh báo, kiểm tra theo thứ tự:
 
-```javascript
+```javascript title="Gõ trong DevTools Console — biến đặt ở gp-session-timeout.js:40-41"
 // Mở DevTools → Console, gõ:
 gpSessionTimeoutDaChay
 ```
@@ -275,7 +275,7 @@ gpSessionTimeoutDaChay
 Nếu script đã chạy, mở tab **Network**, tìm lời gọi `Account/SessionPolicy` và
 xem phần trả về:
 
-```json
+```json title="Phản hồi của GET /Account/SessionPolicy"
 { "soPhut": 2, "soPhutCanhBao": 1, "thongBao": "...", "urlHetGio": "..." }
 ```
 
@@ -285,7 +285,7 @@ xem phần trả về:
 | Không có lời gọi nào | Script không chạy được — xem Console có lỗi JS không |
 | `soPhut: 2` mà vẫn không có gì | Đây mới thật sự là lỗi cần đào tiếp |
 
-```sql
+```sql title="Chạy trong SQL Server Management Studio"
 SELECT SessionTimeoutMinutes, SessionWarnBeforeMinutes
 FROM dbo.gp_PortalSettings;
 ```
