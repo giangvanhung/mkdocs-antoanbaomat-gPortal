@@ -1,0 +1,1771 @@
+
+<!doctype html>
+<html lang="vi" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Các tính năng bảo mật đã bổ sung cho gPortal, vì sao làm vậy, và chỗ nào có thể vỡ">
+      
+      
+      
+      
+        <link rel="prev" href="../03-thoi-gian-cho-phien/">
+      
+      
+        <link rel="next" href="../08-nhat-ky-he-thong/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>4. Địa chỉ mạng quản trị - gPortal — Tài liệu bảo mật</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#04-gioi-han-ia-chi-mang-quan-tri" class="md-skip">
+          Bỏ qua
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Đầu trang">
+    <a href=".." title="gPortal — Tài liệu bảo mật" class="md-header__button md-logo" aria-label="gPortal — Tài liệu bảo mật" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            gPortal — Tài liệu bảo mật
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              4. Địa chỉ mạng quản trị
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Chuyển sang nền tối"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Chuyển sang nền tối" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Chuyển sang nền sáng"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Chuyển sang nền sáng" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Tìm kiếm" placeholder="Tìm kiếm" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Tìm kiếm">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Xoá" aria-label="Xoá" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Thanh điều hướng" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="gPortal — Tài liệu bảo mật" class="md-nav__button md-logo" aria-label="gPortal — Tài liệu bảo mật" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    gPortal — Tài liệu bảo mật
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bắt đầu từ đây
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../00-tong-quan/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tổng quan kiến trúc
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tính năng
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Tính năng
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01-mat-khau-dinh-ky/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Mật khẩu định kỳ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02-khoa-tai-khoan/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Khóa tài khoản
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03-thoi-gian-cho-phien/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. Thời gian chờ phiên
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. Địa chỉ mạng quản trị
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. Địa chỉ mạng quản trị
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Mục lục">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Mục lục
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#yeu-cau-nghiep-vu" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Yêu cầu nghiệp vụ
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-y-tuong-mot-cau" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Ý tưởng một câu
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-mo-hinh-du-lieu" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Mô hình dữ liệu
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Mô hình dữ liệu">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#vi-sao-la-bang-rieng-chu-khong-phai-mot-cot-trong-gp_portalsettings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Vì sao là bảng riêng chứ không phải một cột trong gp_PortalSettings
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ba-dang-quy-tac-uoc-chap-nhan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ba dạng quy tắc được chấp nhận
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-quy-uoc-quan-trong-nhat-bang-rong-tat-tinh-nang" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Quy ước quan trọng nhất: BẢNG RỖNG = TẮT TÍNH NĂNG
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-pham-vi-ap-dung-hai-ve-bu-cho-nhau" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Phạm vi áp dụng: hai vế bù cho nhau
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Phạm vi áp dụng: hai vế bù cho nhau">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ngoai-le-luon-cho-qua" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ngoại lệ luôn cho qua
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-chan-o-hai-noi-vi-hai-ly-do-khac-nhau" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Chặn ở HAI nơi, vì hai lý do khác nhau
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Chặn ở HAI nơi, vì hai lý do khác nhau">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-chot-tung-request-adminipguardhandle-trong-globalasax" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        a. Chốt từng request — AdminIpGuard.Handle trong Global.asax
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#b-chot-luc-ang-nhap-accountcontrollerredirectaftersignin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        b. Chốt lúc đăng nhập — AccountController.RedirectAfterSignIn
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vi-sao-at-o-redirectaftersignin-chu-khong-o-tung-action-ang-nhap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Vì sao đặt ở RedirectAfterSignIn chứ không ở từng action đăng nhập
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mot-cai-bay-trong-o" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Một cái bẫy trong đó
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-lay-ia-chi-client-cho-de-sai-nhat" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Lấy địa chỉ client — chỗ dễ sai nhất
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Lấy địa chỉ client — chỗ dễ sai nhất">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mac-inh-chi-tin-ia-chi-tcp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mặc định: CHỈ tin địa chỉ TCP
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nhung-neu-portal-ung-sau-proxy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Nhưng nếu portal đứng sau proxy?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vi-sao-khong-dung-websecuritygetipadress-co-san" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Vì sao KHÔNG dùng WebSecurity.getIpAdress() có sẵn
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-ba-lop-chong-tu-khoa" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Ba lớp chống tự khóa
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Ba lớp chống tự khóa">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#lop-1-khi-luu-tu-choi-neu-ban-se-tu-khoa-minh" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lớp 1 — Khi LƯU: từ chối nếu bạn sẽ tự khóa mình
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lop-2-khi-bi-chan-noi-ro-ia-chi-ang-dung" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lớp 2 — Khi BỊ CHẶN: nói rõ địa chỉ đang dùng
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lop-3-khi-a-lo-khoa-cong-tac-trong-webconfig" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lớp 3 — Khi ĐÃ LỠ KHÓA: công tắc trong Web.config
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-huong-hong-khac-voi-hai-chot-kia" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Hướng hỏng: khác với hai chốt kia
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-mot-cai-bay-trong-viec-oc-ia-chi-ip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Một cái bẫy trong việc đọc địa chỉ IP
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9. Một cái bẫy trong việc đọc địa chỉ IP">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#va-mot-bay-nua-ipv4-i-qua-tang-ipv6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Và một bẫy nữa: IPv4 đi qua tầng IPv6
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-noi-can-biet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Nơi cần biết
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08-nhat-ky-he-thong/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5. Nhật ký hệ thống
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../09-smtp-va-gui-thu/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SMTP và gửi thư
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Vận hành
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Vận hành
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05-kiem-thu/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kiểm thử
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06-van-hanh-va-su-co/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Vận hành và sự cố
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07-cau-hoi-thuong-gap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Câu hỏi thường gặp
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Mục lục">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Mục lục
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#yeu-cau-nghiep-vu" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Yêu cầu nghiệp vụ
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-y-tuong-mot-cau" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Ý tưởng một câu
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-mo-hinh-du-lieu" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Mô hình dữ liệu
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Mô hình dữ liệu">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#vi-sao-la-bang-rieng-chu-khong-phai-mot-cot-trong-gp_portalsettings" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Vì sao là bảng riêng chứ không phải một cột trong gp_PortalSettings
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ba-dang-quy-tac-uoc-chap-nhan" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ba dạng quy tắc được chấp nhận
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-quy-uoc-quan-trong-nhat-bang-rong-tat-tinh-nang" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Quy ước quan trọng nhất: BẢNG RỖNG = TẮT TÍNH NĂNG
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-pham-vi-ap-dung-hai-ve-bu-cho-nhau" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Phạm vi áp dụng: hai vế bù cho nhau
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Phạm vi áp dụng: hai vế bù cho nhau">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ngoai-le-luon-cho-qua" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ngoại lệ luôn cho qua
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-chan-o-hai-noi-vi-hai-ly-do-khac-nhau" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Chặn ở HAI nơi, vì hai lý do khác nhau
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Chặn ở HAI nơi, vì hai lý do khác nhau">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#a-chot-tung-request-adminipguardhandle-trong-globalasax" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        a. Chốt từng request — AdminIpGuard.Handle trong Global.asax
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#b-chot-luc-ang-nhap-accountcontrollerredirectaftersignin" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        b. Chốt lúc đăng nhập — AccountController.RedirectAfterSignIn
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vi-sao-at-o-redirectaftersignin-chu-khong-o-tung-action-ang-nhap" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Vì sao đặt ở RedirectAfterSignIn chứ không ở từng action đăng nhập
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#mot-cai-bay-trong-o" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Một cái bẫy trong đó
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-lay-ia-chi-client-cho-de-sai-nhat" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Lấy địa chỉ client — chỗ dễ sai nhất
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="6. Lấy địa chỉ client — chỗ dễ sai nhất">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mac-inh-chi-tin-ia-chi-tcp" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Mặc định: CHỈ tin địa chỉ TCP
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#nhung-neu-portal-ung-sau-proxy" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Nhưng nếu portal đứng sau proxy?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#vi-sao-khong-dung-websecuritygetipadress-co-san" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Vì sao KHÔNG dùng WebSecurity.getIpAdress() có sẵn
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-ba-lop-chong-tu-khoa" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Ba lớp chống tự khóa
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="7. Ba lớp chống tự khóa">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#lop-1-khi-luu-tu-choi-neu-ban-se-tu-khoa-minh" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lớp 1 — Khi LƯU: từ chối nếu bạn sẽ tự khóa mình
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lop-2-khi-bi-chan-noi-ro-ia-chi-ang-dung" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lớp 2 — Khi BỊ CHẶN: nói rõ địa chỉ đang dùng
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#lop-3-khi-a-lo-khoa-cong-tac-trong-webconfig" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Lớp 3 — Khi ĐÃ LỠ KHÓA: công tắc trong Web.config
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-huong-hong-khac-voi-hai-chot-kia" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Hướng hỏng: khác với hai chốt kia
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-mot-cai-bay-trong-viec-oc-ia-chi-ip" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Một cái bẫy trong việc đọc địa chỉ IP
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="9. Một cái bẫy trong việc đọc địa chỉ IP">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#va-mot-bay-nua-ipv4-i-qua-tang-ipv6" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Và một bẫy nữa: IPv4 đi qua tầng IPv6
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-noi-can-biet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Nơi cần biết
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="04-gioi-han-ia-chi-mang-quan-tri">04 — Giới hạn địa chỉ mạng quản trị<a class="headerlink" href="#04-gioi-han-ia-chi-mang-quan-tri" title="Permanent link">&para;</a></h1>
+<h2 id="yeu-cau-nghiep-vu">Yêu cầu nghiệp vụ<a class="headerlink" href="#yeu-cau-nghiep-vu" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>(a) Có <strong>giao diện</strong> cho phép quản trị viên quản lý chính sách về giới hạn
+địa chỉ mạng quản trị được phép truy cập, quản trị Phần mềm từ xa.</p>
+<p>(b) Có chức năng <strong>thực thi</strong> chính sách đó.</p>
+</blockquote>
+<hr />
+<h2 id="1-y-tuong-mot-cau">1. Ý tưởng một câu<a class="headerlink" href="#1-y-tuong-mot-cau" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>Mật khẩu trả lời câu hỏi <strong>"anh là ai"</strong>. Tính năng này trả lời câu hỏi
+<strong>"anh đang ngồi ở đâu"</strong>.</p>
+</blockquote>
+<p>Kẻ trộm được mật khẩu quản trị vẫn không vào được, nếu hắn không ngồi trong
+mạng được phép. Đây là lớp phòng thủ độc lập với mọi lớp còn lại — nó không
+quan tâm mật khẩu mạnh hay yếu.</p>
+<hr />
+<h2 id="2-mo-hinh-du-lieu">2. Mô hình dữ liệu<a class="headerlink" href="#2-mo-hinh-du-lieu" title="Permanent link">&para;</a></h2>
+<p>Bảng mới <code>gp_AdminIpRules</code>:</p>
+<table>
+<thead>
+<tr>
+<th>Cột</th>
+<th>Ý nghĩa</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Id</code></td>
+<td>Khóa chính</td>
+</tr>
+<tr>
+<td><code>IpValue</code></td>
+<td>Nội dung quy tắc (xem 3 dạng bên dưới)</td>
+</tr>
+<tr>
+<td><code>Description</code></td>
+<td>Ghi chú: dải này của ai, mở ra vì việc gì</td>
+</tr>
+<tr>
+<td><code>Enabled</code></td>
+<td>Tắt tạm một dòng mà không mất ghi chú</td>
+</tr>
+<tr>
+<td><code>CreatedUtc</code>, <code>CreatedBy</code></td>
+<td>Ai thêm, khi nào</td>
+</tr>
+</tbody>
+</table>
+<h3 id="vi-sao-la-bang-rieng-chu-khong-phai-mot-cot-trong-gp_portalsettings">Vì sao là bảng riêng chứ không phải một cột trong <code>gp_PortalSettings</code><a class="headerlink" href="#vi-sao-la-bang-rieng-chu-khong-phai-mot-cot-trong-gp_portalsettings" title="Permanent link">&para;</a></h3>
+<p>Chính sách này là một <strong>danh sách</strong> dài không biết trước. Nhét vào một cột văn
+bản ngăn cách bằng dấu phẩy thì:</p>
+<ul>
+<li>Mất chỗ ghi chú → sáu tháng sau không ai biết dòng nào còn cần thiết.</li>
+<li>Mất khả năng tắt tạm một mục.</li>
+<li>Mỗi lần sửa là <strong>ghi đè cả chuỗi</strong> → hai quản trị viên sửa cùng lúc sẽ xóa
+  mất phần của nhau.</li>
+</ul>
+<h3 id="ba-dang-quy-tac-uoc-chap-nhan">Ba dạng quy tắc được chấp nhận<a class="headerlink" href="#ba-dang-quy-tac-uoc-chap-nhan" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Dạng</th>
+<th>Ví dụ IPv4</th>
+<th>Ví dụ IPv6</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Một địa chỉ</td>
+<td><code>192.168.1.10</code></td>
+<td><code>::1</code></td>
+</tr>
+<tr>
+<td>Dải CIDR</td>
+<td><code>192.168.1.0/24</code></td>
+<td><code>2001:db8::/32</code></td>
+</tr>
+<tr>
+<td>Khoảng</td>
+<td><code>192.168.1.1-192.168.1.50</code></td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Không hỗ trợ tên miền.</strong> Tên miền phải tra DNS mới ra địa chỉ, mà DNS thì kẻ
+tấn công có thể tác động được và kết quả đổi theo thời gian — một chốt chặn phụ
+thuộc DNS là chốt chặn mà <strong>người khác cầm chìa khóa</strong>.</p>
+<hr />
+<h2 id="3-quy-uoc-quan-trong-nhat-bang-rong-tat-tinh-nang">3. Quy ước quan trọng nhất: BẢNG RỖNG = TẮT TÍNH NĂNG<a class="headerlink" href="#3-quy-uoc-quan-trong-nhat-bang-rong-tat-tinh-nang" title="Permanent link">&para;</a></h2>
+<p>Không có dòng nào đang bật → <strong>cho phép mọi địa chỉ</strong>.</p>
+<p>Đây là lựa chọn có cân nhắc, không phải sơ suất. Nếu quy ước ngược lại — "rỗng
+thì cấm tất" — thì <strong>đúng khoảnh khắc script migration chạy xong, toàn bộ quản
+trị viên bị khóa khỏi hệ thống</strong>, và không còn đường nào vào để thêm dòng đầu
+tiên. Cách sửa duy nhất là vào tận máy chủ chạy SQL bằng tay.</p>
+<p>Vì cùng lý do đó, <code>MIGRATION 007</code> <strong>không chèn dữ liệu mẫu nào cả</strong>.</p>
+<p>Cũng vì vậy không cần một "công tắc bật/tắt" riêng: danh sách rỗng <strong>chính là</strong>
+công tắc tắt. Thêm một công tắc nữa sẽ tạo ra trạng thái nguy hiểm "công tắc
+bật nhưng danh sách rỗng" = khóa toàn bộ.</p>
+<hr />
+<h2 id="4-pham-vi-ap-dung-hai-ve-bu-cho-nhau">4. Phạm vi áp dụng: hai vế bù cho nhau<a class="headerlink" href="#4-pham-vi-ap-dung-hai-ve-bu-cho-nhau" title="Permanent link">&para;</a></h2>
+<p>Một request bị soi nếu <strong>thỏa một trong hai</strong>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>(1) Đường dẫn nằm trong bề mặt quản trị:  /admin , /gclient/gadmin
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a>    → kể cả khi CHƯA đăng nhập
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a>
+<a id="__codelineno-0-4" name="__codelineno-0-4" href="#__codelineno-0-4"></a>(2) Người đang đăng nhập là quản trị viên
+<a id="__codelineno-0-5" name="__codelineno-0-5" href="#__codelineno-0-5"></a>    → dù họ đang mở trang nào
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Vế</th>
+<th>Bắt được cái mà vế kia bỏ sót</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>(1)</td>
+<td><strong>Khách chưa đăng nhập</strong> — vế (2) không thấy họ</td>
+</tr>
+<tr>
+<td>(2)</td>
+<td><strong>Đường dẫn mới</strong> — danh sách ở vế (1) chắc chắn sẽ thiếu khi có người thêm chức năng</td>
+</tr>
+</tbody>
+</table>
+<p>Vế (1) chặn <strong>trước cả khi xác thực</strong>. Đó là mức mạnh hơn: kẻ ở mạng ngoài
+không chạm được tới form đăng nhập quản trị, nên không có gì để dò mật khẩu.</p>
+<p>Vế (2) là bảo hiểm cho sự lười biếng trong tương lai. Không có nó thì chỉ cần
+một endpoint quản trị nằm ngoài danh sách đường dẫn là cả chính sách vô hiệu.</p>
+<h3 id="ngoai-le-luon-cho-qua">Ngoại lệ luôn cho qua<a class="headerlink" href="#ngoai-le-luon-cho-qua" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">private</span><span class="w"> </span><span class="k">static</span><span class="w"> </span><span class="k">readonly</span><span class="w"> </span><span class="kt">string</span><span class="p">[]</span><span class="w"> </span><span class="n">DuongDanChoQua</span><span class="w"> </span><span class="o">=</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="p">{</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="s">&quot;/account/login&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;/account/logoff&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;/manage/logoff&quot;</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="p">};</span>
+</code></pre></div>
+<p>Bắt buộc phải có đường đăng xuất. Bị chặn ở <strong>mọi</strong> request nghĩa là bị chặn cả
+ở nút Đăng xuất, và lối thoát duy nhất còn lại là tự xóa cookie trong trình
+duyệt. Không ai nên phải làm việc đó.</p>
+<hr />
+<h2 id="5-chan-o-hai-noi-vi-hai-ly-do-khac-nhau">5. Chặn ở HAI nơi, vì hai lý do khác nhau<a class="headerlink" href="#5-chan-o-hai-noi-vi-hai-ly-do-khac-nhau" title="Permanent link">&para;</a></h2>
+<h3 id="a-chot-tung-request-adminipguardhandle-trong-globalasax">a. Chốt từng request — <code>AdminIpGuard.Handle</code> trong <code>Global.asax</code><a class="headerlink" href="#a-chot-tung-request-adminipguardhandle-trong-globalasax" title="Permanent link">&para;</a></h3>
+<p>Đây là chốt thật, phủ mọi đường: MVC, WebForms, API, cả <code>MobileLogin</code>.</p>
+<h3 id="b-chot-luc-ang-nhap-accountcontrollerredirectaftersignin">b. Chốt lúc đăng nhập — <code>AccountController.RedirectAfterSignIn</code><a class="headerlink" href="#b-chot-luc-ang-nhap-accountcontrollerredirectaftersignin" title="Permanent link">&para;</a></h3>
+<p>Vì sao vẫn cần, khi đã có (a)?</p>
+<p>Tới thời điểm <code>RedirectAfterSignIn</code> chạy, <code>PasswordSignInAsync</code> <strong>đã phát ra
+cookie xác thực</strong> và nó đang nằm trong trình duyệt. Chốt (a) sẽ chặn mọi lần
+dùng nó <strong>trên máy này</strong>, nhưng bản thân cái cookie vẫn là một <strong>vé hợp lệ</strong> —
+mang sang một mạng khác là dùng được.</p>
+<p>Thu hồi ngay tại đây thì kẻ có mật khẩu đúng nhưng ngồi sai chỗ <strong>không nhận
+được gì mang đi cả</strong>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">AuthenticationManager</span><span class="p">.</span><span class="n">SignOut</span><span class="p">();</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="n">CookieHelper</span><span class="p">.</span><span class="n">ClearCookieAuthen</span><span class="p">();</span>
+<a id="__codelineno-2-3" name="__codelineno-2-3" href="#__codelineno-2-3"></a><span class="k">return</span><span class="w"> </span><span class="nf">RedirectToAction</span><span class="p">(</span><span class="s">&quot;Login&quot;</span><span class="p">,</span><span class="w"> </span><span class="s">&quot;Account&quot;</span><span class="p">,</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="n">ipdenied</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="w"> </span><span class="p">});</span>
+</code></pre></div>
+<h3 id="vi-sao-at-o-redirectaftersignin-chu-khong-o-tung-action-ang-nhap">Vì sao đặt ở <code>RedirectAfterSignIn</code> chứ không ở từng action đăng nhập<a class="headerlink" href="#vi-sao-at-o-redirectaftersignin-chu-khong-o-tung-action-ang-nhap" title="Permanent link">&para;</a></h3>
+<p>Đó là chỗ <strong>duy nhất</strong> mà cả bốn đường đăng nhập web đều đi qua (đăng nhập
+thường ×2 nhánh, SSO qua <code>LoginPage</code>, xác thực hai lớp qua <code>VerifyCode</code>). Vá
+từng đường một là cách chắc chắn để bỏ sót đúng một đường.</p>
+<h3 id="mot-cai-bay-trong-o">Một cái bẫy trong đó<a class="headerlink" href="#mot-cai-bay-trong-o" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1">// KHÔNG dùng gPortalUser.IsAdmin ở đây!</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="n">laQuanTri</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">UserManager</span><span class="p">.</span><span class="n">IsInRole</span><span class="p">(</span><span class="n">user</span><span class="p">.</span><span class="n">Id</span><span class="p">,</span><span class="w"> </span><span class="n">Role</span><span class="p">.</span><span class="n">Administrator</span><span class="p">)</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="p">...</span>
+</code></pre></div>
+<p><code>gPortalUser.IsAdmin</code> đọc <code>HttpContext.Current.User</code>. Nhưng tại thời điểm này,
+<code>User</code> của request hiện tại <strong>vẫn là người cũ (chưa đăng nhập)</strong> — vé mới chỉ
+có hiệu lực từ request sau. Dùng nó ở đây thì mọi quản trị viên đều "không phải
+quản trị" và chốt không bao giờ kích hoạt.</p>
+<hr />
+<h2 id="6-lay-ia-chi-client-cho-de-sai-nhat">6. Lấy địa chỉ client — chỗ dễ sai nhất<a class="headerlink" href="#6-lay-ia-chi-client-cho-de-sai-nhat" title="Permanent link">&para;</a></h2>
+<h3 id="mac-inh-chi-tin-ia-chi-tcp">Mặc định: CHỈ tin địa chỉ TCP<a class="headerlink" href="#mac-inh-chi-tin-ia-chi-tcp" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="n">IPAddress</span><span class="w"> </span><span class="n">diaChiTcp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">KhopDiaChiMang</span><span class="p">.</span><span class="n">Doc</span><span class="p">(</span><span class="n">request</span><span class="p">.</span><span class="n">UserHostAddress</span><span class="p">);</span>
+</code></pre></div>
+<p><strong>Không</strong> tin <code>X-Forwarded-For</code>. Tiêu đề đó do client tự đặt: tin nó vô điều
+kiện thì chỉ cần gửi kèm <code>X-Forwarded-For: 192.168.1.10</code> là qua chốt, và cả
+tính năng chỉ còn là đồ trang trí.</p>
+<h3 id="nhung-neu-portal-ung-sau-proxy">Nhưng nếu portal đứng sau proxy?<a class="headerlink" href="#nhung-neu-portal-ung-sau-proxy" title="Permanent link">&para;</a></h3>
+<p>Địa chỉ TCP khi ấy luôn là của proxy → <strong>mọi người dùng trông giống hệt nhau</strong>
+→ chính sách thành "cho tất cả" hoặc "cấm tất cả".</p>
+<p>Lời giải: khai báo proxy tin cậy trong <code>Web.config</code>. <strong>Chỉ khi</strong> địa chỉ TCP
+đúng là một proxy đã khai báo, ta mới đọc <code>X-Forwarded-For</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="nt">&lt;add</span><span class="w"> </span><span class="na">key=</span><span class="s">&quot;gp:AdminIpTrustedProxies&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;10.0.0.5, 10.0.0.6&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+</code></pre></div>
+<p>Và đọc mục <strong>phải cùng bên phải</strong> của chuỗi, vì proxy nối thêm vào cuối — các
+mục bên trái do client gửi lên nên bịa được.</p>
+<h3 id="vi-sao-khong-dung-websecuritygetipadress-co-san">Vì sao KHÔNG dùng <code>WebSecurity.getIpAdress()</code> có sẵn<a class="headerlink" href="#vi-sao-khong-dung-websecuritygetipadress-co-san" title="Permanent link">&para;</a></h3>
+<p>Hàm đó trong <code>Global.asax.cs</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a><span class="k">public</span><span class="w"> </span><span class="k">static</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="nf">getIpAdress</span><span class="p">()</span>
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a><span class="p">{</span>
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a><span class="w">    </span><span class="kt">string</span><span class="w"> </span><span class="n">ipclient</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">HttpContext</span><span class="p">.</span><span class="n">Current</span><span class="p">.</span><span class="n">Request</span><span class="p">.</span><span class="n">QueryString</span><span class="p">.</span><span class="n">Get</span><span class="p">(</span><span class="s">&quot;ip&quot;</span><span class="p">);</span>
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="kt">string</span><span class="p">.</span><span class="n">IsNullOrEmpty</span><span class="p">(</span><span class="n">ipclient</span><span class="p">))</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="n">ipclient</span><span class="p">;</span><span class="w">      </span><span class="c1">// ← đọc ?ip= TRƯỚC</span>
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">HttpContext</span><span class="p">.</span><span class="n">Current</span><span class="p">.</span><span class="n">Request</span><span class="p">.</span><span class="n">UserHostAddress</span><span class="p">;</span>
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a><span class="p">}</span>
+</code></pre></div>
+<p>Nó đọc <code>?ip=</code> từ query string <strong>trước</strong> khi đọc địa chỉ thật. Với việc hiển thị
+thông báo thì vô hại. Dùng cho chốt chặn thì <strong>bất kỳ ai cũng vượt qua</strong> bằng
+cách thêm <code>?ip=192.168.1.10</code> vào URL.</p>
+<p>Hàm đó vẫn giữ nguyên (đang được dùng cho thông báo chặn SQL injection), chỉ là
+không được dùng lại cho mục đích này.</p>
+<hr />
+<h2 id="7-ba-lop-chong-tu-khoa">7. Ba lớp chống tự khóa<a class="headerlink" href="#7-ba-lop-chong-tu-khoa" title="Permanent link">&para;</a></h2>
+<p>Đây là tính năng <strong>duy nhất</strong> trong hệ thống có thể khóa chính người vừa cấu
+hình nó. Nên phải có đường lùi.</p>
+<h3 id="lop-1-khi-luu-tu-choi-neu-ban-se-tu-khoa-minh">Lớp 1 — Khi LƯU: từ chối nếu bạn sẽ tự khóa mình<a class="headerlink" href="#lop-1-khi-luu-tu-choi-neu-ban-se-tu-khoa-minh" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="k">private</span><span class="w"> </span><span class="k">static</span><span class="w"> </span><span class="kt">string</span><span class="w"> </span><span class="nf">KiemTraKhongTuKhoa</span><span class="p">(</span><span class="n">hienCo</span><span class="p">,</span><span class="w"> </span><span class="n">cu</span><span class="p">,</span><span class="w"> </span><span class="n">moi</span><span class="p">)</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="p">{</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a><span class="w">    </span><span class="c1">// Dựng ra bộ quy tắc SẼ có sau thao tác này</span>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="w">    </span><span class="kt">var</span><span class="w"> </span><span class="n">sauKhiLuu</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">hienCo</span><span class="p">.</span><span class="n">Where</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">cu</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="k">null</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">x</span><span class="p">.</span><span class="n">Id</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">cu</span><span class="p">.</span><span class="n">Id</span><span class="p">)</span>
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="w">                          </span><span class="p">.</span><span class="n">Where</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">x</span><span class="p">.</span><span class="n">Enabled</span><span class="p">)</span>
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="w">                          </span><span class="p">.</span><span class="n">Select</span><span class="p">(</span><span class="n">x</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">x</span><span class="p">.</span><span class="n">IpValue</span><span class="p">).</span><span class="n">ToList</span><span class="p">();</span>
+<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">moi</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="k">null</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">moi</span><span class="p">.</span><span class="n">Enabled</span><span class="p">)</span><span class="w"> </span><span class="n">sauKhiLuu</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="n">moi</span><span class="p">.</span><span class="n">IpValue</span><span class="p">);</span>
+<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a>
+<a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="w">    </span><span class="c1">// Rồi hỏi ĐÚNG câu mà chốt chặn sẽ hỏi ở request tiếp theo</span>
+<a id="__codelineno-7-10" name="__codelineno-7-10" href="#__codelineno-7-10"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">AdminIpGuard</span><span class="p">.</span><span class="n">DuocPhep</span><span class="p">(</span><span class="n">diaChi</span><span class="p">,</span><span class="w"> </span><span class="n">sauKhiLuu</span><span class="p">))</span><span class="w"> </span><span class="k">return</span><span class="w"> </span><span class="k">null</span><span class="p">;</span>
+<a id="__codelineno-7-11" name="__codelineno-7-11" href="#__codelineno-7-11"></a>
+<a id="__codelineno-7-12" name="__codelineno-7-12" href="#__codelineno-7-12"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="s">&quot;Không lưu được: sau thay đổi này, chính địa chỉ bạn đang dùng (...) &quot;</span>
+<a id="__codelineno-7-13" name="__codelineno-7-13" href="#__codelineno-7-13"></a><span class="w">         </span><span class="o">+</span><span class="w"> </span><span class="s">&quot;sẽ không còn được phép truy cập...&quot;</span><span class="p">;</span>
+<a id="__codelineno-7-14" name="__codelineno-7-14" href="#__codelineno-7-14"></a><span class="p">}</span>
+</code></pre></div>
+<p>Điểm mấu chốt: <strong>không dự đoán, không suy luận song song</strong>. Nó gọi lại chính
+hàm <code>AdminIpGuard.DuocPhep</code> mà chốt chặn dùng, nên câu trả lời ở đây <strong>không
+thể lệch</strong> với hành vi thật.</p>
+<p>Áp dụng cho <strong>cả xóa lẫn sửa</strong>: xóa đúng dòng đang bảo vệ mình trong khi vẫn
+còn dòng khác cũng là tự đuổi mình ra ngoài.</p>
+<p>Và vì bộ quy tắc rỗng khiến <code>DuocPhep</code> trả về <code>true</code>, <strong>xóa dòng cuối cùng luôn
+được phép</strong> — đó chính là cách tắt tính năng.</p>
+<h3 id="lop-2-khi-bi-chan-noi-ro-ia-chi-ang-dung">Lớp 2 — Khi BỊ CHẶN: nói rõ địa chỉ đang dùng<a class="headerlink" href="#lop-2-khi-bi-chan-noi-ro-ia-chi-ang-dung" title="Permanent link">&para;</a></h3>
+<p>Trang 403 hiện đúng con số. Đây không phải rò rỉ thông tin — bất kỳ trang "what
+is my IP" nào cũng nói được điều đó. Đổi lại, nó là khác biệt giữa một tính
+năng dùng được và một tính năng mà mỗi lần trục trặc là một cuộc gọi hỗ trợ mò
+mẫm.</p>
+<p>Giao diện cũng hiện sẵn địa chỉ của bạn ngay trên thanh công cụ của lưới
+(<code>/Admin/MyIp</code>), để không phải đoán.</p>
+<h3 id="lop-3-khi-a-lo-khoa-cong-tac-trong-webconfig">Lớp 3 — Khi ĐÃ LỠ KHÓA: công tắc trong <code>Web.config</code><a class="headerlink" href="#lop-3-khi-a-lo-khoa-cong-tac-trong-webconfig" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="nt">&lt;add</span><span class="w"> </span><span class="na">key=</span><span class="s">&quot;gp:AdminIpRestrictionDisabled&quot;</span><span class="w"> </span><span class="na">value=</span><span class="s">&quot;true&quot;</span><span class="w"> </span><span class="nt">/&gt;</span>
+</code></pre></div>
+<p>Sửa được file này nghĩa là đã kiểm soát máy chủ, nên đây <strong>không phải lỗ hổng
+mới</strong> — nó chỉ là đường lùi bắt buộc phải có. Dùng khi địa chỉ IP của nhà mạng
+thay đổi ngoài dự kiến.</p>
+<hr />
+<h2 id="8-huong-hong-khac-voi-hai-chot-kia">8. Hướng hỏng: khác với hai chốt kia<a class="headerlink" href="#8-huong-hong-khac-voi-hai-chot-kia" title="Permanent link">&para;</a></h2>
+<p>Hai chốt còn lại <strong>cho qua</strong> khi CSDL lỗi. Chốt này thì không, và đó là chủ ý:</p>
+<table>
+<thead>
+<tr>
+<th>Chốt</th>
+<th>"Cho qua" nghĩa là gì</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Mật khẩu, phiên làm việc</td>
+<td>Người <strong>đã đăng nhập hợp lệ</strong> được làm việc tiếp</td>
+</tr>
+<tr>
+<td><strong>Địa chỉ mạng</strong></td>
+<td><strong>Cấp thêm quyền</strong> cho một địa chỉ lẽ ra bị cấm</td>
+</tr>
+</tbody>
+</table>
+<p>Vế thứ hai nặng hơn hẳn. Cách xử lý:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="k">catch</span><span class="w"> </span><span class="p">(</span><span class="n">Exception</span><span class="w"> </span><span class="n">ex</span><span class="p">)</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="p">{</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="w">    </span><span class="n">gPortalLogger</span><span class="p">.</span><span class="n">_log</span><span class="p">.</span><span class="n">Error</span><span class="p">(...);</span>
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="w">    </span><span class="c1">// Giữ nguyên bộ quy tắc CŨ nếu đã từng đọc được</span>
+<a id="__codelineno-9-5" name="__codelineno-9-5" href="#__codelineno-9-5"></a><span class="w">    </span><span class="n">_hetHanUtc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DateTime</span><span class="p">.</span><span class="n">UtcNow</span><span class="p">.</span><span class="n">AddSeconds</span><span class="p">(</span><span class="mi">10</span><span class="p">);</span>
+<a id="__codelineno-9-6" name="__codelineno-9-6" href="#__codelineno-9-6"></a><span class="p">}</span>
+</code></pre></div>
+<ul>
+<li>CSDL trục trặc thoáng qua → <strong>dùng lại bộ quy tắc cũ trong bộ nhớ</strong> → chính
+  sách vẫn có hiệu lực.</li>
+<li>Chưa bao giờ đọc được lần nào (khởi động mà CSDL đã hỏng) → cho qua, và ghi
+  log <code>Error</code>. Lúc này portal cũng đang không phục vụ được gì; chặn thêm chỉ
+  khóa nốt người có thể vào sửa.</li>
+</ul>
+<p>Bộ quy tắc được nhớ <strong>60 giây</strong>. Trên chính máy chủ vừa sửa thì không có độ trễ
+nào, vì <code>AdminController</code> gọi <code>AdminIpGuard.XoaBoNho()</code> ngay sau khi lưu. 60
+giây chỉ là độ trễ tối đa khi chạy nhiều máy chủ.</p>
+<hr />
+<h2 id="9-mot-cai-bay-trong-viec-oc-ia-chi-ip">9. Một cái bẫy trong việc đọc địa chỉ IP<a class="headerlink" href="#9-mot-cai-bay-trong-viec-oc-ia-chi-ip" title="Permanent link">&para;</a></h2>
+<p><code>IPAddress.TryParse</code> của .NET <strong>chấp nhận dạng thiếu đoạn và tự suy diễn</strong>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a>&quot;192.168.1&quot;  →  192.168.0.1     (!)
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a>&quot;10&quot;         →  0.0.0.10        (!)
+</code></pre></div>
+<p>Nghĩa là một quy tắc gõ thiếu sẽ được <strong>nhận</strong>, nhưng nó bảo vệ một địa chỉ
+<strong>khác</strong> với địa chỉ người nhập nghĩ — kiểu sai tệ nhất, vì màn hình vẫn báo
+lưu thành công.</p>
+<p><code>KhopDiaChiMang.Doc</code> siết thêm: dạng IPv4 phải có <strong>đúng 4 đoạn</strong>, mỗi đoạn là
+số nguyên 0–255.</p>
+<p>(Không áp dụng cho IPv6, vì IPv6 có cú pháp rút gọn hợp lệ như <code>::1</code>.)</p>
+<h3 id="va-mot-bay-nua-ipv4-i-qua-tang-ipv6">Và một bẫy nữa: IPv4 đi qua tầng IPv6<a class="headerlink" href="#va-mot-bay-nua-ipv4-i-qua-tang-ipv6" title="Permanent link">&para;</a></h3>
+<p>Trên IIS/Windows rất hay gặp: địa chỉ <code>192.168.1.5</code> tới nơi dưới dạng
+<code>::ffff:192.168.1.5</code>. So bằng byte thì <strong>khác hoàn toàn</strong>.</p>
+<p>Không quy chuẩn thì quản trị viên nhập đúng địa chỉ của mình mà vẫn bị chặn, và
+sẽ không hiểu vì sao:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a><span class="k">public</span><span class="w"> </span><span class="k">static</span><span class="w"> </span><span class="n">IPAddress</span><span class="w"> </span><span class="nf">ChuanHoa</span><span class="p">(</span><span class="n">IPAddress</span><span class="w"> </span><span class="n">diaChi</span><span class="p">)</span>
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a><span class="p">{</span>
+<a id="__codelineno-11-3" name="__codelineno-11-3" href="#__codelineno-11-3"></a><span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">diaChi</span><span class="p">.</span><span class="n">AddressFamily</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">AddressFamily</span><span class="p">.</span><span class="n">InterNetworkV6</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">diaChi</span><span class="p">.</span><span class="n">IsIPv4MappedToIPv6</span><span class="p">)</span>
+<a id="__codelineno-11-4" name="__codelineno-11-4" href="#__codelineno-11-4"></a><span class="w">        </span><span class="k">return</span><span class="w"> </span><span class="n">diaChi</span><span class="p">.</span><span class="n">MapToIPv4</span><span class="p">();</span>
+<a id="__codelineno-11-5" name="__codelineno-11-5" href="#__codelineno-11-5"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">diaChi</span><span class="p">;</span>
+<a id="__codelineno-11-6" name="__codelineno-11-6" href="#__codelineno-11-6"></a><span class="p">}</span>
+</code></pre></div>
+<blockquote>
+<p><strong>Lưu ý khi thử trên localhost:</strong> trình duyệt thường tới qua <code>::1</code> (IPv6
+loopback), <strong>không</strong> phải <code>127.0.0.1</code>. Hai địa chỉ này là khác nhau và không
+tự quy đổi cho nhau. Cứ nhìn con số mà giao diện hiện ra rồi thêm đúng con số
+đó.</p>
+</blockquote>
+<hr />
+<h2 id="10-noi-can-biet">10. Nơi cần biết<a class="headerlink" href="#10-noi-can-biet" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Việc</th>
+<th>Tệp</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Chốt chặn</td>
+<td><code>gPortal/Authorization/AdminIpGuard.cs</code></td>
+</tr>
+<tr>
+<td>Luật so khớp IP</td>
+<td><code>gPortal/Authorization/KhopDiaChiMang.cs</code></td>
+</tr>
+<tr>
+<td>Chặn lúc đăng nhập</td>
+<td><code>AccountController.ChanQuanTriSaiDiaChi</code></td>
+</tr>
+<tr>
+<td>API quản lý</td>
+<td><code>AdminController</code> — vùng <code>#region "AdminIpRules"</code></td>
+</tr>
+<tr>
+<td>Chống tự khóa</td>
+<td><code>AdminController.KiemTraKhongTuKhoa</code></td>
+</tr>
+<tr>
+<td>Giao diện</td>
+<td><code>PortalWebsite.js</code> — tab <strong>"Địa chỉ quản trị"</strong></td>
+</tr>
+<tr>
+<td>Cấu hình hạ tầng</td>
+<td><code>gPortal/Web.config</code> — <code>gp:AdminIpRestrictionDisabled</code>, <code>gp:AdminIpTrustedProxies</code></td>
+</tr>
+<tr>
+<td>Migration</td>
+<td><code>Database/DbUpdate.sql</code> — 007</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Trở lại mục lục
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.instant", "navigation.top", "navigation.tracking", "toc.follow", "content.code.copy", "search.highlight"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u0110\u00e3 sao ch\u00e9p", "clipboard.copy": "Sao ch\u00e9p v\u00e0o b\u1ed9 nh\u1edb t\u1ea1m", "search.result.more.one": "1 t\u1eeb kh\u00e1c trong trang", "search.result.more.other": "# t\u1eeb kh\u00e1c trong trang", "search.result.none": "Kh\u00f4ng t\u00ecm th\u1ea5y t\u00e0i li\u1ec7u li\u00ean quan", "search.result.one": "1 t\u00e0i li\u1ec7u li\u00ean quan", "search.result.other": "# t\u00e0i li\u1ec7u li\u00ean quan", "search.result.placeholder": "Nh\u1eadp \u0111\u1ec3 b\u1eaft \u0111\u1ea7u t\u00ecm ki\u1ebfm", "search.result.term.missing": "Kh\u00f4ng", "select.version": "Ch\u1ecdn phi\u00ean b\u1ea3n"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

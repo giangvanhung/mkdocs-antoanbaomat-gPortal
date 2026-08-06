@@ -1,0 +1,1773 @@
+
+<!doctype html>
+<html lang="vi" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Các tính năng bảo mật đã bổ sung cho gPortal, vì sao làm vậy, và chỗ nào có thể vỡ">
+      
+      
+      
+      
+        <link rel="prev" href="../00-tong-quan/">
+      
+      
+        <link rel="next" href="../02-khoa-tai-khoan/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>1. Mật khẩu định kỳ - gPortal — Tài liệu bảo mật</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#01-chinh-sach-mat-khau-inh-ky" class="md-skip">
+          Bỏ qua
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Đầu trang">
+    <a href=".." title="gPortal — Tài liệu bảo mật" class="md-header__button md-logo" aria-label="gPortal — Tài liệu bảo mật" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            gPortal — Tài liệu bảo mật
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              1. Mật khẩu định kỳ
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Chuyển sang nền tối"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Chuyển sang nền tối" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Chuyển sang nền sáng"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Chuyển sang nền sáng" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Tìm kiếm" placeholder="Tìm kiếm" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Tìm kiếm">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Xoá" aria-label="Xoá" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Thanh điều hướng" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="gPortal — Tài liệu bảo mật" class="md-nav__button md-logo" aria-label="gPortal — Tài liệu bảo mật" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    gPortal — Tài liệu bảo mật
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bắt đầu từ đây
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../00-tong-quan/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tổng quan kiến trúc
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tính năng
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Tính năng
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Mật khẩu định kỳ
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Mật khẩu định kỳ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Mục lục">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Mục lục
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#yeu-cau-nghiep-vu" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Yêu cầu nghiệp vụ
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-a-mat-khau-mac-inh-buoc-oi-o-lan-ang-nhap-au" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. (a) Mật khẩu mặc định — buộc đổi ở lần đăng nhập đầu
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. (a) Mật khẩu mặc định — buộc đổi ở lần đăng nhập đầu">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-hai-chu-mac-inh-o-hai-thoi-iem-khac-nhau" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1. Hai chữ "mặc định" ở hai thời điểm khác nhau
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-co-uoc-bat-o-hai-cho-khong-phai-mot" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2. Cờ được BẬT ở hai chỗ, không phải một
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-quy-uoc-null-true" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.3. Quy ước null = true
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-co-uoc-tat-o-ung-mot-cho" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.4. Cờ được TẮT ở đúng một chỗ
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#15-mot-cai-bay-co-that-trong-resetpassworduser" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.5. Một cái bẫy có thật trong ResetPasswordUser
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#16-vi-sao-a-chan-cua-ngay-con-c-chi-nhac" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.6. Vì sao (a) chặn cửa ngay, còn (c) chỉ nhắc
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#17-quan-tri-vien-nhin-thay-gi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.7. Quản trị viên nhìn thấy gì
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-ba-trang-thai-khong-phai-hai" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Ba trạng thái, không phải hai
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Ba trạng thái, không phải hai">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#vi-sao-phai-co-vung-an-han" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Vì sao phải có vùng ân hạn
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cach-sua-tach-su-that-khoi-chinh-sach" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cách sửa: tách sự thật khỏi chính sách
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-trang-thai-khoa-khong-uoc-luu-o-au-ca" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Trạng thái "khóa" KHÔNG được lưu ở đâu cả
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Trạng thái &#34;khóa&#34; KHÔNG được lưu ở đâu cả">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ba-thu-uoc-mien-phi-nho-lua-chon-o" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ba thứ được miễn phí nhờ lựa chọn đó
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-vi-sao-oc-tu-csdl-chu-khong-oc-tu-cookie" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Vì sao đọc từ CSDL chứ không đọc từ cookie
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-mot-lo-hong-co-that-a-uoc-va" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Một lỗ hổng có thật đã được vá
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Một lỗ hổng có thật đã được vá">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#nhung-vi-sao-ban-cu-lai-chon-contains" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Nhưng vì sao bản cũ lại chọn Contains?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ban-sua-lam-ca-hai-viec" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bản sửa làm cả hai việc
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-rang-buoc-cau-hinh-cung-co-hoac-cung-trong" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Ràng buộc cấu hình: cùng có hoặc cùng trống
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-noi-can-biet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Nơi cần biết
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-viec-con-treo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Việc còn treo
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02-khoa-tai-khoan/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Khóa tài khoản
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03-thoi-gian-cho-phien/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. Thời gian chờ phiên
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04-dia-chi-mang-quan-tri/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. Địa chỉ mạng quản trị
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../08-nhat-ky-he-thong/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5. Nhật ký hệ thống
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../09-smtp-va-gui-thu/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SMTP và gửi thư
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Vận hành
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Vận hành
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05-kiem-thu/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kiểm thử
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06-van-hanh-va-su-co/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Vận hành và sự cố
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07-cau-hoi-thuong-gap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Câu hỏi thường gặp
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Mục lục">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Mục lục
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#yeu-cau-nghiep-vu" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Yêu cầu nghiệp vụ
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-a-mat-khau-mac-inh-buoc-oi-o-lan-ang-nhap-au" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. (a) Mật khẩu mặc định — buộc đổi ở lần đăng nhập đầu
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="1. (a) Mật khẩu mặc định — buộc đổi ở lần đăng nhập đầu">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-hai-chu-mac-inh-o-hai-thoi-iem-khac-nhau" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.1. Hai chữ "mặc định" ở hai thời điểm khác nhau
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-co-uoc-bat-o-hai-cho-khong-phai-mot" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.2. Cờ được BẬT ở hai chỗ, không phải một
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#13-quy-uoc-null-true" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.3. Quy ước null = true
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#14-co-uoc-tat-o-ung-mot-cho" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.4. Cờ được TẮT ở đúng một chỗ
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#15-mot-cai-bay-co-that-trong-resetpassworduser" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.5. Một cái bẫy có thật trong ResetPasswordUser
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#16-vi-sao-a-chan-cua-ngay-con-c-chi-nhac" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.6. Vì sao (a) chặn cửa ngay, còn (c) chỉ nhắc
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#17-quan-tri-vien-nhin-thay-gi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1.7. Quản trị viên nhìn thấy gì
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-ba-trang-thai-khong-phai-hai" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Ba trạng thái, không phải hai
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Ba trạng thái, không phải hai">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#vi-sao-phai-co-vung-an-han" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Vì sao phải có vùng ân hạn
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cach-sua-tach-su-that-khoi-chinh-sach" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cách sửa: tách sự thật khỏi chính sách
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-trang-thai-khoa-khong-uoc-luu-o-au-ca" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Trạng thái "khóa" KHÔNG được lưu ở đâu cả
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Trạng thái &#34;khóa&#34; KHÔNG được lưu ở đâu cả">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ba-thu-uoc-mien-phi-nho-lua-chon-o" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Ba thứ được miễn phí nhờ lựa chọn đó
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-vi-sao-oc-tu-csdl-chu-khong-oc-tu-cookie" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Vì sao đọc từ CSDL chứ không đọc từ cookie
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-mot-lo-hong-co-that-a-uoc-va" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Một lỗ hổng có thật đã được vá
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Một lỗ hổng có thật đã được vá">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#nhung-vi-sao-ban-cu-lai-chon-contains" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Nhưng vì sao bản cũ lại chọn Contains?
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ban-sua-lam-ca-hai-viec" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Bản sửa làm cả hai việc
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-rang-buoc-cau-hinh-cung-co-hoac-cung-trong" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Ràng buộc cấu hình: cùng có hoặc cùng trống
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-noi-can-biet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Nơi cần biết
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-viec-con-treo" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Việc còn treo
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="01-chinh-sach-mat-khau-inh-ky">01 — Chính sách mật khẩu định kỳ<a class="headerlink" href="#01-chinh-sach-mat-khau-inh-ky" title="Permanent link">&para;</a></h1>
+<h2 id="yeu-cau-nghiep-vu">Yêu cầu nghiệp vụ<a class="headerlink" href="#yeu-cau-nghiep-vu" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Mã</th>
+<th>Nội dung</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>(a)</td>
+<td>Buộc đổi mật khẩu khi tài khoản đang dùng mật khẩu do quản trị cấp</td>
+</tr>
+<tr>
+<td>(c)</td>
+<td>Có thiết lập thời gian <strong>yêu cầu</strong> người dùng đổi mật khẩu</td>
+</tr>
+<tr>
+<td>(d)</td>
+<td>Có thiết lập thời gian mật khẩu còn <strong>hợp lệ</strong></td>
+</tr>
+<tr>
+<td>(đ)</td>
+<td>Quá hạn hợp lệ thì <strong>khóa</strong> tài khoản</td>
+</tr>
+<tr>
+<td>(e)</td>
+<td>Đổi mật khẩu thành công thì <strong>mở khóa</strong></td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="1-a-mat-khau-mac-inh-buoc-oi-o-lan-ang-nhap-au">1. (a) Mật khẩu mặc định — buộc đổi ở lần đăng nhập đầu<a class="headerlink" href="#1-a-mat-khau-mac-inh-buoc-oi-o-lan-ang-nhap-au" title="Permanent link">&para;</a></h2>
+<p>Đây là yêu cầu <strong>đứng đầu vòng đời</strong> của một tài khoản: quản trị tạo tài khoản
+và cấp một mật khẩu ban đầu, người dùng phải tự đặt lại trước khi làm được bất
+cứ việc gì.</p>
+<p>Toàn bộ tính năng gói trong <strong>một cột <code>BIT</code></strong>: <code>gp_Users.MustChangePassword</code>.
+Cái đáng học không nằm ở cột đó, mà ở <strong>ai bật nó, ai tắt nó, và bật/tắt sai
+thì hỏng ra sao</strong>.</p>
+<h3 id="11-hai-chu-mac-inh-o-hai-thoi-iem-khac-nhau">1.1. Hai chữ "mặc định" ở hai thời điểm khác nhau<a class="headerlink" href="#11-hai-chu-mac-inh-o-hai-thoi-iem-khac-nhau" title="Permanent link">&para;</a></h3>
+<p>Chỗ này rất dễ nhầm, và nhầm thì hậu quả tức thì trên toàn bộ người dùng.</p>
+<p>Migration 001 tạo cột với <strong><code>DEFAULT (0)</code></strong> — tức là <em>không</em> bắt buộc đổi:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a><span class="k">ALTER</span><span class="w"> </span><span class="k">TABLE</span><span class="w"> </span><span class="n">dbo</span><span class="p">.</span><span class="n">gp_Users</span>
+<a id="__codelineno-0-2" name="__codelineno-0-2" href="#__codelineno-0-2"></a><span class="w">    </span><span class="k">ADD</span><span class="w"> </span><span class="n">MustChangePassword</span><span class="w"> </span><span class="nb">BIT</span><span class="w"> </span><span class="k">NOT</span><span class="w"> </span><span class="k">NULL</span>
+<a id="__codelineno-0-3" name="__codelineno-0-3" href="#__codelineno-0-3"></a><span class="w">        </span><span class="k">CONSTRAINT</span><span class="w"> </span><span class="n">DF_gp_Users_MustChangePassword</span><span class="w"> </span><span class="k">DEFAULT</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">);</span>
+</code></pre></div>
+<p>Nghe có vẻ ngược với yêu cầu — "mặc định" lẽ ra phải là <em>bật</em> chứ? Không:</p>
+<blockquote>
+<p><code>ALTER TABLE ... ADD ... NOT NULL DEFAULT</code> sẽ <strong>điền giá trị đó vào toàn bộ
+các dòng đang có</strong>. Để <code>DEFAULT (1)</code> thì ngay giây chạy script, <strong>mọi người
+dùng hiện hữu trong công ty</strong> đều bị buộc đổi mật khẩu — kể cả người vừa tự
+đổi hôm qua.</p>
+</blockquote>
+<p>Nên "mặc định bật" chỉ áp dụng cho <strong>người dùng MỚI</strong>, và được xử lý ở <strong>tầng
+ứng dụng</strong>, không phải tầng CSDL:</p>
+<table>
+<thead>
+<tr>
+<th>Tầng</th>
+<th>Giá trị</th>
+<th>Áp dụng cho</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CSDL (migration 001)</td>
+<td><code>DEFAULT 0</code></td>
+<td>Người dùng <strong>đã có</strong> khi chạy script</td>
+</tr>
+<tr>
+<td>Ứng dụng (<code>OrganizationController</code>)</td>
+<td><code>?? true</code></td>
+<td>Người dùng <strong>tạo mới</strong> từ nay</td>
+</tr>
+<tr>
+<td>Giao diện (<code>mUser.js</code>)</td>
+<td><code>defaultValue: true</code></td>
+<td>Ô tick sẵn khi bấm "Thêm"</td>
+</tr>
+</tbody>
+</table>
+<p>Ba dòng trên trông như trùng lặp. Chúng không trùng: chúng nói về <strong>ba nhóm
+người khác nhau tại ba thời điểm khác nhau</strong>.</p>
+<h3 id="12-co-uoc-bat-o-hai-cho-khong-phai-mot">1.2. Cờ được BẬT ở hai chỗ, không phải một<a class="headerlink" href="#12-co-uoc-bat-o-hai-cho-khong-phai-mot" title="Permanent link">&para;</a></h3>
+<p>Chỗ thứ nhất thì ai cũng nghĩ ra — lúc tạo tài khoản:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="c1">// OrganizationController.CreateUserInOrg</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="n">MustChangePassword</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">model</span><span class="p">.</span><span class="n">MustChangePassword</span><span class="w"> </span><span class="o">??</span><span class="w"> </span><span class="k">true</span><span class="p">,</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="n">PasswordChangedUtc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DateTime</span><span class="p">.</span><span class="n">UtcNow</span>
+</code></pre></div>
+<p>Chỗ thứ hai là chỗ hay bị quên — lúc quản trị <strong>cấp lại</strong> mật khẩu:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="c1">// OrganizationController.ResetPasswordUser</span>
+<a id="__codelineno-2-2" name="__codelineno-2-2" href="#__codelineno-2-2"></a><span class="kt">bool</span><span class="w"> </span><span class="n">mustChange</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mustChangePassword</span><span class="w"> </span><span class="o">??</span><span class="w"> </span><span class="k">true</span><span class="p">;</span>
+</code></pre></div>
+<p>Vì sao phải bật lại? Vì bản chất của yêu cầu (a) <strong>không phải "lần đăng nhập
+đầu tiên"</strong>, mà là <em>"mật khẩu này hiện đang là một bí mật mà quản trị viên
+biết"</em>. Quản trị cấp lại mật khẩu thì tình trạng đó <strong>tái lập y hệt</strong> lúc mới
+tạo tài khoản. Chỉ bật cờ lúc tạo mà quên lúc reset thì có một lối đi vòng:
+người dùng đổi mật khẩu → gọi hỗ trợ xin cấp lại → từ đó dùng mãi mật khẩu do
+quản trị đặt.</p>
+<blockquote>
+<p><strong>Nguyên tắc:</strong> đặt cờ theo <strong>điều kiện thực tế nó mô tả</strong>, không theo <em>sự
+kiện</em> mà bạn tình cờ nghĩ tới đầu tiên. "Lần đăng nhập đầu" là một sự kiện;
+"mật khẩu do người khác biết" mới là điều kiện.</p>
+</blockquote>
+<h3 id="13-quy-uoc-null-true">1.3. Quy ước <code>null = true</code><a class="headerlink" href="#13-quy-uoc-null-true" title="Permanent link">&para;</a></h3>
+<p>Cả hai chỗ đều dùng <code>?? true</code>, không phải <code>?? false</code>. Đây là lựa chọn có chủ ý:</p>
+<ul>
+<li>Ứng dụng di động và các client cũ <strong>chưa gửi trường này</strong> → nhận về <code>null</code>.</li>
+<li><code>?? true</code> nghĩa là <strong>thiếu thông tin thì chọn hướng an toàn</strong>: cứ bắt đổi.</li>
+<li>Muốn tắt thì client phải nói <strong>tường minh</strong> <code>false</code>.</li>
+</ul>
+<p>Đây chính là nguyên tắc 3 trong <a href="../">README</a>: <em>chọn hướng hỏng theo hậu
+quả</em>. Nếu để <code>?? false</code>, một client cũ quên gửi trường sẽ <strong>âm thầm tạo ra tài
+khoản không bao giờ bị buộc đổi mật khẩu</strong> — mà không có thông báo lỗi nào.</p>
+<h3 id="14-co-uoc-tat-o-ung-mot-cho">1.4. Cờ được TẮT ở đúng một chỗ<a class="headerlink" href="#14-co-uoc-tat-o-ung-mot-cho" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1">// ManageController.ChangePassword - sau khi đổi thành công</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="n">user</span><span class="p">.</span><span class="n">MustChangePassword</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">false</span><span class="p">;</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="n">user</span><span class="p">.</span><span class="n">PasswordChangedUtc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DateTime</span><span class="p">.</span><span class="n">UtcNow</span><span class="p">;</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="k">await</span><span class="w"> </span><span class="n">UserManager</span><span class="p">.</span><span class="n">UpdateAsync</span><span class="p">(</span><span class="n">user</span><span class="p">);</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="k">await</span><span class="w"> </span><span class="n">SignInManager</span><span class="p">.</span><span class="n">SignInAsync</span><span class="p">(</span><span class="n">user</span><span class="p">,</span><span class="w"> </span><span class="n">isPersistent</span><span class="p">:</span><span class="w"> </span><span class="k">false</span><span class="p">,</span><span class="w"> </span><span class="n">rememberBrowser</span><span class="p">:</span><span class="w"> </span><span class="k">false</span><span class="p">);</span>
+</code></pre></div>
+<p>Hai dòng, hai tác dụng khác nhau — và <strong>một dòng giải quyết luôn ba yêu cầu</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>Dòng</th>
+<th>Giải quyết</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>MustChangePassword = false</code></td>
+<td>(a) thoát trạng thái mật khẩu mặc định</td>
+</tr>
+<tr>
+<td><code>PasswordChangedUtc = UtcNow</code></td>
+<td>(c) tuổi mật khẩu về 0 <strong>và</strong> (e) <strong>mở khóa</strong> tài khoản đã hết hiệu lực</td>
+</tr>
+</tbody>
+</table>
+<p>Yêu cầu (e) "đổi mật khẩu thì mở khóa" <strong>không có dòng code nào riêng</strong> — xem
+mục 3 dưới đây để hiểu vì sao.</p>
+<p>Phải cập nhật <strong>trước khi rời trang</strong>: chốt chặn đọc từ CSDL ở mỗi request, nên
+nếu chuyển hướng trước rồi mới ghi, request kế tiếp vẫn thấy cờ cũ và đá người
+dùng ngược về trang đổi mật khẩu.</p>
+<h3 id="15-mot-cai-bay-co-that-trong-resetpassworduser">1.5. Một cái bẫy có thật trong <code>ResetPasswordUser</code><a class="headerlink" href="#15-mot-cai-bay-co-that-trong-resetpassworduser" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-4-1" name="__codelineno-4-1" href="#__codelineno-4-1"></a><span class="kt">var</span><span class="w"> </span><span class="n">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">UserManager</span><span class="p">.</span><span class="n">ResetPasswordAsync</span><span class="p">(</span><span class="n">userId</span><span class="p">,</span><span class="w"> </span><span class="n">resetToken</span><span class="p">,</span><span class="w"> </span><span class="n">newPass</span><span class="p">);</span>
+<a id="__codelineno-4-2" name="__codelineno-4-2" href="#__codelineno-4-2"></a><span class="p">...</span>
+<a id="__codelineno-4-3" name="__codelineno-4-3" href="#__codelineno-4-3"></a><span class="c1">// Đọc LẠI đối tượng, không dùng lại biến `user` ở trên</span>
+<a id="__codelineno-4-4" name="__codelineno-4-4" href="#__codelineno-4-4"></a><span class="kt">var</span><span class="w"> </span><span class="n">userAfterReset</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">await</span><span class="w"> </span><span class="n">UserManager</span><span class="p">.</span><span class="n">FindByIdAsync</span><span class="p">(</span><span class="n">userId</span><span class="p">);</span>
+<a id="__codelineno-4-5" name="__codelineno-4-5" href="#__codelineno-4-5"></a><span class="n">userAfterReset</span><span class="p">.</span><span class="n">MustChangePassword</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">mustChange</span><span class="p">;</span>
+</code></pre></div>
+<p><code>ResetPasswordAsync</code> <strong>đã ghi xuống CSDL</strong> rồi (sinh <code>PasswordHash</code> mới và
+<code>SecurityStamp</code> mới). Đối tượng <code>user</code> nạp trước đó giờ đã <strong>cũ</strong>. Gán cờ lên
+nó rồi <code>UpdateAsync</code> sẽ ghi đè <strong>toàn bộ hàng</strong> bằng dữ liệu cũ → <strong>mật khẩu
+vừa đặt bị xóa mất</strong>, người dùng nhận mật khẩu mới nhưng đăng nhập không được.</p>
+<p>Đây là lớp lỗi khó tìm nhất: không có ngoại lệ, không có log, mọi lời gọi đều
+báo thành công.</p>
+<h3 id="16-vi-sao-a-chan-cua-ngay-con-c-chi-nhac">1.6. Vì sao (a) chặn cửa ngay, còn (c) chỉ nhắc<a class="headerlink" href="#16-vi-sao-a-chan-cua-ngay-con-c-chi-nhac" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-5-1" name="__codelineno-5-1" href="#__codelineno-5-1"></a><span class="k">public</span><span class="w"> </span><span class="k">static</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="nf">IsBlocking</span><span class="p">(</span><span class="n">PasswordChangeReason</span><span class="w"> </span><span class="n">reason</span><span class="p">)</span>
+<a id="__codelineno-5-2" name="__codelineno-5-2" href="#__codelineno-5-2"></a><span class="p">{</span>
+<a id="__codelineno-5-3" name="__codelineno-5-3" href="#__codelineno-5-3"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">reason</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">PasswordChangeReason</span><span class="p">.</span><span class="n">Expired</span>
+<a id="__codelineno-5-4" name="__codelineno-5-4" href="#__codelineno-5-4"></a><span class="w">        </span><span class="o">||</span><span class="w"> </span><span class="n">reason</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">PasswordChangeReason</span><span class="p">.</span><span class="n">DefaultPassword</span><span class="p">;</span><span class="w">   </span><span class="c1">// (a) chặn</span>
+<a id="__codelineno-5-5" name="__codelineno-5-5" href="#__codelineno-5-5"></a><span class="p">}</span>
+</code></pre></div>
+<p>Khác nhau ở chỗ <strong>ai đang biết mật khẩu</strong>:</p>
+<ul>
+<li><strong>(c) tới hạn định kỳ:</strong> mật khẩu đó do <strong>chính người dùng</strong> đặt, chưa có dấu
+  hiệu lộ. Chặn ngay là làm phiền vô cớ → cho ân hạn kèm đếm ngược.</li>
+<li><strong>(a) mật khẩu mặc định:</strong> ít nhất <strong>hai người</strong> biết mật khẩu này, và người
+  dùng <strong>chưa từng tự chọn gì cả</strong>. Để càng lâu càng rủi ro, mà cái giá của
+  việc chặn lại rất thấp — họ chưa có việc gì đang làm dở.</li>
+</ul>
+<p>Trong <code>Evaluate</code>, <code>Expired</code> được kiểm <strong>trước</strong> <code>DefaultPassword</code>. Cả hai đều
+chặn nên thứ tự không đổi hành vi, chỉ đổi <strong>câu thông báo</strong> hiện ra — và câu
+"mật khẩu đã hết hiệu lực" là câu đúng hơn khi cả hai điều kiện cùng đúng.</p>
+<h3 id="17-quan-tri-vien-nhin-thay-gi">1.7. Quản trị viên nhìn thấy gì<a class="headerlink" href="#17-quan-tri-vien-nhin-thay-gi" title="Permanent link">&para;</a></h3>
+<table>
+<thead>
+<tr>
+<th>Nơi</th>
+<th>Thành phần</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Form tạo người dùng</td>
+<td>Checkbox <em>"Yêu cầu người dùng đặt mật khẩu mới ở lần đăng nhập đầu tiên"</em> (<code>chbDoiMatKhauLanDau</code>)</td>
+</tr>
+<tr>
+<td>Form thiết lập lại mật khẩu</td>
+<td>Checkbox tương tự (<code>chkDoiMatKhau</code>)</td>
+</tr>
+<tr>
+<td>Lưới danh sách người dùng</td>
+<td>Cột <strong>"Chờ đổi MK"</strong> — hiện ⚠️ với tài khoản còn dùng mật khẩu quản trị cấp</td>
+</tr>
+</tbody>
+</table>
+<p>Checkbox trên form người dùng <strong>bị ẩn khi sửa</strong> (<code>hidden: '{record.Id != ""}'</code>),
+cùng lý do với ô Mật khẩu: mật khẩu mặc định chỉ tồn tại <strong>ở thời điểm cấp</strong>.
+Muốn bật lại cờ cho tài khoản đã có thì phải đi qua <em>"Thiết lập lại mật khẩu"</em>
+— tức là phải <strong>thực sự cấp một mật khẩu mới</strong>, chứ không thể chỉ tick một ô.</p>
+<p>Nếu cho tick lại trên form sửa, ta sẽ tạo ra được trạng thái vô nghĩa: <em>"tài
+khoản đang dùng mật khẩu mặc định"</em> trong khi <strong>không ai cấp mật khẩu mặc định
+nào cả</strong> — người dùng bị chặn cửa và không ai biết mật khẩu để đưa cho họ.</p>
+<p>Cột ⚠️ trong lưới là thứ trả lời câu hỏi vận hành: <em>"phát tài khoản tuần trước,
+ai chưa vào lần nào?"</em></p>
+<hr />
+<h2 id="2-ba-trang-thai-khong-phai-hai">2. Ba trạng thái, không phải hai<a class="headerlink" href="#2-ba-trang-thai-khong-phai-hai" title="Permanent link">&para;</a></h2>
+<p>Đây là phần cốt lõi và cũng là chỗ bản đầu tiên làm sai.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-6-1" name="__codelineno-6-1" href="#__codelineno-6-1"></a>   Ngày đổi mật khẩu                                  Hôm nay
+<a id="__codelineno-6-2" name="__codelineno-6-2" href="#__codelineno-6-2"></a>        │                                                │
+<a id="__codelineno-6-3" name="__codelineno-6-3" href="#__codelineno-6-3"></a>        ├────────────────────┬────────────────┬──────────┤
+<a id="__codelineno-6-4" name="__codelineno-6-4" href="#__codelineno-6-4"></a>        │   BÌNH THƯỜNG      │   ÂN HẠN       │  KHÓA    │
+<a id="__codelineno-6-5" name="__codelineno-6-5" href="#__codelineno-6-5"></a>        0                   60 ngày         90 ngày
+<a id="__codelineno-6-6" name="__codelineno-6-6" href="#__codelineno-6-6"></a>                    PasswordChangeIntervalDays   PasswordValidityDays
+<a id="__codelineno-6-7" name="__codelineno-6-7" href="#__codelineno-6-7"></a>                              (c)                     (d)
+</code></pre></div>
+<table>
+<thead>
+<tr>
+<th>Vùng</th>
+<th>Người dùng thấy gì</th>
+<th>Có dùng được hệ thống không</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Bình thường</td>
+<td>Không có gì</td>
+<td>✅ Có</td>
+</tr>
+<tr>
+<td><strong>Ân hạn</strong></td>
+<td>Nhắc kèm <strong>đếm ngược số ngày</strong> + nút "Để sau"</td>
+<td>✅ <strong>Có</strong></td>
+</tr>
+<tr>
+<td>Khóa</td>
+<td>Chỉ có trang đổi mật khẩu</td>
+<td>❌ Không</td>
+</tr>
+</tbody>
+</table>
+<h3 id="vi-sao-phai-co-vung-an-han">Vì sao phải có vùng ân hạn<a class="headerlink" href="#vi-sao-phai-co-vung-an-han" title="Permanent link">&para;</a></h3>
+<p>Bản đầu tiên chặn ngay tại mốc (c). Hậu quả:</p>
+<ol>
+<li>Mốc (d) <strong>không bao giờ tới lượt</strong> — người dùng đã bị khóa từ ngày 60, nên
+   ngày 90 không có ý nghĩa gì. Hệ thống có hai ô cấu hình mà chỉ một ô hoạt
+   động.</li>
+<li>Về nghiệp vụ, chính tên gọi đã nói rõ: (c) là "thời gian <strong>yêu cầu</strong> đổi",
+   (d) là "thời gian còn <strong>hợp lệ</strong>". Yêu cầu là lời nhắc, hết hợp lệ mới là
+   khóa. Chặn ở (c) tức là hiểu "yêu cầu" thành "cấm".</li>
+</ol>
+<h3 id="cach-sua-tach-su-that-khoi-chinh-sach">Cách sửa: tách sự thật khỏi chính sách<a class="headerlink" href="#cach-sua-tach-su-that-khoi-chinh-sach" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-7-1" name="__codelineno-7-1" href="#__codelineno-7-1"></a><span class="c1">// &quot;VÌ SAO nên đổi mật khẩu&quot; — một sự thật về người dùng</span>
+<a id="__codelineno-7-2" name="__codelineno-7-2" href="#__codelineno-7-2"></a><span class="k">public</span><span class="w"> </span><span class="k">static</span><span class="w"> </span><span class="n">PasswordChangeReason</span><span class="w"> </span><span class="nf">Evaluate</span><span class="p">(</span><span class="n">ApplicationUser</span><span class="w"> </span><span class="n">user</span><span class="p">,</span><span class="w"> </span><span class="n">gp_PortalSettings</span><span class="w"> </span><span class="n">settings</span><span class="p">)</span>
+<a id="__codelineno-7-3" name="__codelineno-7-3" href="#__codelineno-7-3"></a>
+<a id="__codelineno-7-4" name="__codelineno-7-4" href="#__codelineno-7-4"></a><span class="c1">// &quot;Lý do đó có CẤM truy cập không&quot; — một quyết định chính sách</span>
+<a id="__codelineno-7-5" name="__codelineno-7-5" href="#__codelineno-7-5"></a><span class="k">public</span><span class="w"> </span><span class="k">static</span><span class="w"> </span><span class="kt">bool</span><span class="w"> </span><span class="nf">IsBlocking</span><span class="p">(</span><span class="n">PasswordChangeReason</span><span class="w"> </span><span class="n">reason</span><span class="p">)</span>
+<a id="__codelineno-7-6" name="__codelineno-7-6" href="#__codelineno-7-6"></a><span class="p">{</span>
+<a id="__codelineno-7-7" name="__codelineno-7-7" href="#__codelineno-7-7"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">reason</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">PasswordChangeReason</span><span class="p">.</span><span class="n">Expired</span>
+<a id="__codelineno-7-8" name="__codelineno-7-8" href="#__codelineno-7-8"></a><span class="w">        </span><span class="o">||</span><span class="w"> </span><span class="n">reason</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">PasswordChangeReason</span><span class="p">.</span><span class="n">DefaultPassword</span><span class="p">;</span>
+<a id="__codelineno-7-9" name="__codelineno-7-9" href="#__codelineno-7-9"></a><span class="p">}</span>
+</code></pre></div>
+<p><code>ChangeIntervalReached</code> <strong>không</strong> nằm trong danh sách chặn. Đó là toàn bộ thay
+đổi về mặt hành vi — nhưng nó chỉ đúng vì hai câu hỏi đã được tách ra; gộp lại
+thì không có chỗ nào để diễn đạt "có lý do nhưng không chặn".</p>
+<hr />
+<h2 id="3-trang-thai-khoa-khong-uoc-luu-o-au-ca">3. Trạng thái "khóa" KHÔNG được lưu ở đâu cả<a class="headerlink" href="#3-trang-thai-khoa-khong-uoc-luu-o-au-ca" title="Permanent link">&para;</a></h2>
+<p>Đây là quyết định thiết kế đáng nói nhất trong tính năng này.</p>
+<p>Cách làm thông thường sẽ là thêm một cột <code>IsLocked BIT</code>, rồi viết một job nền
+quét định kỳ để bật cột đó lên, và một đoạn code khác để tắt nó đi khi người
+dùng đổi mật khẩu.</p>
+<p><strong>Ở đây không có cột nào cả.</strong> Trạng thái khóa được <strong>tính ra</strong> mỗi lần kiểm
+tra, từ <code>PasswordChangedUtc</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-8-1" name="__codelineno-8-1" href="#__codelineno-8-1"></a><span class="kt">double</span><span class="w"> </span><span class="n">tuoiNgay</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">DateTime</span><span class="p">.</span><span class="n">UtcNow</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">user</span><span class="p">.</span><span class="n">PasswordChangedUtc</span><span class="p">.</span><span class="n">Value</span><span class="p">).</span><span class="n">TotalDays</span><span class="p">;</span>
+<a id="__codelineno-8-2" name="__codelineno-8-2" href="#__codelineno-8-2"></a><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">tuoiNgay</span><span class="w"> </span><span class="o">&gt;=</span><span class="w"> </span><span class="n">settings</span><span class="p">.</span><span class="n">PasswordValidityDays</span><span class="p">.</span><span class="n">Value</span><span class="p">)</span>
+<a id="__codelineno-8-3" name="__codelineno-8-3" href="#__codelineno-8-3"></a><span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">PasswordChangeReason</span><span class="p">.</span><span class="n">Expired</span><span class="p">;</span>
+</code></pre></div>
+<h3 id="ba-thu-uoc-mien-phi-nho-lua-chon-o">Ba thứ được miễn phí nhờ lựa chọn đó<a class="headerlink" href="#ba-thu-uoc-mien-phi-nho-lua-chon-o" title="Permanent link">&para;</a></h3>
+<ol>
+<li><strong>Yêu cầu (e) không cần code riêng.</strong> Đổi mật khẩu ghi <code>PasswordChangedUtc</code>
+   = hiện tại → phép tính cho ra "chưa hết hạn" → khóa tự tan. Không có bước
+   "nhớ mở khóa" nào để quên.</li>
+<li><strong>Không cần job nền.</strong> Chốt chặn đã chạy ở mỗi request rồi.</li>
+<li><strong>Sửa cấu hình có hiệu lực ngay lập tức.</strong> Quản trị viên đổi từ 90 xuống 60
+   ngày là phép tính đổi theo ngay ở request kế tiếp — không phải chờ job chạy.</li>
+</ol>
+<blockquote>
+<p><strong>Nguyên tắc rút ra:</strong> trạng thái <strong>suy ra được</strong> thì không thể lệch với thực
+tế. Trạng thái <strong>lưu trữ</strong> thì luôn có nguy cơ ai đó quên cập nhật một nhánh.</p>
+</blockquote>
+<hr />
+<h2 id="4-vi-sao-oc-tu-csdl-chu-khong-oc-tu-cookie">4. Vì sao đọc từ CSDL chứ không đọc từ cookie<a class="headerlink" href="#4-vi-sao-oc-tu-csdl-chu-khong-oc-tu-cookie" title="Permanent link">&para;</a></h2>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-9-1" name="__codelineno-9-1" href="#__codelineno-9-1"></a><span class="c1">/// Đọc cờ và mốc thời gian từ CSDL, KHÔNG đọc từ claim trong cookie:</span>
+<a id="__codelineno-9-2" name="__codelineno-9-2" href="#__codelineno-9-2"></a><span class="c1">/// nội dung cookie bị đóng băng lúc đăng nhập, nên sau khi người dùng</span>
+<a id="__codelineno-9-3" name="__codelineno-9-3" href="#__codelineno-9-3"></a><span class="c1">/// đổi mật khẩu xong, cookie cũ vẫn mang giá trị cũ và họ bị đá về trang</span>
+<a id="__codelineno-9-4" name="__codelineno-9-4" href="#__codelineno-9-4"></a><span class="c1">/// đổi mật khẩu mãi mãi.</span>
+</code></pre></div>
+<p>Đọc claim thì nhanh hơn nhiều (không tốn câu SELECT nào). Nhưng claim được ghi
+vào vé <strong>lúc đăng nhập</strong> và không tự cập nhật. Người dùng đổi mật khẩu xong,
+claim vẫn ghi "phải đổi mật khẩu" → bị đẩy về trang đó → đổi tiếp → vẫn bị
+đẩy → vòng lặp không lối ra.</p>
+<p>Giá phải trả: một câu <code>SELECT</code> cho mỗi request. Được giảm bằng hai cách:</p>
+<ul>
+<li>Kết quả được nhớ trong <code>HttpContext.Items</code> → mỗi request tốn đúng một câu dù
+  bị hỏi nhiều lần.</li>
+<li>Các đường dẫn tĩnh (<code>.js</code>, <code>.css</code>, ảnh…) được bỏ qua ngay từ đầu.</li>
+</ul>
+<hr />
+<h2 id="5-mot-lo-hong-co-that-a-uoc-va">5. Một lỗ hổng có thật đã được vá<a class="headerlink" href="#5-mot-lo-hong-co-that-a-uoc-va" title="Permanent link">&para;</a></h2>
+<p>Danh sách đường dẫn cho qua ban đầu được so bằng <code>Contains</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-10-1" name="__codelineno-10-1" href="#__codelineno-10-1"></a><span class="c1">// BẢN CŨ - CÓ LỖ HỔNG</span>
+<a id="__codelineno-10-2" name="__codelineno-10-2" href="#__codelineno-10-2"></a><span class="k">return</span><span class="w"> </span><span class="n">AllowedPaths</span><span class="p">.</span><span class="n">Any</span><span class="p">(</span><span class="n">p</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">lower</span><span class="p">.</span><span class="n">Contains</span><span class="p">(</span><span class="n">p</span><span class="p">));</span>
+</code></pre></div>
+<p>Nghĩa là <strong>bất kỳ URL nào CHỨA chuỗi đó ở bất kỳ vị trí nào</strong> đều thoát chốt:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-11-1" name="__codelineno-11-1" href="#__codelineno-11-1"></a>/account/login                    →  cho qua  (đúng)
+<a id="__codelineno-11-2" name="__codelineno-11-2" href="#__codelineno-11-2"></a>/api/report/account/login-history →  cho qua  (SAI - lọt chốt)
+</code></pre></div>
+<h3 id="nhung-vi-sao-ban-cu-lai-chon-contains">Nhưng vì sao bản cũ lại chọn <code>Contains</code>?<a class="headerlink" href="#nhung-vi-sao-ban-cu-lai-chon-contains" title="Permanent link">&para;</a></h3>
+<p>Đây là câu hỏi quan trọng, vì đổi thẳng sang <code>StartsWith</code> sẽ tạo ra một sự cố
+khác. Nếu portal chạy trong <strong>thư mục ảo</strong>, đường dẫn thô luôn kèm tiền tố:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-12-1" name="__codelineno-12-1" href="#__codelineno-12-1"></a>/portal/Manage/ChangePassword
+</code></pre></div>
+<p><code>StartsWith("/manage/changepassword")</code> → <strong>trượt</strong>. Kết quả: chính trang đổi
+mật khẩu cũng bị chặn → vòng chuyển hướng vô tận → portal không dùng được.</p>
+<p><code>Contains</code> chịu được thư mục ảo. Đó gần như chắc chắn là lý do nó tồn tại.</p>
+<h3 id="ban-sua-lam-ca-hai-viec">Bản sửa làm cả hai việc<a class="headerlink" href="#ban-sua-lam-ca-hai-viec" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-13-1" name="__codelineno-13-1" href="#__codelineno-13-1"></a><span class="c1">// 1. Quy về đường dẫn tương đối với ứng dụng TRƯỚC</span>
+<a id="__codelineno-13-2" name="__codelineno-13-2" href="#__codelineno-13-2"></a><span class="c1">//    &quot;/portal/Manage/ChangePassword&quot; → &quot;/manage/changepassword&quot;</span>
+<a id="__codelineno-13-3" name="__codelineno-13-3" href="#__codelineno-13-3"></a><span class="n">relative</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">VirtualPathUtility</span><span class="p">.</span><span class="n">ToAppRelative</span><span class="p">(</span><span class="n">path</span><span class="p">).</span><span class="n">TrimStart</span><span class="p">(</span><span class="sc">&#39;~&#39;</span><span class="p">).</span><span class="n">TrimEnd</span><span class="p">(</span><span class="sc">&#39;/&#39;</span><span class="p">).</span><span class="n">ToLowerInvariant</span><span class="p">();</span>
+<a id="__codelineno-13-4" name="__codelineno-13-4" href="#__codelineno-13-4"></a>
+<a id="__codelineno-13-5" name="__codelineno-13-5" href="#__codelineno-13-5"></a><span class="c1">// 2. Rồi mới so theo TRỌN ĐOẠN</span>
+<a id="__codelineno-13-6" name="__codelineno-13-6" href="#__codelineno-13-6"></a><span class="k">return</span><span class="w"> </span><span class="n">danhSach</span><span class="p">.</span><span class="n">Any</span><span class="p">(</span><span class="n">p</span><span class="w"> </span><span class="o">=&gt;</span>
+<a id="__codelineno-13-7" name="__codelineno-13-7" href="#__codelineno-13-7"></a><span class="w">    </span><span class="n">relative</span><span class="p">.</span><span class="n">Equals</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="w"> </span><span class="n">StringComparison</span><span class="p">.</span><span class="n">Ordinal</span><span class="p">)</span><span class="w"> </span><span class="o">||</span>
+<a id="__codelineno-13-8" name="__codelineno-13-8" href="#__codelineno-13-8"></a><span class="w">    </span><span class="n">relative</span><span class="p">.</span><span class="n">StartsWith</span><span class="p">(</span><span class="n">p</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="s">&quot;/&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">StringComparison</span><span class="p">.</span><span class="n">Ordinal</span><span class="p">));</span>
+</code></pre></div>
+<p>Logic này nay nằm ở <code>Authorization/DuongDanRequest.cs</code> và được <strong>cả hai chốt</strong>
+(<code>MustChangePasswordGuard</code>, <code>AdminIpGuard</code>) dùng chung — hai bản viết tay sẽ có
+ngày lệch nhau, và lệch ở chốt chặn nghĩa là một bên có lỗ mà bên kia không có.</p>
+<blockquote>
+<p><strong>Bài học:</strong> khi thấy một đoạn code "sai rành rành", hãy tìm cho ra lý do nó
+được viết như vậy trước đã. Sửa mà không biết lý do cũ thì rất dễ đổi một lỗ
+hổng lấy một sự cố.</p>
+</blockquote>
+<hr />
+<h2 id="6-rang-buoc-cau-hinh-cung-co-hoac-cung-trong">6. Ràng buộc cấu hình: cùng có hoặc cùng trống<a class="headerlink" href="#6-rang-buoc-cau-hinh-cung-co-hoac-cung-trong" title="Permanent link">&para;</a></h2>
+<p><code>AdminController.KiemTraCauHinhHanMatKhau</code> từ chối lưu nếu chỉ điền một trong
+hai ô:</p>
+<table>
+<thead>
+<tr>
+<th>Trường hợp</th>
+<th>Hậu quả nếu cho phép</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Chỉ có (c), thiếu (d)</td>
+<td>Người dùng bị nhắc nhưng <strong>không có hạn chót nào</strong> → chính sách chỉ còn là lời khuyên</td>
+</tr>
+<tr>
+<td>Chỉ có (d), thiếu (c)</td>
+<td>Tài khoản bị khóa đột ngột mà <strong>chưa hề được nhắc lấy một lần</strong> — tệ nhất</td>
+</tr>
+<tr>
+<td>(d) &lt; (c)</td>
+<td>Bị khóa <strong>trước cả khi</strong> kịp được nhắc</td>
+</tr>
+</tbody>
+</table>
+<p>Chặn ngay ở tầng lưu thì ba tình huống trên không tồn tại, và luật trong
+<code>MustChangePasswordGuard</code> chỉ còn phải lo đúng <strong>một</strong> hình dạng dữ liệu.</p>
+<p>Ràng buộc này được viết ở <strong>cả hai nơi</strong>:</p>
+<ul>
+<li><code>PortalWebsite.js</code> → hàm <code>PortalWebsiteKiemTraHanMatKhau</code> (tô đỏ ô nhập)</li>
+<li><code>AdminController.cs</code> → <code>KiemTraCauHinhHanMatKhau</code> (chốt thật)</li>
+</ul>
+<p>Trong ExtJS có một chi tiết dễ quên: ràng buộc nằm <strong>giữa hai ô</strong>, nên sửa ô
+này có thể làm ô kia từ sai thành đúng. ExtJS <strong>không</strong> tự chạy lại validator
+của ô kia, nên phải gọi tay trong <code>listeners.change</code> — nếu không, vệt đỏ sẽ
+đứng lại ở trạng thái cũ và nói dối người dùng.</p>
+<hr />
+<h2 id="7-noi-can-biet">7. Nơi cần biết<a class="headerlink" href="#7-noi-can-biet" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Việc</th>
+<th>Tệp</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Luật quyết định (<code>Evaluate</code> / <code>IsBlocking</code>)</td>
+<td><code>gPortal/Authorization/MustChangePasswordGuard.cs</code></td>
+</tr>
+<tr>
+<td>Chốt chặn ở mọi request</td>
+<td><code>Global.asax.cs</code> → <code>Application_PostAuthenticateRequest</code></td>
+</tr>
+<tr>
+<td>Điều hướng sau đăng nhập</td>
+<td><code>AccountController.RedirectAfterSignIn</code></td>
+</tr>
+<tr>
+<td>Màn hình đổi mật khẩu</td>
+<td><code>Views/Manage/ChangePassword.cshtml</code></td>
+</tr>
+<tr>
+<td><strong>BẬT</strong> cờ (a) khi tạo tài khoản</td>
+<td><code>OrganizationController.CreateUserInOrg</code></td>
+</tr>
+<tr>
+<td><strong>BẬT</strong> cờ (a) khi cấp lại mật khẩu</td>
+<td><code>OrganizationController.ResetPasswordUser</code></td>
+</tr>
+<tr>
+<td><strong>TẮT</strong> cờ (a) khi người dùng tự đổi</td>
+<td><code>ManageController.ChangePassword</code></td>
+</tr>
+<tr>
+<td>Checkbox lúc tạo người dùng</td>
+<td><code>gOrgAdmin/app/view/Users/FrmOrganizationUser.js</code></td>
+</tr>
+<tr>
+<td>Checkbox lúc cấp lại mật khẩu</td>
+<td><code>gOrgAdmin/app/view/Users/FrmResetPassUser.js</code></td>
+</tr>
+<tr>
+<td>Cột ⚠️ "Chờ đổi MK"</td>
+<td><code>gOrgAdmin/app/view/Users/OrganizationUsers.js</code></td>
+</tr>
+<tr>
+<td>Giá trị mặc định phía giao diện</td>
+<td><code>gOrgAdmin/app/model/mUser.js</code></td>
+</tr>
+<tr>
+<td>Kiểm tra cấu hình</td>
+<td><code>AdminController.KiemTraCauHinhHanMatKhau</code></td>
+</tr>
+<tr>
+<td>Giao diện cấu hình</td>
+<td><code>PortalWebsite.js</code> — tab <strong>"Mật khẩu"</strong></td>
+</tr>
+<tr>
+<td>Migration</td>
+<td><code>Database/DbUpdate.sql</code> — 001 (cờ a), 002, 003</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="8-viec-con-treo">8. Việc còn treo<a class="headerlink" href="#8-viec-con-treo" title="Permanent link">&para;</a></h2>
+<ul>
+<li><strong>Ứng dụng di động</strong> đang đọc cờ <code>MustChangePassword</code>. Ý nghĩa của cờ đó đã
+  bị thu hẹp (giờ chỉ còn là "(a) mật khẩu mặc định"), nên app cần được cập
+  nhật để hiểu thêm trạng thái ân hạn.</li>
+<li>Nên kiểm tra dữ liệu cũ xem có bản ghi nào chỉ điền một trong hai ô không:
+  <div class="highlight"><pre><span></span><code><a id="__codelineno-14-1" name="__codelineno-14-1" href="#__codelineno-14-1"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">Id</span><span class="p">,</span><span class="w"> </span><span class="n">PasswordChangeIntervalDays</span><span class="p">,</span><span class="w"> </span><span class="n">PasswordValidityDays</span>
+<a id="__codelineno-14-2" name="__codelineno-14-2" href="#__codelineno-14-2"></a><span class="k">FROM</span><span class="w"> </span><span class="n">dbo</span><span class="p">.</span><span class="n">gp_PortalSettings</span><span class="p">;</span>
+</code></pre></div>
+  Ràng buộc mới chỉ chặn từ lúc lưu trở đi, không dọn dữ liệu đã có.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Trở lại mục lục
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.instant", "navigation.top", "navigation.tracking", "toc.follow", "content.code.copy", "search.highlight"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u0110\u00e3 sao ch\u00e9p", "clipboard.copy": "Sao ch\u00e9p v\u00e0o b\u1ed9 nh\u1edb t\u1ea1m", "search.result.more.one": "1 t\u1eeb kh\u00e1c trong trang", "search.result.more.other": "# t\u1eeb kh\u00e1c trong trang", "search.result.none": "Kh\u00f4ng t\u00ecm th\u1ea5y t\u00e0i li\u1ec7u li\u00ean quan", "search.result.one": "1 t\u00e0i li\u1ec7u li\u00ean quan", "search.result.other": "# t\u00e0i li\u1ec7u li\u00ean quan", "search.result.placeholder": "Nh\u1eadp \u0111\u1ec3 b\u1eaft \u0111\u1ea7u t\u00ecm ki\u1ebfm", "search.result.term.missing": "Kh\u00f4ng", "select.version": "Ch\u1ecdn phi\u00ean b\u1ea3n"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

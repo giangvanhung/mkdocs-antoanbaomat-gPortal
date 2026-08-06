@@ -1,0 +1,1788 @@
+
+<!doctype html>
+<html lang="vi" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Các tính năng bảo mật đã bổ sung cho gPortal, vì sao làm vậy, và chỗ nào có thể vỡ">
+      
+      
+      
+      
+        <link rel="prev" href="../04-dia-chi-mang-quan-tri/">
+      
+      
+        <link rel="next" href="../09-smtp-va-gui-thu/">
+      
+      
+        
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.7.6">
+    
+    
+      
+        <title>5. Nhật ký hệ thống - gPortal — Tài liệu bảo mật</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.484c7ddc.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.ab4e12ef.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#08-nhat-ky-he-thong" class="md-skip">
+          Bỏ qua
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Đầu trang">
+    <a href=".." title="gPortal — Tài liệu bảo mật" class="md-header__button md-logo" aria-label="gPortal — Tài liệu bảo mật" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            gPortal — Tài liệu bảo mật
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              5. Nhật ký hệ thống
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: light)" data-md-color-scheme="default" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Chuyển sang nền tối"  type="radio" name="__palette" id="__palette_0">
+    
+      <label class="md-header__button md-icon" title="Chuyển sang nền tối" for="__palette_1" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="m17.75 4.09-2.53 1.94.91 3.06-2.63-1.81-2.63 1.81.91-3.06-2.53-1.94L12.44 4l1.06-3 1.06 3zm3.5 6.91-1.64 1.25.59 1.98-1.7-1.17-1.7 1.17.59-1.98L15.75 11l2.06-.05L18.5 9l.69 1.95zm-2.28 4.95c.83-.08 1.72 1.1 1.19 1.85-.32.45-.66.87-1.08 1.27C15.17 23 8.84 23 4.94 19.07c-3.91-3.9-3.91-10.24 0-14.14.4-.4.82-.76 1.27-1.08.75-.53 1.93.36 1.85 1.19-.27 2.86.69 5.83 2.89 8.02a9.96 9.96 0 0 0 8.02 2.89m-1.64 2.02a12.08 12.08 0 0 1-7.8-3.47c-2.17-2.19-3.33-5-3.49-7.82-2.81 3.14-2.7 7.96.31 10.98 3.02 3.01 7.84 3.12 10.98.31"/></svg>
+      </label>
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="(prefers-color-scheme: dark)" data-md-color-scheme="slate" data-md-color-primary="indigo" data-md-color-accent="indigo"  aria-label="Chuyển sang nền sáng"  type="radio" name="__palette" id="__palette_1">
+    
+      <label class="md-header__button md-icon" title="Chuyển sang nền sáng" for="__palette_0" hidden>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3m0-7 2.39 3.42C13.65 5.15 12.84 5 12 5s-1.65.15-2.39.42zM3.34 7l4.16-.35A7.2 7.2 0 0 0 5.94 8.5c-.44.74-.69 1.5-.83 2.29zm.02 10 1.76-3.77a7.131 7.131 0 0 0 2.38 4.14zM20.65 7l-1.77 3.79a7.02 7.02 0 0 0-2.38-4.15zm-.01 10-4.14.36c.59-.51 1.12-1.14 1.54-1.86.42-.73.69-1.5.83-2.29zM12 22l-2.41-3.44c.74.27 1.55.44 2.41.44.82 0 1.63-.17 2.37-.44z"/></svg>
+      </label>
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      
+      
+        <label class="md-header__button md-icon" for="__search">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        </label>
+        <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Tìm kiếm" placeholder="Tìm kiếm" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Tìm kiếm">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Xoá" aria-label="Xoá" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+      
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Thanh điều hướng" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="gPortal — Tài liệu bảo mật" class="md-nav__button md-logo" aria-label="gPortal — Tài liệu bảo mật" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    gPortal — Tài liệu bảo mật
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Bắt đầu từ đây
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../00-tong-quan/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tổng quan kiến trúc
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Tính năng
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Tính năng
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../01-mat-khau-dinh-ky/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    1. Mật khẩu định kỳ
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../02-khoa-tai-khoan/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    2. Khóa tài khoản
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../03-thoi-gian-cho-phien/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    3. Thời gian chờ phiên
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../04-dia-chi-mang-quan-tri/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    4. Địa chỉ mạng quản trị
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5. Nhật ký hệ thống
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    5. Nhật ký hệ thống
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Mục lục">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Mục lục
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#yeu-cau-nghiep-vu" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Yêu cầu nghiệp vụ
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-vi-sao-bon-tinh-nang-truoc-chua-u" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Vì sao bốn tính năng trước chưa đủ
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-vi-sao-la-bang-csdl-chu-khong-phai-file-log4net" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Vì sao là bảng CSDL chứ không phải file log4net
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Vì sao là bảng CSDL chứ không phải file log4net">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#log4net-van-giu-nguyen-voi-vai-tro-khac" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        log4net vẫn giữ nguyên, với vai trò khác
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-ba-luat-bat-di-bat-dich-cua-nhatkyhethong" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Ba luật bất di bất dịch của NhatKyHeThong
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Ba luật bất di bất dịch của NhatKyHeThong">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#luat-1-khong-bao-gio-uoc-nem-ngoai-le" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Luật 1 — Không bao giờ được ném ngoại lệ
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#luat-2-dung-ket-noi-rieng-khong-dung-dbcontext-cua-request" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Luật 2 — Dùng kết nối riêng, không dùng DbContext của request
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#luat-3-hong-thi-phai-keu-khong-uoc-im" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Luật 3 — Hỏng thì phải kêu, không được im
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-ghi-su-kien-khong-ghi-request" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Ghi SỰ KIỆN, không ghi REQUEST
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-su-kien-nao-vao-nhom-nao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Sự kiện nào vào nhóm nào
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Sự kiện nào vào nhóm nào">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mot-dong-hay-hai-dong" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Một dòng hay hai dòng?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-at-iem-moc-o-au-nguyen-tac-lap-lai" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Đặt điểm móc ở đâu — nguyên tắc lặp lại
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-mot-cai-bay-co-that-mui-gio" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Một cái bẫy có thật: múi giờ
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-khong-co-nut-xoa-va-o-la-chu-y" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Không có nút xóa, và đó là chủ ý
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. Không có nút xóa, và đó là chủ ý">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#vay-don-du-lieu-cu-the-nao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Vậy dọn dữ liệu cũ thế nào?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-ba-chi-muc-moi-chi-muc-mot-cau-hoi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Ba chỉ mục, mỗi chỉ mục một câu hỏi
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-giao-dien" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Giao diện
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-sap-xep-lai-man-hinh-cau-hinh" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. Sắp xếp lại màn hình cấu hình
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-noi-can-biet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. Nơi cần biết
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-kiem-thu" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13. Kiểm thử
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../09-smtp-va-gui-thu/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    SMTP và gửi thư
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Vận hành
+  
+
+    
+  </span>
+  
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            
+  
+    Vận hành
+  
+
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../05-kiem-thu/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Kiểm thử
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../06-van-hanh-va-su-co/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Vận hành và sự cố
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../07-cau-hoi-thuong-gap/" class="md-nav__link">
+        
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    Câu hỏi thường gặp
+  
+
+    
+  </span>
+  
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Mục lục">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Mục lục
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#yeu-cau-nghiep-vu" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Yêu cầu nghiệp vụ
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-vi-sao-bon-tinh-nang-truoc-chua-u" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        1. Vì sao bốn tính năng trước chưa đủ
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-vi-sao-la-bang-csdl-chu-khong-phai-file-log4net" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        2. Vì sao là bảng CSDL chứ không phải file log4net
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Vì sao là bảng CSDL chứ không phải file log4net">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#log4net-van-giu-nguyen-voi-vai-tro-khac" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        log4net vẫn giữ nguyên, với vai trò khác
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-ba-luat-bat-di-bat-dich-cua-nhatkyhethong" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        3. Ba luật bất di bất dịch của NhatKyHeThong
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Ba luật bất di bất dịch của NhatKyHeThong">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#luat-1-khong-bao-gio-uoc-nem-ngoai-le" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Luật 1 — Không bao giờ được ném ngoại lệ
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#luat-2-dung-ket-noi-rieng-khong-dung-dbcontext-cua-request" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Luật 2 — Dùng kết nối riêng, không dùng DbContext của request
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#luat-3-hong-thi-phai-keu-khong-uoc-im" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Luật 3 — Hỏng thì phải kêu, không được im
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-ghi-su-kien-khong-ghi-request" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        4. Ghi SỰ KIỆN, không ghi REQUEST
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-su-kien-nao-vao-nhom-nao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        5. Sự kiện nào vào nhóm nào
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. Sự kiện nào vào nhóm nào">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#mot-dong-hay-hai-dong" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Một dòng hay hai dòng?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-at-iem-moc-o-au-nguyen-tac-lap-lai" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        6. Đặt điểm móc ở đâu — nguyên tắc lặp lại
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-mot-cai-bay-co-that-mui-gio" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        7. Một cái bẫy có thật: múi giờ
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-khong-co-nut-xoa-va-o-la-chu-y" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        8. Không có nút xóa, và đó là chủ ý
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="8. Không có nút xóa, và đó là chủ ý">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#vay-don-du-lieu-cu-the-nao" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Vậy dọn dữ liệu cũ thế nào?
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-ba-chi-muc-moi-chi-muc-mot-cau-hoi" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        9. Ba chỉ mục, mỗi chỉ mục một câu hỏi
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-giao-dien" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        10. Giao diện
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#11-sap-xep-lai-man-hinh-cau-hinh" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        11. Sắp xếp lại màn hình cấu hình
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#12-noi-can-biet" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        12. Nơi cần biết
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#13-kiem-thu" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        13. Kiểm thử
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+
+<h1 id="08-nhat-ky-he-thong">08 — Nhật ký hệ thống<a class="headerlink" href="#08-nhat-ky-he-thong" title="Permanent link">&para;</a></h1>
+<h2 id="yeu-cau-nghiep-vu">Yêu cầu nghiệp vụ<a class="headerlink" href="#yeu-cau-nghiep-vu" title="Permanent link">&para;</a></h2>
+<blockquote>
+<p>(b) Nhật ký hệ thống được phân loại theo ít nhất <strong>05 nhóm</strong>:
+i. Nhật ký truy cập Phần mềm;
+ii. Nhật ký đăng nhập khi quản trị Phần mềm;
+iii. Nhật ký các lỗi phát sinh trong quá trình hoạt động;
+iv. Nhật ký quản lý tài khoản;
+v. Nhật ký thay đổi cấu hình Phần mềm.</p>
+</blockquote>
+<hr />
+<h2 id="1-vi-sao-bon-tinh-nang-truoc-chua-u">1. Vì sao bốn tính năng trước chưa đủ<a class="headerlink" href="#1-vi-sao-bon-tinh-nang-truoc-chua-u" title="Permanent link">&para;</a></h2>
+<p>Bốn tính năng bảo mật trước đều là <strong>chốt chặn</strong> — chúng làm rất tốt việc <em>ngăn</em>
+chuyện xấu. Nhưng một hệ thống bảo mật phải trả lời được <strong>hai</strong> loại câu hỏi:</p>
+<table>
+<thead>
+<tr>
+<th>Câu hỏi</th>
+<th>Ai trả lời</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>"Ngăn được không?"</td>
+<td>Chốt chặn</td>
+</tr>
+<tr>
+<td>"Đã từng có ai thử chưa?"</td>
+<td><strong>Nhật ký</strong></td>
+</tr>
+</tbody>
+</table>
+<p>Trước đợt này, sự kiện đáng ghi nhất — <strong>tài khoản bị khóa do đăng nhập sai</strong> —
+không để lại dấu vết nào tồn tại quá vài phút. Dấu vết duy nhất là cột
+<code>AccessFailedCount</code>, mà cột đó bị <strong>ghi đè</strong> ngay khi đăng nhập đúng hoặc khi
+cửa sổ thời gian hết hạn. Câu hỏi <em>"tháng trước có ai dò mật khẩu tài khoản
+admin không?"</em> không trả lời được.</p>
+<hr />
+<h2 id="2-vi-sao-la-bang-csdl-chu-khong-phai-file-log4net">2. Vì sao là bảng CSDL chứ không phải file log4net<a class="headerlink" href="#2-vi-sao-la-bang-csdl-chu-khong-phai-file-log4net" title="Permanent link">&para;</a></h2>
+<p>Dự án đã có log4net ghi ra <code>App_Data\gPortal.txt</code>. Nhưng đó là <strong>văn bản tự do</strong>.</p>
+<p>Yêu cầu đòi nhật ký phải được <strong>phân loại</strong> theo năm nhóm và <strong>tra cứu được</strong>.
+Một file văn bản thì:</p>
+<ul>
+<li>không lọc theo nhóm,</li>
+<li>không phân trang,</li>
+<li>không tìm theo người dùng hay khoảng thời gian.</li>
+</ul>
+<p>Muốn làm những việc đó trên file thì phải tự viết bộ phân tích cú pháp cho
+chính định dạng mình vừa in ra — và nó sẽ hỏng ngay lần đầu có ai đổi mẫu in.</p>
+<h3 id="log4net-van-giu-nguyen-voi-vai-tro-khac">log4net vẫn giữ nguyên, với vai trò khác<a class="headerlink" href="#log4net-van-giu-nguyen-voi-vai-tro-khac" title="Permanent link">&para;</a></h3>
+<p>Nó là <strong>lưới an toàn</strong> cho chính bảng nhật ký. Khi <code>NhatKyHeThong</code> không ghi
+được xuống CSDL, nó đổ ra file kèm tiền tố <code>NHATKY_ROI</code>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-0-1" name="__codelineno-0-1" href="#__codelineno-0-1"></a>NHATKY_ROI | loai=QuanLyTaiKhoan | hanhDong=KHOA_TAI_KHOAN | thanhCong=False | ...
+</code></pre></div>
+<p>Tìm chuỗi đó trong file log là cách biết bảng nhật ký có đầy đủ hay không.</p>
+<hr />
+<h2 id="3-ba-luat-bat-di-bat-dich-cua-nhatkyhethong">3. Ba luật bất di bất dịch của <code>NhatKyHeThong</code><a class="headerlink" href="#3-ba-luat-bat-di-bat-dich-cua-nhatkyhethong" title="Permanent link">&para;</a></h2>
+<h3 id="luat-1-khong-bao-gio-uoc-nem-ngoai-le">Luật 1 — Không bao giờ được ném ngoại lệ<a class="headerlink" href="#luat-1-khong-bao-gio-uoc-nem-ngoai-le" title="Permanent link">&para;</a></h3>
+<p>Nhật ký là <strong>người quan sát</strong>, không phải người tham gia. Một thao tác nghiệp
+vụ hợp lệ không được phép thất bại chỉ vì ghi nhật ký hỏng.</p>
+<p>Đảo lại thì việc thêm nhật ký — vốn để làm hệ thống an toàn hơn — lại trở thành
+nguồn sự cố mới. Mọi lời gọi đều nằm trong <code>try/catch</code>.</p>
+<h3 id="luat-2-dung-ket-noi-rieng-khong-dung-dbcontext-cua-request">Luật 2 — Dùng kết nối riêng, không dùng <code>DbContext</code> của request<a class="headerlink" href="#luat-2-dung-ket-noi-rieng-khong-dung-dbcontext-cua-request" title="Permanent link">&para;</a></h3>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-1-1" name="__codelineno-1-1" href="#__codelineno-1-1"></a><span class="k">using</span><span class="w"> </span><span class="p">(</span><span class="kt">var</span><span class="w"> </span><span class="n">db</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">new</span><span class="w"> </span><span class="n">ApplicationDbContext</span><span class="p">())</span>
+<a id="__codelineno-1-2" name="__codelineno-1-2" href="#__codelineno-1-2"></a><span class="p">{</span>
+<a id="__codelineno-1-3" name="__codelineno-1-3" href="#__codelineno-1-3"></a><span class="w">    </span><span class="n">db</span><span class="p">.</span><span class="n">AuditLogs</span><span class="p">.</span><span class="n">Add</span><span class="p">(</span><span class="n">dong</span><span class="p">);</span>
+<a id="__codelineno-1-4" name="__codelineno-1-4" href="#__codelineno-1-4"></a><span class="w">    </span><span class="n">db</span><span class="p">.</span><span class="n">SaveChanges</span><span class="p">();</span>
+<a id="__codelineno-1-5" name="__codelineno-1-5" href="#__codelineno-1-5"></a><span class="p">}</span>
+</code></pre></div>
+<p>Ta ghi lại cả những thao tác <strong>thất bại</strong>. Một thao tác thất bại có thể đã làm
+hỏng context của request, hoặc sẽ bị cuộn lại. Ghi chung thì <strong>đúng những dòng
+nhật ký quan trọng nhất — dòng ghi lại thất bại — sẽ biến mất cùng với thất bại
+đó</strong>.</p>
+<h3 id="luat-3-hong-thi-phai-keu-khong-uoc-im">Luật 3 — Hỏng thì phải kêu, không được im<a class="headerlink" href="#luat-3-hong-thi-phai-keu-khong-uoc-im" title="Permanent link">&para;</a></h3>
+<p>Một hệ thống nhật ký âm thầm mất dữ liệu còn <strong>tệ hơn không có nhật ký</strong>, vì nó
+tạo cảm giác an toàn giả.</p>
+<hr />
+<h2 id="4-ghi-su-kien-khong-ghi-request">4. Ghi SỰ KIỆN, không ghi REQUEST<a class="headerlink" href="#4-ghi-su-kien-khong-ghi-request" title="Permanent link">&para;</a></h2>
+<p>Nhóm (i) "Nhật ký truy cập Phần mềm" <strong>không</strong> ghi mỗi lượt xem trang.</p>
+<p>Lý do là số học: portal này phục vụ hàng nghìn request mỗi phút kể cả ảnh và
+file css. Ghi từng request là thêm một câu <code>INSERT</code> vào từng request, và bảng sẽ
+đạt hàng chục triệu dòng trong vài tuần. Đến lúc đó không ai tra cứu nổi nữa —
+tức là <strong>nhật ký mất tác dụng đúng vì đã ghi quá nhiều</strong>.</p>
+<p>Thay vào đó ghi các sự kiện thuộc <strong>vòng đời truy cập</strong>: đăng nhập thành công,
+đăng nhập thất bại, đăng xuất, hết phiên, bị từ chối truy cập. Đó là những mốc
+trả lời được <em>"ai đã vào hệ thống, khi nào, từ đâu"</em> — mục đích thật sự của
+nhóm này.</p>
+<hr />
+<h2 id="5-su-kien-nao-vao-nhom-nao">5. Sự kiện nào vào nhóm nào<a class="headerlink" href="#5-su-kien-nao-vao-nhom-nao" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Nhóm</th>
+<th>Sự kiện</th>
+<th>Mã hành động</th>
+<th>Móc ở đâu</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>i</strong> Truy cập</td>
+<td>Đăng nhập thành công (người dùng thường)</td>
+<td><code>DANG_NHAP</code></td>
+<td><code>AccountController.RedirectAfterSignIn</code></td>
+</tr>
+<tr>
+<td>i</td>
+<td>Đăng nhập sai mật khẩu</td>
+<td><code>DANG_NHAP_SAI_MAT_KHAU</code></td>
+<td><code>IdentityConfig.AccessFailedAsync</code></td>
+</tr>
+<tr>
+<td>i</td>
+<td>Tên đăng nhập không tồn tại</td>
+<td><code>DANG_NHAP_SAI_TEN</code></td>
+<td><code>AccountController.Login</code></td>
+</tr>
+<tr>
+<td>i</td>
+<td>Đăng nhập vào tài khoản đang bị khóa</td>
+<td><code>DANG_NHAP_TAI_KHOAN_BI_KHOA</code></td>
+<td><code>AccountController.Login</code></td>
+</tr>
+<tr>
+<td>i</td>
+<td>Đăng xuất</td>
+<td><code>DANG_XUAT</code></td>
+<td><code>AccountController.LogOff</code></td>
+</tr>
+<tr>
+<td>i</td>
+<td>Phiên bị đóng do hết giờ</td>
+<td><code>HET_PHIEN</code></td>
+<td><code>SessionTimeoutGuard</code></td>
+</tr>
+<tr>
+<td><strong>ii</strong> Quản trị</td>
+<td>Mọi sự kiện trên, khi tài khoản là <strong>quản trị viên</strong></td>
+<td>(như trên)</td>
+<td><code>NhatKyHeThong.LoaiTheoVaiTro</code></td>
+</tr>
+<tr>
+<td>ii</td>
+<td>Bị chặn vì địa chỉ mạng</td>
+<td><code>CHAN_DIA_CHI_QUAN_TRI</code></td>
+<td><code>AdminIpGuard.Handle</code></td>
+</tr>
+<tr>
+<td>ii</td>
+<td>Từ chối đăng nhập vì địa chỉ mạng</td>
+<td><code>TU_CHOI_DIA_CHI_DANG_NHAP</code></td>
+<td><code>AccountController.ChanQuanTriSaiDiaChi</code></td>
+</tr>
+<tr>
+<td><strong>iii</strong> Lỗi</td>
+<td>Ngoại lệ không được bắt</td>
+<td><code>LOI_HE_THONG</code></td>
+<td><code>Global.asax.Application_Error</code></td>
+</tr>
+<tr>
+<td><strong>iv</strong> Tài khoản</td>
+<td>Tài khoản bị khóa</td>
+<td><code>KHOA_TAI_KHOAN</code></td>
+<td><code>IdentityConfig.AccessFailedAsync</code></td>
+</tr>
+<tr>
+<td>iv</td>
+<td>Xóa tài khoản</td>
+<td><code>XOA_TAI_KHOAN</code></td>
+<td><code>AdminController.DeleteUser</code></td>
+</tr>
+<tr>
+<td>iv</td>
+<td>Gán vai trò</td>
+<td><code>GAN_VAI_TRO</code></td>
+<td><code>AdminController.AddUserRoles</code></td>
+</tr>
+<tr>
+<td><strong>v</strong> Cấu hình</td>
+<td>Sửa cấu hình bảo mật</td>
+<td><code>SUA_CAU_HINH_BAO_MAT</code></td>
+<td><code>AdminController.AddPortalSettings</code></td>
+</tr>
+<tr>
+<td>v</td>
+<td>Thêm/sửa/xóa quy tắc địa chỉ</td>
+<td><code>*_DIA_CHI_QUAN_TRI</code></td>
+<td><code>AdminController</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="mot-dong-hay-hai-dong">Một dòng hay hai dòng?<a class="headerlink" href="#mot-dong-hay-hai-dong" title="Permanent link">&para;</a></h3>
+<p>Chú ý cặp <code>DANG_NHAP_SAI_MAT_KHAU</code> (nhóm i/ii) và <code>KHOA_TAI_KHOAN</code> (nhóm iv).
+Cùng một lần bấm nút của người dùng, nhưng <strong>hai dòng nhật ký ở hai nhóm</strong>:</p>
+<ul>
+<li><em>sai mật khẩu</em> → một lượt truy cập hỏng</li>
+<li><em>khóa tài khoản</em> → <strong>trạng thái</strong> tài khoản đã đổi</li>
+</ul>
+<p>Gộp làm một thì người kiểm toán đi tìm các lần khóa tài khoản sẽ phải lọc trong
+hàng nghìn dòng đăng nhập sai.</p>
+<hr />
+<h2 id="6-at-iem-moc-o-au-nguyen-tac-lap-lai">6. Đặt điểm móc ở đâu — nguyên tắc lặp lại<a class="headerlink" href="#6-at-iem-moc-o-au-nguyen-tac-lap-lai" title="Permanent link">&para;</a></h2>
+<p><code>DANG_NHAP_SAI_MAT_KHAU</code> ban đầu được viết trong <code>AccountController</code>, rồi
+<strong>chuyển xuống</strong> <code>IdentityConfig.AccessFailedAsync</code>.</p>
+<p>Lý do y hệt lý do cửa sổ đếm đã nằm ở đó: có <strong>ba lối gọi</strong> tới
+<code>AccessFailedAsync</code> —</p>
+<ol>
+<li>đăng nhập web (<code>AccountController.Login</code>)</li>
+<li>đăng nhập di động (<code>AccountController.MobileLogin</code>)</li>
+<li>bên trong <code>SignInManager.PasswordSignInAsync</code></li>
+</ol>
+<p>Ghi nhật ký ở controller thì phải chép ba bản, và <strong>bản nào bị quên thì sẽ có
+một đường đăng nhập không để lại vết</strong> — đúng đường mà kẻ tấn công sẽ tìm ra
+trước.</p>
+<p>Cùng nguyên tắc với <code>RedirectAfterSignIn</code> (điểm hội tụ của bốn đường đăng nhập
+web) và <code>AdminIpGuard.DuocPhep</code> (dùng chung giữa chốt chặn và chốt chống tự
+khóa). Ba ví dụ, một nguyên tắc.</p>
+<hr />
+<h2 id="7-mot-cai-bay-co-that-mui-gio">7. Một cái bẫy có thật: múi giờ<a class="headerlink" href="#7-mot-cai-bay-co-that-mui-gio" title="Permanent link">&para;</a></h2>
+<p>EF trả <code>DateTime</code> với <code>Kind = Unspecified</code>. <code>JavaScriptSerializer</code> mà MVC dùng
+cho <code>Json()</code> sẽ gọi <code>ToUniversalTime()</code> lên giá trị đó — và với
+<code>Kind = Unspecified</code>, .NET coi nó là giờ <strong>địa phương</strong>, trừ đi 7 tiếng ở Việt
+Nam. Trình duyệt sau đó cộng lại 7 tiếng.</p>
+<p>Kết quả: màn hình hiện đúng con số UTC nhưng <strong>dán nhãn là giờ địa phương</strong>.
+Mọi mốc thời gian lệch 7 tiếng, và người đọc sẽ kết luận sai về <strong>thứ tự các sự
+kiện</strong> — đúng thứ mà nhật ký sinh ra để trả lời.</p>
+<p>Cách sửa dứt điểm: trả về chuỗi ISO-8601 có hậu tố <code>Z</code>.</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-2-1" name="__codelineno-2-1" href="#__codelineno-2-1"></a><span class="n">ThoiGianUtc</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">DateTime</span><span class="p">.</span><span class="n">SpecifyKind</span><span class="p">(</span><span class="n">x</span><span class="p">.</span><span class="n">ThoiGianUtc</span><span class="p">,</span><span class="w"> </span><span class="n">DateTimeKind</span><span class="p">.</span><span class="n">Utc</span><span class="p">).</span><span class="n">ToString</span><span class="p">(</span><span class="s">&quot;o&quot;</span><span class="p">)</span>
+</code></pre></div>
+<p>Nó nói rõ đây là giờ UTC, trình duyệt tự đổi sang giờ máy người xem, và <strong>mở
+JSON ra là đọc được ngay múi giờ</strong> — không phải đoán.</p>
+<hr />
+<h2 id="8-khong-co-nut-xoa-va-o-la-chu-y">8. Không có nút xóa, và đó là chủ ý<a class="headerlink" href="#8-khong-co-nut-xoa-va-o-la-chu-y" title="Permanent link">&para;</a></h2>
+<p>Màn hình nhật ký <strong>không có</strong> chức năng xóa. API cũng không có endpoint xóa.</p>
+<p>Một nhật ký kiểm toán mà <strong>người bị kiểm toán xóa được</strong> thì không còn là bằng
+chứng. Quản trị viên chính là đối tượng mà nhóm (ii) và nhóm (v) theo dõi — cho
+họ nút xóa là tự phá bỏ mục đích của cả tính năng.</p>
+<h3 id="vay-don-du-lieu-cu-the-nao">Vậy dọn dữ liệu cũ thế nào?<a class="headerlink" href="#vay-don-du-lieu-cu-the-nao" title="Permanent link">&para;</a></h3>
+<p>Đây là việc của người quản trị CSDL, có kiểm soát, và <strong>nên sao lưu trước</strong>:</p>
+<div class="highlight"><pre><span></span><code><a id="__codelineno-3-1" name="__codelineno-3-1" href="#__codelineno-3-1"></a><span class="c1">-- Xem khối lượng trước khi quyết định</span>
+<a id="__codelineno-3-2" name="__codelineno-3-2" href="#__codelineno-3-2"></a><span class="k">SELECT</span><span class="w"> </span><span class="n">LoaiNhatKy</span><span class="p">,</span><span class="w"> </span><span class="k">COUNT</span><span class="p">(</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">SoDong</span><span class="p">,</span>
+<a id="__codelineno-3-3" name="__codelineno-3-3" href="#__codelineno-3-3"></a><span class="w">       </span><span class="k">MIN</span><span class="p">(</span><span class="n">ThoiGianUtc</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">CuNhat</span><span class="p">,</span><span class="w"> </span><span class="k">MAX</span><span class="p">(</span><span class="n">ThoiGianUtc</span><span class="p">)</span><span class="w"> </span><span class="k">AS</span><span class="w"> </span><span class="n">MoiNhat</span>
+<a id="__codelineno-3-4" name="__codelineno-3-4" href="#__codelineno-3-4"></a><span class="k">FROM</span><span class="w"> </span><span class="n">dbo</span><span class="p">.</span><span class="n">gp_AuditLogs</span>
+<a id="__codelineno-3-5" name="__codelineno-3-5" href="#__codelineno-3-5"></a><span class="k">GROUP</span><span class="w"> </span><span class="k">BY</span><span class="w"> </span><span class="n">LoaiNhatKy</span><span class="p">;</span>
+<a id="__codelineno-3-6" name="__codelineno-3-6" href="#__codelineno-3-6"></a>
+<a id="__codelineno-3-7" name="__codelineno-3-7" href="#__codelineno-3-7"></a><span class="c1">-- Sao lưu trước khi xóa (đổi tên bảng theo ngày)</span>
+<a id="__codelineno-3-8" name="__codelineno-3-8" href="#__codelineno-3-8"></a><span class="k">SELECT</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="k">INTO</span><span class="w"> </span><span class="n">dbo</span><span class="p">.</span><span class="n">gp_AuditLogs_LuuTru_202608</span>
+<a id="__codelineno-3-9" name="__codelineno-3-9" href="#__codelineno-3-9"></a><span class="k">FROM</span><span class="w"> </span><span class="n">dbo</span><span class="p">.</span><span class="n">gp_AuditLogs</span>
+<a id="__codelineno-3-10" name="__codelineno-3-10" href="#__codelineno-3-10"></a><span class="k">WHERE</span><span class="w"> </span><span class="n">ThoiGianUtc</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">DATEADD</span><span class="p">(</span><span class="k">MONTH</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mi">6</span><span class="p">,</span><span class="w"> </span><span class="n">GETUTCDATE</span><span class="p">());</span>
+<a id="__codelineno-3-11" name="__codelineno-3-11" href="#__codelineno-3-11"></a>
+<a id="__codelineno-3-12" name="__codelineno-3-12" href="#__codelineno-3-12"></a><span class="c1">-- Chỉ xóa sau khi đã kiểm tra bảng lưu trữ có đủ dòng</span>
+<a id="__codelineno-3-13" name="__codelineno-3-13" href="#__codelineno-3-13"></a><span class="k">DELETE</span><span class="w"> </span><span class="k">FROM</span><span class="w"> </span><span class="n">dbo</span><span class="p">.</span><span class="n">gp_AuditLogs</span>
+<a id="__codelineno-3-14" name="__codelineno-3-14" href="#__codelineno-3-14"></a><span class="k">WHERE</span><span class="w"> </span><span class="n">ThoiGianUtc</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="n">DATEADD</span><span class="p">(</span><span class="k">MONTH</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mi">6</span><span class="p">,</span><span class="w"> </span><span class="n">GETUTCDATE</span><span class="p">());</span>
+</code></pre></div>
+<p>Thời gian lưu tối thiểu phụ thuộc quy định áp dụng cho hệ thống — hãy hỏi trước
+khi xóa bất cứ thứ gì.</p>
+<hr />
+<h2 id="9-ba-chi-muc-moi-chi-muc-mot-cau-hoi">9. Ba chỉ mục, mỗi chỉ mục một câu hỏi<a class="headerlink" href="#9-ba-chi-muc-moi-chi-muc-mot-cau-hoi" title="Permanent link">&para;</a></h2>
+<p>Bảng này <strong>chỉ tăng, không giảm</strong>. Không có chỉ mục thì đến tháng thứ ba mọi
+truy vấn đều quét toàn bảng, và màn hình nhật ký sẽ treo <strong>đúng lúc cần nó nhất
+— lúc có sự cố, tức là lúc bảng dài nhất</strong>.</p>
+<table>
+<thead>
+<tr>
+<th>Chỉ mục</th>
+<th>Trả lời câu hỏi</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>IX_gp_AuditLogs_ThoiGian</code></td>
+<td>"xem 50 dòng gần nhất" (mặc định của màn hình)</td>
+</tr>
+<tr>
+<td><code>IX_gp_AuditLogs_LoaiThoiGian</code></td>
+<td>"lọc theo nhóm rồi sắp xếp" (thao tác hay dùng nhất)</td>
+</tr>
+<tr>
+<td><code>IX_gp_AuditLogs_ThanhCong</code></td>
+<td>"chỉ xem các sự kiện thất bại"</td>
+</tr>
+</tbody>
+</table>
+<p>Phân trang cũng chạy <strong>phía máy chủ</strong> (<code>start</code> / <code>limit</code>), với trần 500 dòng mỗi
+lần gọi — giao diện không bao giờ gửi số lớn hơn, nhưng giao diện không phải là
+thứ duy nhất gọi được API.</p>
+<hr />
+<h2 id="10-giao-dien">10. Giao diện<a class="headerlink" href="#10-giao-dien" title="Permanent link">&para;</a></h2>
+<p><strong>gPortalAdmin → Nhật ký hệ thống</strong></p>
+<table>
+<thead>
+<tr>
+<th>Thành phần</th>
+<th>Ghi chú</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Lọc theo nhóm</td>
+<td>Danh sách lấy từ <code>/Admin/AuditLogTypes</code>, sinh từ enum — thêm nhóm thứ sáu thì ô này tự có</td>
+</tr>
+<tr>
+<td>Lọc theo khoảng ngày</td>
+<td>Ô "Đến" bao gồm <strong>cả</strong> ngày được chọn</td>
+</tr>
+<tr>
+<td>Tìm theo từ khóa</td>
+<td>Khớp người dùng, mô tả, IP, mã hành động</td>
+</tr>
+<tr>
+<td>"Chỉ sự kiện thất bại"</td>
+<td>Lối tắt tới thứ cần nhìn nhất</td>
+</tr>
+<tr>
+<td>Dòng thất bại tô đỏ nhạt</td>
+<td>Để mắt bắt được <strong>cụm</strong> sự kiện hỏng liên tiếp</td>
+</tr>
+<tr>
+<td>Bấm đúp một dòng</td>
+<td>Mở hộp chi tiết (giá trị cấu hình trước/sau, nội dung ngoại lệ)</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="11-sap-xep-lai-man-hinh-cau-hinh">11. Sắp xếp lại màn hình cấu hình<a class="headerlink" href="#11-sap-xep-lai-man-hinh-cau-hinh" title="Permanent link">&para;</a></h2>
+<p>Tab "Bảo mật" cũ là <strong>một danh sách dọc dài</strong> trộn lẫn: cách đăng nhập, quy tắc
+mật khẩu, khóa tài khoản, thời gian chờ phiên, và <strong>cấu hình SMTP</strong>.</p>
+<p>Đã tách thành các tab, mỗi tab trả lời một câu hỏi:</p>
+<table>
+<thead>
+<tr>
+<th>Tab</th>
+<th>Câu hỏi</th>
+<th>Tài liệu tương ứng</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Thiết lập chung</td>
+<td>Trang này tên gì, dùng mẫu nào</td>
+<td>—</td>
+</tr>
+<tr>
+<td><strong>Mật khẩu</strong></td>
+<td>Mật khẩu phải như thế nào, dùng được bao lâu</td>
+<td><a href="../01-mat-khau-dinh-ky/">01</a></td>
+</tr>
+<tr>
+<td><strong>Đăng nhập</strong></td>
+<td>Đăng nhập bằng gì, sai thì sao</td>
+<td><a href="../02-khoa-tai-khoan/">02</a></td>
+</tr>
+<tr>
+<td><strong>Phiên làm việc</strong></td>
+<td>Ngồi không bao lâu thì bị đóng phiên</td>
+<td><a href="../03-thoi-gian-cho-phien/">03</a></td>
+</tr>
+<tr>
+<td><strong>Địa chỉ quản trị</strong></td>
+<td>Ai được quản trị, từ đâu</td>
+<td><a href="../04-dia-chi-mang-quan-tri/">04</a></td>
+</tr>
+<tr>
+<td><strong>Email (SMTP)</strong></td>
+<td>Gửi thư qua đâu</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<p>Hai điều đáng nói:</p>
+<ol>
+<li>
+<p><strong>SMTP bị tách khỏi "Bảo mật".</strong> Nó là hạ tầng gửi thư, không phải chính
+   sách bảo mật. Để lẫn thì danh sách tham số bảo mật dài ra mà không có lý do,
+   và người đi tìm cấu hình SMTP không nghĩ tới việc mở tab Bảo mật.</p>
+</li>
+<li>
+<p><strong>"Phiên làm việc" tách khỏi "Đăng nhập".</strong> Ba tham số khóa tài khoản nói về
+   đăng nhập <strong>sai</strong>; hai tham số phiên nói về một phiên <strong>đang mở mà không có
+   thao tác nào</strong>. Để chung một danh sách thì rất dễ đọc nhầm "thời gian khóa
+   tài khoản" thành "thời gian chờ của phiên" — hai con số đều tính bằng phút,
+   nằm cạnh nhau, mà ý nghĩa hoàn toàn khác.</p>
+</li>
+</ol>
+<p>Mỗi tab giờ ánh xạ đúng <strong>một</strong> file tài liệu. Đó không phải trùng hợp: nếu một
+tab cần hai file để giải thích thì nó đang gộp hai thứ không liên quan.</p>
+<hr />
+<h2 id="12-noi-can-biet">12. Nơi cần biết<a class="headerlink" href="#12-noi-can-biet" title="Permanent link">&para;</a></h2>
+<table>
+<thead>
+<tr>
+<th>Việc</th>
+<th>Tệp</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Ghi nhật ký</td>
+<td><code>gPortal.Framework/NhatKyHeThong.cs</code></td>
+</tr>
+<tr>
+<td>Mô hình + enum 5 nhóm</td>
+<td><code>gPortal.Framework/Identity/IdentityModels.cs</code> (<code>gp_AuditLogs</code>, <code>LoaiNhatKy</code>)</td>
+</tr>
+<tr>
+<td>Lấy địa chỉ IP (dùng chung với chốt chặn)</td>
+<td><code>gPortal.Framework/Security/DiaChiClient.cs</code></td>
+</tr>
+<tr>
+<td>API đọc + lọc</td>
+<td><code>AdminController</code> — vùng <code>#region "AuditLogs"</code></td>
+</tr>
+<tr>
+<td>Giao diện</td>
+<td><code>gPortalAdmin/app/view/Log/PortalLogs.js</code></td>
+</tr>
+<tr>
+<td>Model + store</td>
+<td><code>gPortalAdmin/app/model/mAuditLog.js</code>, <code>app/store/sAuditLog.js</code></td>
+</tr>
+<tr>
+<td>Điều hướng</td>
+<td><code>gPortalAdmin/app/store/NavigationTree.js</code></td>
+</tr>
+<tr>
+<td>Migration</td>
+<td><code>Database/DbUpdate.sql</code> — 008</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="13-kiem-thu">13. Kiểm thử<a class="headerlink" href="#13-kiem-thu" title="Permanent link">&para;</a></h2>
+<p>Sau khi chạy migration 008 và build lại <code>gPortalAdmin</code>:</p>
+<table>
+<thead>
+<tr>
+<th>Việc làm</th>
+<th>Nhóm phải xuất hiện</th>
+<th>Kết quả</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Đăng nhập bằng tài khoản thường</td>
+<td>i Truy cập</td>
+<td>Thành công</td>
+</tr>
+<tr>
+<td>Đăng nhập sai mật khẩu 1 lần</td>
+<td>i Truy cập</td>
+<td><strong>Thất bại</strong></td>
+</tr>
+<tr>
+<td>Sai đủ số lần cho tới khi bị khóa</td>
+<td>i + <strong>iv Quản lý tài khoản</strong></td>
+<td>Hai dòng khác nhóm</td>
+</tr>
+<tr>
+<td>Gõ một tên đăng nhập không tồn tại</td>
+<td>i Truy cập</td>
+<td>Thất bại</td>
+</tr>
+<tr>
+<td>Đăng nhập bằng tài khoản <strong>admin</strong></td>
+<td><strong>ii Đăng nhập quản trị</strong></td>
+<td>Thành công</td>
+</tr>
+<tr>
+<td>Đăng xuất</td>
+<td>i Truy cập</td>
+<td>Thành công</td>
+</tr>
+<tr>
+<td>Đổi một ô cấu hình rồi bấm Cập nhật</td>
+<td><strong>v Thay đổi cấu hình</strong></td>
+<td>Chi tiết có <strong>TRƯỚC/SAU</strong></td>
+</tr>
+<tr>
+<td>Thêm một quy tắc địa chỉ</td>
+<td>v Thay đổi cấu hình</td>
+<td>Thành công</td>
+</tr>
+<tr>
+<td>Truy cập <code>/admin</code> từ IP bị cấm</td>
+<td>ii Đăng nhập quản trị</td>
+<td>Thất bại</td>
+</tr>
+<tr>
+<td>Gọi một URL gây lỗi</td>
+<td><strong>iii Lỗi phát sinh</strong></td>
+<td>Thất bại, chi tiết có vết gọi</td>
+</tr>
+</tbody>
+</table>
+<p>Kiểm luôn hai điều dễ sai:</p>
+<ul>
+<li><strong>Múi giờ</strong>: cột Thời gian phải khớp với đồng hồ máy bạn, không lệch 7 tiếng.</li>
+<li><strong>Phân trang</strong>: đổi bộ lọc khi đang ở trang 5 phải nhảy về trang 1, không
+  hiện màn hình trống.</li>
+</ul>
+<p>Và kiểm tra rằng file <code>App_Data\gPortal.txt</code> <strong>không</strong> có dòng nào chứa
+<code>NHATKY_ROI</code> — nếu có thì nghĩa là có sự kiện đã không xuống được CSDL.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+          <button type="button" class="md-top md-icon" data-md-component="top" hidden>
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M13 20h-2V8l-5.5 5.5-1.42-1.42L12 4.16l7.92 7.92-1.42 1.42L13 8z"/></svg>
+  Trở lại mục lục
+</button>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    
+      
+      
+      <script id="__config" type="application/json">{"annotate": null, "base": "..", "features": ["navigation.instant", "navigation.top", "navigation.tracking", "toc.follow", "content.code.copy", "search.highlight"], "search": "../assets/javascripts/workers/search.2c215733.min.js", "tags": null, "translations": {"clipboard.copied": "\u0110\u00e3 sao ch\u00e9p", "clipboard.copy": "Sao ch\u00e9p v\u00e0o b\u1ed9 nh\u1edb t\u1ea1m", "search.result.more.one": "1 t\u1eeb kh\u00e1c trong trang", "search.result.more.other": "# t\u1eeb kh\u00e1c trong trang", "search.result.none": "Kh\u00f4ng t\u00ecm th\u1ea5y t\u00e0i li\u1ec7u li\u00ean quan", "search.result.one": "1 t\u00e0i li\u1ec7u li\u00ean quan", "search.result.other": "# t\u00e0i li\u1ec7u li\u00ean quan", "search.result.placeholder": "Nh\u1eadp \u0111\u1ec3 b\u1eaft \u0111\u1ea7u t\u00ecm ki\u1ebfm", "search.result.term.missing": "Kh\u00f4ng", "select.version": "Ch\u1ecdn phi\u00ean b\u1ea3n"}, "version": null}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.79ae519e.min.js"></script>
+      
+    
+  </body>
+</html>

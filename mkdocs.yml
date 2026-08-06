@@ -1,0 +1,62 @@
+# Cấu hình MkDocs cho tập tài liệu bảo mật trong thư mục mkdoc/
+#
+# Chạy:  cd D:\dev\gPortal  &&  mkdocs serve
+# Mở:    http://127.0.0.1:8000
+#
+# File này PHẢI nằm ngoài mkdoc/: MkDocs 1.x từ chối chạy nếu docs_dir
+# chính là thư mục chứa mkdocs.yml (nó sẽ coi mkdocs.yml là một tệp tài
+# liệu và chép cả cấu hình vào trang web đã dựng).
+
+site_name: gPortal — Tài liệu bảo mật
+site_description: Các tính năng bảo mật đã bổ sung cho gPortal, vì sao làm vậy, và chỗ nào có thể vỡ
+docs_dir: mkdoc
+site_dir: mkdoc-site
+
+theme:
+  name: material
+  language: vi
+  features:
+    - navigation.instant
+    - navigation.top
+    - navigation.tracking
+    - toc.follow
+    - content.code.copy
+    - search.highlight
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      toggle:
+        icon: material/weather-night
+        name: Chuyển sang nền tối
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      toggle:
+        icon: material/weather-sunny
+        name: Chuyển sang nền sáng
+
+markdown_extensions:
+  - admonition
+  - attr_list
+  - tables
+  - toc:
+      permalink: true
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.highlight:
+      anchor_linenums: true
+
+# README.md được MkDocs coi là trang chủ (thay cho index.md).
+nav:
+  - Bắt đầu từ đây: README.md
+  - Tổng quan kiến trúc: 00-tong-quan.md
+  - Tính năng:
+      - 1. Mật khẩu định kỳ: 01-mat-khau-dinh-ky.md
+      - 2. Khóa tài khoản: 02-khoa-tai-khoan.md
+      - 3. Thời gian chờ phiên: 03-thoi-gian-cho-phien.md
+      - 4. Địa chỉ mạng quản trị: 04-dia-chi-mang-quan-tri.md
+      - 5. Nhật ký hệ thống: 08-nhat-ky-he-thong.md
+      - SMTP và gửi thư: 09-smtp-va-gui-thu.md
+  - Vận hành:
+      - Kiểm thử: 05-kiem-thu.md
+      - Vận hành và sự cố: 06-van-hanh-va-su-co.md
+      - Câu hỏi thường gặp: 07-cau-hoi-thuong-gap.md
