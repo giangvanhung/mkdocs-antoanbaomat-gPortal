@@ -399,19 +399,81 @@ rõ giới hạn.
 Đọc phần về các loại yếu tố và điểm yếu của từng loại. Dùng để đối chiếu các quyết
 định ở mục 4 và 5.
 
-### 7.3 Cơ chế 2FA sẵn có của ASP.NET Identity
+### 7.3 Cơ chế 2FA sẵn có của ASP.NET Identity — ✅ ĐÃ XÁC MINH (08/08/2026)
 
-**Mã nguồn ASP.NET Identity 2.x** — <https://github.com/aspnet/AspNetIdentity>
+**Mã nguồn ASP.NET Identity** — <https://github.com/aspnet/AspNetIdentity>
+Phiên bản dự án đang dùng: **2.2.1** (`packages.config`, `targetFramework="net452"`).
 
-Đọc `TotpSecurityStampBasedTokenProvider.cs` và `EmailTokenProvider.cs`.
+Đã đọc: `EmailTokenProvider.cs`, `TotpSecurityStampBasedTokenProvider.cs`,
+`Rfc6238AuthenticationService.cs`.
 
-> ⚠️ **Phần này tôi chưa xác minh được từ nguồn chính thức.**
-> Nhận định "`EmailTokenProvider` suy ra mã từ `SecurityStamp` chứ không lưu, cửa
-> sổ khoảng 3 phút và không chỉnh được" là do tôi suy từ hành vi và trí nhớ, **chưa
-> mở mã nguồn ra đối chiếu trong phiên làm việc này**.
->
-> Đây là nhận định **nền tảng** cho quyết định tự viết kho mã. Nếu nó sai thì phần
-> lớn công sức ở mục 3 là thừa. **Nên xác minh trước khi viết dòng code đầu tiên.**
+> Bản trước của mục này ghi *"chưa xác minh được"* và ước đoán cửa sổ **~3 phút**.
+> **Ước đoán đó sai.** Dưới đây là kết quả đọc mã nguồn thật.
+
+#### Ba điều đã xác minh
+
+**1. Không lưu mã ở bất kỳ đâu.** `ValidateAsync` không chạm cơ sở dữ liệu:
+
+```csharp
+var securityToken = await manager.CreateSecurityTokenAsync(user.Id);
+var modifier      = await GetUserModifierAsync(purpose, manager, user);
+return securityToken != null
+    && Rfc6238AuthenticationService.ValidateCode(securityToken, code, modifier);
+```
+
+Mã được **tính lại** mỗi lần từ `SecurityToken` (dẫn xuất từ `SecurityStamp`) +
+`modifier` + số thứ tự ô thời gian, qua `HMACSHA1`. Không `DbContext`, không
+`SaveChanges`, không đọc bảng nào.
+
+**2. Không thể dùng một lần.** Hệ quả trực tiếp của (1): không lưu thì không nhớ
+được mã nào đã dùng, nên không có gì để kiểm. `ValidateCode` chỉ tính lại và so.
+Gửi lại **đúng mã vừa dùng thành công** vẫn trả `true`, cho tới khi hết cửa sổ.
+
+`if` duy nhất trong `ValidateAsync` là `Int32.TryParse` — kiểm **định dạng đầu
+vào**, không phải kiểm đã dùng. Đừng đọc nhầm.
+
+Đây là khác biệt bảo mật thật: người đọc trộm thư hoặc nhìn qua vai **vẫn đăng
+nhập được sau lưng người dùng**, dù mã đã được dùng rồi.
+
+**3. Cửa sổ hiệu lực không cố định và không chỉnh được từ ngoài.**
+
+```csharp
+private static readonly TimeSpan _timestep = TimeSpan.FromMinutes(3);
+...
+// Allow a variance of no greater than 9 minutes in either direction
+for (var i = -2; i <= 2; i++) { ... }
+```
+
+`private static readonly` — không có thuộc tính, tham số hay hàm khởi tạo nào
+chỉnh được. **Không có đường đặt thành 300 giây.**
+
+Và cửa sổ **không cố định**. `GetCurrentTimeStepNumber()` chia *thời gian tuyệt
+đối* thành các ô 3 phút có sẵn, không tính từ lúc sinh mã. Mã sinh ở ô `N` được
+chấp nhận cho tới hết ô `N+2`:
+
+| Mã sinh lúc | Hết hiệu lực lúc | Sống được |
+|---|---|---|
+| 10:00:01 (vừa vào ô) | 10:09:00 | **8 phút 59 giây** |
+| 10:02:59 (sát mép ô) | 10:09:00 | **6 phút 1 giây** |
+
+Chú thích *"no greater than 9 minutes"* là **cận trên trường hợp xấu nhất**, không
+phải thời gian sống của mọi mã. Hai người bấm cách nhau 2 giây có thể nhận mã
+chênh nhau gần 3 phút tuổi thọ — không dự đoán được, không giải thích được cho
+người dùng.
+
+Đối chiếu với cách làm ở mục 3.1: `HetHanUtc = TaoLucUtc + 300s` chốt lúc tạo, nên
+**mọi mã sống đúng 300 giây bất kể sinh ra lúc nào**. Đó là bất biến **B4**.
+
+#### Kết luận
+
+| Yêu cầu đặc tả | `EmailTokenProvider` đáp ứng? |
+|---|---|
+| Lưu hash(OTP) trong CSDL | **Không** — không lưu gì cả |
+| Chỉ dùng được 1 lần | **Không** — không lưu ⇒ không nhớ ⇒ không chặn được dùng lại |
+| Hết hạn đúng 300 giây | **Không** — hằng số `private static readonly`, cửa sổ lại còn không cố định |
+
+**Ba trên ba.** Quyết định tự viết kho mã (mục 3) là **cần thiết**, và nay đứng
+trên mã nguồn đã đọc chứ không phải trên trí nhớ.
 
 ### 7.4 Băm mã có không gian nhỏ
 
@@ -429,7 +491,7 @@ không chép thẳng con số.
 
 | Bước | Nội dung | Vì sao trước |
 |---|---|---|
-| 1 | Xác minh 7.3 | Sai giả định này thì cả thiết kế đổi |
+| ~~1~~ | ~~Xác minh 7.3~~ — ✅ **xong 08/08/2026**, kết quả ở mục 7.3 | Sai giả định này thì cả thiết kế đổi |
 | 2 | Domain + test 6.1 | Thuần, không phụ thuộc gì, chạy được ngay |
 | 3 | Trừu tượng hóa kho / thư / nhật ký / đồng hồ | Không có bước này thì 6.2 không viết được |
 | 4 | Application + test 6.2 | Nơi chứa gần hết bất biến |
