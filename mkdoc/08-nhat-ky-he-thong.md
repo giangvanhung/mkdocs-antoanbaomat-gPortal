@@ -48,8 +48,8 @@ chính định dạng mình vừa in ra — và nó sẽ hỏng ngay lần đầ
 Nó là **lưới an toàn** cho chính bảng nhật ký. Khi `NhatKyHeThong` không ghi
 được xuống CSDL, nó đổ ra file kèm tiền tố `NHATKY_ROI`:
 
-``` title="Định dạng dòng dự phòng — gPortal.Framework/NhatKyHeThong.cs:186"
-NHATKY_ROI | loai=QuanLyTaiKhoan | hanhDong=KHOA_TAI_KHOAN | thanhCong=False | ...
+``` title="Định dạng dòng dự phòng — gPortal.Framework/NhatKyHeThong.cs (DoRaFile)"
+NHATKY_ROI | loai=QuanLyTaiKhoan | mucDo=Thap | thanhPhan=gPortal@WEB01 | hanhDong=KHOA_TAI_KHOAN | thanhCong=False | ...
 ```
 
 Tìm chuỗi đó trong file log là cách biết bảng nhật ký có đầy đủ hay không.
@@ -123,6 +123,60 @@ nhóm này.
 | iv | Gán vai trò | `GAN_VAI_TRO` | `AdminController.AddUserRoles` |
 | **v** Cấu hình | Sửa cấu hình bảo mật | `SUA_CAU_HINH_BAO_MAT` | `AdminController.AddPortalSettings` |
 | v | Thêm/sửa/xóa quy tắc địa chỉ | `*_DIA_CHI_QUAN_TRI` | `AdminController` |
+| **7** Cảnh báo an ninh | Cảnh báo khóa tài khoản do sai mật khẩu | `CANH_BAO_KHOA_TAI_KHOAN` | `IdentityConfig.AccessFailedAsync` → `CanhBaoDenAdmin.GuiAsync` |
+| 7 | Cảnh báo khóa 2FA do sai OTP | `CANH_BAO_KHOA_2FA` | `XacThucHaiLop` → `CanhBaoDenAdmin.GuiAsync` |
+| 7 | Cảnh báo quản trị viên đăng nhập | `CANH_BAO_DANG_NHAP_QUAN_TRI` | `AccountController.RedirectAfterSignIn` → `CanhBaoDenAdmin.GuiAsync` |
+
+Nhóm 7 (thêm ở migration 014, yêu cầu L2-07) là **nhật ký cảnh báo**: mỗi lần
+hệ thống phát cảnh báo tới quản trị viên thì có đúng một dòng, do
+`CanhBaoDenAdmin.GuiAsync` ghi trong `finally` — gửi thư được hay không thì
+dòng vẫn có, kết quả gửi nằm ở `ThanhCong` và `ChiTiet`.
+
+### Cấu trúc một dòng (log schema)
+
+Bảng `dbo.gp_AuditLogs` — migration 008, bổ sung 014.
+
+| Cột | Kiểu | Ý nghĩa | Trường TCVN 4.8.2.1 |
+|---|---|---|---|
+| `Id` | NVARCHAR(128) | GUID | — |
+| `ThoiGianUtc` | DATETIME | Thời điểm, giờ **UTC** | Thời điểm |
+| `LoaiNhatKy` | INT | Nhóm 1–7 (enum `LoaiNhatKy`) | Loại |
+| `HanhDong` | NVARCHAR(100) | Mã máy đọc, `HOA_CO_GACH_DUOI` | Hành vi / loại cảnh báo |
+| `MoTa` | NVARCHAR(1000) | Câu mô tả; với nhóm 7 là **tên cảnh báo** | Hành vi / tên cảnh báo |
+| `ThanhCong` | BIT | Thành công / thất bại | Hành vi |
+| `MucDo` | INT NULL | 1 Thông tin, 2 Thấp, 3 Trung bình, 4 Cao, 5 Nghiêm trọng | Mức độ |
+| `ThanhPhan` | NVARCHAR(100) NULL | `gPortal@<tên máy chủ>` | Thiết bị/thành phần |
+| `UserName`, `UserId` | NVARCHAR | Người **thực hiện** | Nguồn (tài khoản) |
+| `DiaChiIp` | NVARCHAR(100) | IP client (qua `DiaChiClient`) | Nguồn |
+| `DuongDan` | NVARCHAR(500) | URL được gọi | Đích |
+| `TaiKhoanDich` | NVARCHAR(256) NULL | Tài khoản **bị tác động** | Tài khoản đích |
+| `ChiTiet` | NVARCHAR(4000) | Chi tiết tự do (trước/sau, ngoại lệ, kết quả gửi thư) | — |
+
+**Mức độ mặc định.** Nơi gọi không truyền `mucDo` thì `NhatKyHeThong.MucDoMacDinh`
+gán: nhóm Lỗi → Trung bình; thao tác thất bại → Thấp; còn lại → Thông tin.
+Cảnh báo có mức riêng, khai một chỗ ở lớp `MaCanhBao` (`CanhBaoDenAdmin.cs`):
+
+| Cảnh báo | Mức độ | Lý do |
+|---|---|---|
+| `CANH_BAO_KHOA_TAI_KHOAN` | Trung bình | Có thể là dò mật khẩu, cũng có thể chỉ là quên |
+| `CANH_BAO_KHOA_2FA` | Cao | Đã qua bước mật khẩu → mật khẩu nhiều khả năng đã lộ |
+| `CANH_BAO_DANG_NHAP_QUAN_TRI` | Thấp | Sự kiện hợp lệ, thông báo để chủ tài khoản đối chiếu |
+
+**Dòng cũ.** Các dòng ghi trước migration 014 có `MucDo`, `ThanhPhan`,
+`TaiKhoanDich` = NULL và **không** được điền ngược: gán mức độ cho sự kiện quá
+khứ là dựng lại bằng chứng sau sự việc.
+
+**File lưu trữ khi dọn nhật ký** (`App_Data\AuditLogArchive\gp_AuditLogs_*.txt`,
+mỗi dòng một JSON) xuất **đủ tất cả các cột trên** kèm `TenLoai`, `TenMucDo` —
+sau khi xóa khỏi CSDL, file này là bản duy nhất còn lại.
+
+``` json title="Mẫu một dòng cảnh báo trong file lưu trữ"
+{"Id":"…","LoaiNhatKy":7,"TenLoai":"Cảnh báo an ninh","HanhDong":"CANH_BAO_KHOA_2FA",
+ "MoTa":"Cảnh báo tài khoản bị khóa do 2FA","MucDo":4,"TenMucDo":"Cao",
+ "ThanhPhan":"gPortal@WEB01","UserName":"nguyenvana","UserId":"…","TaiKhoanDich":"nguyenvana",
+ "DiaChiIp":"203.0.113.10","DuongDan":"/Account/VerifyCode","ThanhCong":true,
+ "ChiTiet":"…\nGửi thư: 2/2 thành công","ThoiGianUtc":"2026-10-01T03:15:42.0000000Z"}
+```
 
 ### Một dòng hay hai dòng?
 
@@ -240,8 +294,11 @@ thứ duy nhất gọi được API.
 | Thành phần | Ghi chú |
 |---|---|
 | Lọc theo nhóm | Danh sách lấy từ `/Admin/AuditLogTypes`, sinh từ enum — thêm nhóm thứ sáu thì ô này tự có |
+| Lọc "Mức độ từ" | Danh sách lấy từ `/Admin/AuditLogSeverities`; chọn "Cao" là ra Cao + Nghiêm trọng. Dòng cũ (MucDo NULL) không hiện khi lọc |
 | Lọc theo khoảng ngày | Ô "Đến" bao gồm **cả** ngày được chọn |
-| Tìm theo từ khóa | Khớp người dùng, mô tả, IP, mã hành động |
+| Tìm theo từ khóa | Khớp người dùng, tài khoản đích, thành phần, mô tả, IP, mã hành động |
+| Cột Mức độ | Trung bình tô cam, Cao/Nghiêm trọng tô đỏ |
+| Cột Tài khoản đích, Thành phần | Xem "Cấu trúc một dòng (log schema)" ở mục 5 |
 | "Chỉ sự kiện thất bại" | Lối tắt tới thứ cần nhìn nhất |
 | Dòng thất bại tô đỏ nhạt | Để mắt bắt được **cụm** sự kiện hỏng liên tiếp |
 | Bấm đúp một dòng | Mở hộp chi tiết (giá trị cấu hình trước/sau, nội dung ngoại lệ) |
@@ -286,13 +343,15 @@ tab cần hai file để giải thích thì nó đang gộp hai thứ không li�
 | Việc | Tệp |
 |---|---|
 | Ghi nhật ký | `gPortal.Framework/NhatKyHeThong.cs` |
-| Mô hình + enum 5 nhóm | `gPortal.Framework/Identity/IdentityModels.cs` (`gp_AuditLogs`, `LoaiNhatKy`) |
+| Mô hình + enum nhóm, mức độ | `gPortal.Framework/Identity/IdentityModels.cs` (`gp_AuditLogs`, `LoaiNhatKy`, `MucDoNhatKy`) |
+| Gửi + ghi cảnh báo, mức độ từng loại | `gPortal.Framework/Security/CanhBaoDenAdmin.cs` (`MaCanhBao`) |
+| Xuất file khi dọn | `gPortal.Framework/DonNhatky.cs` |
 | Lấy địa chỉ IP (dùng chung với chốt chặn) | `gPortal.Framework/Security/DiaChiClient.cs` |
 | API đọc + lọc | `AdminController` — vùng `#region "AuditLogs"` |
-| Giao diện | `gPortalAdmin/app/view/Log/PortalLogs.js` |
+| Giao diện | `gPortalAdmin/app/view/LogSystem/PortalLogs.js` |
 | Model + store | `gPortalAdmin/app/model/mAuditLog.js`, `app/store/sAuditLog.js` |
 | Điều hướng | `gPortalAdmin/app/store/NavigationTree.js` |
-| Migration | `Database/DbUpdate.sql` — 008 |
+| Migration | `Database/DbUpdate.sql` — 008, 014 |
 
 ---
 
@@ -304,9 +363,11 @@ Sau khi chạy migration 008 và build lại `gPortalAdmin`:
 |---|---|---|
 | Đăng nhập bằng tài khoản thường | i Truy cập | Thành công |
 | Đăng nhập sai mật khẩu 1 lần | i Truy cập | **Thất bại** |
-| Sai đủ số lần cho tới khi bị khóa | i + **iv Quản lý tài khoản** | Hai dòng khác nhóm |
+| Sai đủ số lần cho tới khi bị khóa | i + **iv Quản lý tài khoản** + **7 Cảnh báo an ninh** | Ba dòng khác nhóm; dòng nhóm 7 mức **Trung bình**, có Thành phần và Tài khoản đích |
+| Sai OTP tới khi khóa 2FA | iv + **7 Cảnh báo an ninh** | Dòng nhóm 7 mức **Cao** |
+| Bảng `gp_AdminNotifyEmails` rỗng, rồi làm khóa tài khoản | iii Lỗi + 7 Cảnh báo an ninh | Dòng nhóm 7 vẫn có, `ThanhCong` = Thất bại |
 | Gõ một tên đăng nhập không tồn tại | i Truy cập | Thất bại |
-| Đăng nhập bằng tài khoản **admin** | **ii Đăng nhập quản trị** | Thành công |
+| Đăng nhập bằng tài khoản **admin** | **ii Đăng nhập quản trị** + 7 Cảnh báo an ninh | Thành công; dòng nhóm 7 mức **Thấp** |
 | Đăng xuất | i Truy cập | Thành công |
 | Đổi một ô cấu hình rồi bấm Cập nhật | **v Thay đổi cấu hình** | Chi tiết có **TRƯỚC/SAU** |
 | Thêm một quy tắc địa chỉ | v Thay đổi cấu hình | Thành công |
